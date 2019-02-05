@@ -1,0 +1,190 @@
+---
+title: "Home"
+site: workflowr::wflow_site
+output:
+  workflowr::wflow_html:
+    toc: false
+---
+```{r}
+options(stringsAsFactors=F) 
+source('lib/functions.R')
+
+indigenous_status = c("Neither Aboriginal nor Torres Strait Islander",
+                      "Aboriginal",
+                      "Torres Strait Islander",
+                      "Both Aboriginal  and Torres Strait Islander")
+data.frame(indigenous_status_id=1:4, 
+           indigenous_status_desc=indigenous_status ) %>% 
+write.csv('data/package/indigenous_status.csv', row.names=FALSE)
+
+
+ms=  c(
+       "Never married",
+       "Widowed",
+       "Divorced",
+       "Separated",
+       "Married (registered and de facto)", "Unknown")
+
+data.frame(marital_status_id=1:6, 
+           marital_status_desc=ms ) %>% 
+  write.csv('data/package/marital_status.csv',row.names=FALSE)
+
+data.frame(
+           hospital_insurance_id=1:2, 
+           hospital_insurance_desc=c('Hospital Insurance','No Hospital Insurance' )) %>% 
+  write.csv('data/package/hospital_insurance.csv',row.names=FALSE)
+
+```
+
+
+
+```{r}
+
+read.csv('data/admission_code.csv' ) %>%
+  as_tibble() %>% 
+  { . } -> df
+
+read.csv('data/diagnosis_desc.csv' ) %>%
+  as_tibble() %>% 
+  select( diag_code, diag_desc ) %>%
+  { . } -> df_diag
+
+
+read.csv('data/procedure_desc.csv' ) %>%
+  as_tibble() %>% 
+  select( procedure_code, procedure_desc ) %>%
+  { . } -> df_proc
+
+
+df %>%
+  select(starts_with('diag' )) %>% 
+  gather( id, diag_code ) %>% 
+  distinct( diag_code )  %>%
+  inner_join( df_diag ) %>%
+  write.csv( 'data/package/diagnosis_desc.csv', row.names=F)
+
+df %>%
+  select(starts_with('proc' )) %>% 
+  gather( id, procedure_code ) %>% 
+  distinct( procedure_code )  %>%
+  inner_join( df_proc ) %>%
+  write.csv( 'data/package/procedure_desc.csv', row.names=F)
+
+read.csv('data/name_source.csv' ) %>%
+  as_tibble() %>% 
+  { . } -> df_names
+
+
+df_names %>% 
+  inner_join( df_names %>%
+                distinct( NameSet )  %>%
+                mutate( weight = c(100,10,10,10,10 ))) %>% 
+  { . } -> df_names
+
+df %>%
+  mutate( given_name = sample_n( df_names, nrow(df), replace=TRUE, weight=df_names$weight ) %>%
+            mutate( name = paste( GivenName, Surname ))  %$%
+            name
+          ) %>% 
+  { . } -> df
+         
+
+read.csv( 'data/package/country_of_birth.csv', colClasses=c('character', 'character', 'numeric') ) %>%
+  as_tibble() %>%
+  select( country_id, country_name ) %>%
+  mutate( weight=ifelse( country_id=='1101' , 100, 1 )) %>%
+  filter( weight==100) %>%
+  write.csv('data/package/country_of_birth.csv', row.names=F)
+
+read.csv( 'data/package/country_of_birth.csv', colClasses=c('character', 'character', 'numeric') ) %>%
+  as_tibble() %>% 
+  { . } -> df_tofill
+
+df %>%
+  mutate( country_id = sample_n( df_tofill, nrow(df), replace=TRUE, weight=df_tofill$weight )  %$% country_id) %>% 
+  { . } -> df
+
+
+
+read.csv( 'data/package/campus.csv' ) %>%
+  as_tibble() %>% 
+  mutate( weight=1) %>%
+  { . } -> df_tofill
+
+df %>%
+  mutate( campus_id = sample_n( df_tofill, nrow(df), replace=TRUE, weight=df_tofill$weight )  %$% campus_id) %>% 
+  { . } -> df
+
+
+
+
+read.csv( 'data/package/hospital_insurance.csv' ) %>%
+  as_tibble() %>% 
+  mutate( weight=1) %>%
+  { . } -> df_tofill
+
+df %>%
+  mutate( hospital_insurance_id = sample_n( df_tofill, nrow(df), replace=TRUE, weight=df_tofill$weight )  %$% hospital_insurance_id) %>% 
+  { . } -> df
+
+read.csv( 'data/package/indigenous_status.csv' ) %>%
+  as_tibble() %>% 
+  mutate( weight=c(30,2,2,1)) %>%
+  { . } -> df_tofill
+
+df %>%
+  mutate( indigenous_status_id = sample_n( df_tofill, nrow(df), replace=TRUE, weight=df_tofill$weight )  %$% indigenous_status_id) %>% 
+  { . } -> df
+
+read.csv( 'data/package/marital_status.csv' ) %>%
+  as_tibble() %>% 
+  mutate( weight=c(1,1,1,1,4,.1)) %>%
+  { . } -> df_tofill
+
+df %>%
+  mutate( marital_status_id = sample_n( df_tofill, nrow(df), replace=TRUE, weight=df_tofill$weight )  %$% marital_status_id) %>% 
+  select( marital_status_id, everything()) %>%
+  { . } -> df
+
+read.csv( 'data/package/postcode.csv', colClasses='character' ) %>%
+  as_tibble() %>% 
+  filter( State=='VIC' ) %>%
+  mutate( weight=ifelse( Postcode <= '3207', 30,1 )) %>%
+  { . } -> df_tofill
+
+df %>%
+  mutate( postcode = sample_n( df_tofill, nrow(df), replace=TRUE, weight=df_tofill$weight )  %$% Postcode) %>% 
+  select( postcode, everything()) %>%
+  { . } -> df
+
+read.csv( 'data/package/speciality.csv', colClasses='character' ) %>%
+  as_tibble() %>% 
+  mutate( weight=1 ) %>%
+  { . } -> df_tofill
+
+df %>%
+  mutate( speciality_id = sample_n( df_tofill, nrow(df), replace=TRUE, weight=df_tofill$weight )  %$% speciality_id) %>% 
+  select( speciality_id, everything()) %>%
+  { . } -> df
+
+
+df %>%
+  mutate( date_of_birth = make_date( year=year(today()) - age_years, 
+                                    month=1, 
+                                    day=1 ) + 
+         sample( 0:364, n(), replace=T)) %>%
+  mutate( admission_date = make_date( year=year(today()), month=1, day=1 ) + sample( 0:364, n(), replace=T)) %>%
+  mutate( separation_date = admission_date + los - 1  ) %>%
+  rename( patient_days_total=los ) %>%
+  select( names( . ) %>% sort() ) %>%
+  select( -age_years ) %>%
+  { . } -> df
+
+df%>% write.csv( 'data/package/admission.csv', row.names=FALSE)
+
+
+
+```
+
+
+
