@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Check Correct</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">generate_data</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/jdblischak/workflowr">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Check Correct</h1>
+
+</div>
+
+
+<p><strong>Last updated:</strong> 2019-02-07</p>
+<strong>workflowr checks:</strong> <small>(Click a bullet for more information)</small>
+<ul>
+<li>
+<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>R Markdown file:</strong> up-to-date </summary></p>
+<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
+</details>
+</li>
+<li>
+<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Environment:</strong> empty </summary></p>
+<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+</details>
+</li>
+<li>
+<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Seed:</strong> <code>set.seed(20190205)</code> </summary></p>
+<p>The command <code>set.seed(20190205)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+</details>
+</li>
+<li>
+<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Session information:</strong> recorded </summary></p>
+<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+</details>
+</li>
+<li>
+<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/dewoller/generate_vaed_dataset/tree/ee29d97532260155100b8271c9886354181e3a3a" target="_blank">ee29d97</a> </summary></p>
+Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+<pre><code>
+Ignored files:
+    Ignored:    docs/figure/
+
+Untracked files:
+    Untracked:  data/archive/country_of_birth.csv
+    Untracked:  data/tutorial/
+
+Unstaged changes:
+    Modified:   analysis/generateCorrect.Rmd
+    Modified:   data/package/admission.csv
+    Modified:   data/package/country_of_birth.csv
+    Modified:   data/package/postcode.csv
+
+</code></pre>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes. </details>
+</li>
+</ul>
+<details> <summary> <small><strong>Expand here to see past versions:</strong></small> </summary>
+<ul>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+File
+</th>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+<th style="text-align:left;">
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Rmd
+</td>
+<td style="text-align:left;">
+<a href="https://github.com/dewoller/generate_vaed_dataset/blob/ee29d97532260155100b8271c9886354181e3a3a/analysis/checkCorrect.Rmd" target="_blank">ee29d97</a>
+</td>
+<td style="text-align:left;">
+Dennis Wollersheim
+</td>
+<td style="text-align:left;">
+2019-02-07
+</td>
+<td style="text-align:left;">
+wflow_publish(“analysis/checkCorrect.Rmd”)
+</td>
+</tr>
+</tbody>
+</table>
+</ul>
+<p></details></p>
+<hr />
+<div id="read-in-base-dat" class="section level1">
+<h1>Read in base dat</h1>
+<pre class="r"><code>read.csv( &#39;data/package/admission.csv&#39; ) %&gt;%
+  as_tibble() %&gt;% 
+  { . } -&gt; df</code></pre>
+</div>
+<div id="frequency-tables" class="section level1">
+<h1>Frequency tables</h1>
+<pre class="r"><code># numeric variables
+
+df %&gt;%
+  select( -starts_with( &#39;diag&#39; ), -starts_with( &#39;proc&#39; ) ) %&gt;% 
+  select_if( function(x) {class(x)==&#39;integer&#39;} ) %&gt;%
+  { . } -&gt; df_1
+
+f=names( df_1 ) [1]
+for (f in names( df_1 )) {
+
+  p= ggplot( df_1, aes_string( x=f )) + 
+    geom_histogram( bins=30)
+
+  print(p)
+}</code></pre>
+<p><img src="figure/checkCorrect.Rmd/outliers-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/checkCorrect.Rmd/outliers-2.png" width="672" style="display: block; margin: auto;" /><img src="figure/checkCorrect.Rmd/outliers-3.png" width="672" style="display: block; margin: auto;" /><img src="figure/checkCorrect.Rmd/outliers-4.png" width="672" style="display: block; margin: auto;" /><img src="figure/checkCorrect.Rmd/outliers-5.png" width="672" style="display: block; margin: auto;" /><img src="figure/checkCorrect.Rmd/outliers-6.png" width="672" style="display: block; margin: auto;" /><img src="figure/checkCorrect.Rmd/outliers-7.png" width="672" style="display: block; margin: auto;" /><img src="figure/checkCorrect.Rmd/outliers-8.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>#character variables
+
+df %&gt;%
+  select( -starts_with( &#39;diag&#39; ), -starts_with( &#39;proc&#39; ) ) %&gt;% 
+  select_if( function(x) {class(x)==&#39;character&#39;} ) %&gt;%
+  { . } -&gt; df_1
+for (f in names( df_1 )) {
+  p= ggplot( df_1, aes_string( x=f )) + geom_bar()
+  print(p)
+}</code></pre>
+<p><img src="figure/checkCorrect.Rmd/outliers-9.png" width="672" style="display: block; margin: auto;" /><img src="figure/checkCorrect.Rmd/outliers-10.png" width="672" style="display: block; margin: auto;" /><img src="figure/checkCorrect.Rmd/outliers-11.png" width="672" style="display: block; margin: auto;" /><img src="figure/checkCorrect.Rmd/outliers-12.png" width="672" style="display: block; margin: auto;" /><img src="figure/checkCorrect.Rmd/outliers-13.png" width="672" style="display: block; margin: auto;" /><img src="figure/checkCorrect.Rmd/outliers-14.png" width="672" style="display: block; margin: auto;" /><img src="figure/checkCorrect.Rmd/outliers-15.png" width="672" style="display: block; margin: auto;" /><img src="figure/checkCorrect.Rmd/outliers-16.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>#
+#diagnosis variables
+
+df %&gt;%
+  select( starts_with( &#39;diag&#39; ) ) %&gt;% 
+  gather( junk, diag ) %&gt;%
+  ggplot( aes( x=diag )) + geom_bar()</code></pre>
+<p><img src="figure/checkCorrect.Rmd/outliers-17.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>df %&gt;%
+  select( starts_with( &#39;proc&#39; ) ) %&gt;% 
+  gather( junk, proc ) %&gt;%
+  ggplot( aes( x=proc )) + geom_bar()</code></pre>
+<p><img src="figure/checkCorrect.Rmd/outliers-18.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code># out of spec values</code></pre>
+</div>
+<div id="values-not-in-code-tables" class="section level1">
+<h1>Values not in code tables</h1>
+<pre class="r"><code># each of the lookup tables
+
+files=c(
+&quot;data/package/admission_type.csv&quot;,
+&quot;data/package/campus.csv&quot;,
+&quot;data/package/country_of_birth.csv&quot;,
+&quot;data/package/hospital_insurance.csv&quot;,
+&quot;data/package/indigenous_status.csv&quot;,
+&quot;data/package/marital_status.csv&quot;,
+&quot;data/package/postcode.csv&quot;,
+&quot;data/package/separation_mode.csv&quot;,
+&quot;data/package/sex.csv&quot;,
+&quot;data/package/speciality.csv&quot;)
+
+lookup_files = c(&quot;data/package/diagnosis_desc.csv&quot;, &quot;data/package/procedure_desc.csv&quot;)
+
+i=files[4]
+
+for (i in files) {
+
+  read.csv( i ) %&gt;%
+    as_tibble() %&gt;% 
+    { . } -&gt; df_tocheck
+
+  field = names( df_tocheck ) [1]
+
+  as_tibble() %&gt;%
+    cat( paste( &quot;### Checking for extraneous&quot;, field, &quot;in admission file\n&quot;))
+  df %&gt;% 
+    anti_join( df_tocheck , by=field) %&gt;%
+    select_at( vars( field ))
+}</code></pre>
+<pre><code> ### Checking for extraneous adm_type_id in admission file
+ ### Checking for extraneous campus_id in admission file
+ ### Checking for extraneous country_id in admission file
+ ### Checking for extraneous hospital_insurance_id in admission file
+ ### Checking for extraneous indigenous_status_id in admission file
+ ### Checking for extraneous marital_status_id in admission file
+ ### Checking for extraneous postcode in admission file
+ ### Checking for extraneous sep_mode_id in admission file
+ ### Checking for extraneous sex_id in admission file
+ ### Checking for extraneous speciality_id in admission file</code></pre>
+<pre class="r"><code>cat( paste( &quot;### Checking for extraneous diagnosis in admission file\n&quot;))</code></pre>
+<pre><code>### Checking for extraneous diagnosis in admission file</code></pre>
+<pre class="r"><code>read.csv( lookup_files[1] ) %&gt;%
+  as_tibble() %&gt;% 
+  { . } -&gt; df_tocheck
+
+field = names( df_tocheck ) [1]
+df %&gt;%
+  select( starts_with( &#39;diag&#39; ) ) %&gt;% 
+  gather( junk, diag_code ) %&gt;% 
+  anti_join( df_tocheck , by=field) %&gt;% 
+  select_at( vars( field ))</code></pre>
+<pre><code># A tibble: 0 x 1
+# … with 1 variable: diag_code &lt;chr&gt;</code></pre>
+<pre class="r"><code>cat( paste( &quot;### Checking for extraneous procedure in admission file\n&quot;))</code></pre>
+<pre><code>### Checking for extraneous procedure in admission file</code></pre>
+<pre class="r"><code>read.csv( lookup_files[2] ) %&gt;%
+  as_tibble() %&gt;% 
+  { . } -&gt; df_tocheck
+
+field = names( df_tocheck ) [1]
+
+df %&gt;%
+  select( starts_with( &#39;proc&#39; ) ) %&gt;% 
+  gather( junk, procedure_code ) %&gt;% 
+  anti_join( df_tocheck , by=field) %&gt;% 
+  select_at( vars( field ))</code></pre>
+<pre><code># A tibble: 0 x 1
+# … with 1 variable: procedure_code &lt;int&gt;</code></pre>
+</div>
+<div id="values-that-dont-match-semantically" class="section level1">
+<h1>values that don’t match semantically</h1>
+<div id="old-dates" class="section level2">
+<h2>old dates</h2>
+<pre class="r"><code>df %&gt;%
+  filter( admission_date &lt; &#39;2018&#39;) %&gt;%
+  kable()</code></pre>
+<p>adm_type_id admission_date campus_id country_id date_of_birth diag_code_1 diag_code_2 diag_code_3 given_name hospital_insurance_id indigenous_status_id marital_status_id patient_days_total patient_id postcode proc_code_1 proc_code_2 proc_code_3 sep_mode_id separation_date sex_id speciality_id ———— ————— ———- ———– ————– ———— ———— ———— ———– ———————- ——————— —————— ——————- ———– ——— ———— ———— ———— ———— —————- ——- ————–</p>
+</div>
+<div id="dates-that-have-not-happened-dates" class="section level2">
+<h2>dates that have not happened dates</h2>
+<pre class="r"><code>df %&gt;%
+  filter( admission_date &gt;= &#39;2019&#39;) %&gt;%
+  kable()</code></pre>
+<p>adm_type_id admission_date campus_id country_id date_of_birth diag_code_1 diag_code_2 diag_code_3 given_name hospital_insurance_id indigenous_status_id marital_status_id patient_days_total patient_id postcode proc_code_1 proc_code_2 proc_code_3 sep_mode_id separation_date sex_id speciality_id ———— ————— ———- ———– ————– ———— ———— ———— ———– ———————- ——————— —————— ——————- ———– ——— ———— ———— ———— ———— —————- ——- ————–</p>
+</div>
+</div>
+<div id="values-that-dont-match-arithmetically" class="section level1">
+<h1>values that don’t match arithmetically</h1>
+<pre class="r"><code>#date vs LOS
+
+
+df %&gt;%
+  filter( as.Date( separation_date ) - as.Date( admission_date )+ 1 != patient_days_total ) %&gt;%
+  select( patient_id, admission_date, separation_date, patient_days_total ) %&gt;%
+  kable()</code></pre>
+<p>patient_id admission_date separation_date patient_days_total ———– ————— —————- ——————-</p>
+<div id="seperation-date-before-admission_date" class="section level2">
+<h2>seperation date before admission_date</h2>
+<pre class="r"><code>df %&gt;%
+  filter( as.Date( separation_date ) &lt; as.Date( admission_date )) %&gt;%
+  kable()</code></pre>
+<p>adm_type_id admission_date campus_id country_id date_of_birth diag_code_1 diag_code_2 diag_code_3 given_name hospital_insurance_id indigenous_status_id marital_status_id patient_days_total patient_id postcode proc_code_1 proc_code_2 proc_code_3 sep_mode_id separation_date sex_id speciality_id ———— ————— ———- ———– ————– ———— ———— ———— ———– ———————- ——————— —————— ——————- ———– ——— ———— ———— ———— ———— —————- ——- ————–</p>
+</div>
+</div>
+<div id="incorrect-format-values" class="section level1">
+<h1>incorrect format values</h1>
+<div id="incorrect-dates" class="section level2">
+<h2>incorrect dates</h2>
+<pre class="r"><code>df %&gt;%
+  filter( as.character( as.Date( separation_date ) ) !=  separation_date ) %&gt;%
+  select( patient_id, separation_date ) %&gt;%
+  kable()</code></pre>
+<p>patient_id separation_date ———– —————-</p>
+<pre class="r"><code>df %&gt;%
+  filter( as.character( as.Date( admission_date ) ) !=  admission_date ) %&gt;%
+  select( patient_id, admission_date ) %&gt;%
+  kable()</code></pre>
+<p>patient_id admission_date ———– —————</p>
+</div>
+<div id="missing-mandatory-values---patient_id-given_name" class="section level2">
+<h2>missing mandatory values - patient_id, given_name</h2>
+<pre class="r"><code>df %&gt;%
+  filter(
+         is.na( patient_id ) | patient_id==&#39;&#39; |
+         is.na( given_name ) | given_name==&#39;&#39; 
+         ) %&gt;%
+  select( patient_id, given_name ) %&gt;%
+  kable()</code></pre>
+<p>patient_id given_name ———– ———–</p>
+</div>
+</div>
+<div id="duplicate-patient_id" class="section level1">
+<h1>duplicate patient_id</h1>
+<pre class="r"><code>df %&gt;%
+  count( patient_id ) %&gt;%
+  filter( n&gt;1 ) %&gt;%
+  kable()</code></pre>
+<p>patient_id n ———– —</p>
+<div id="session-information" class="section level2">
+<h2>Session information</h2>
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 3.4.4 (2018-03-15)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Ubuntu 18.04.1 LTS
+
+Matrix products: default
+BLAS: /usr/lib/x86_64-linux-gnu/openblas/libblas.so.3
+LAPACK: /usr/lib/x86_64-linux-gnu/libopenblasp-r0.2.20.so
+
+locale:
+ [1] LC_CTYPE=en_AU.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_AU.UTF-8        LC_COLLATE=en_AU.UTF-8    
+ [5] LC_MONETARY=en_AU.UTF-8    LC_MESSAGES=en_AU.UTF-8   
+ [7] LC_PAPER=en_AU.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_AU.UTF-8 LC_IDENTIFICATION=C       
+
+attached base packages:
+[1] stats4    parallel  stats     graphics  grDevices utils     datasets 
+[8] methods   base     
+
+other attached packages:
+ [1] bindrcpp_0.2.2        hashmap_0.2.2         tictoc_1.0           
+ [4] forcats_0.3.0         dplyr_0.7.8           purrr_0.2.5          
+ [7] readr_1.3.1           tidyr_0.8.2           tibble_2.0.1         
+[10] ggplot2_3.1.0         tidyverse_1.2.1       multidplyr_0.0.0.9000
+[13] IRanges_2.12.0        S4Vectors_0.16.0      BiocGenerics_0.24.0  
+[16] fuzzyjoin_0.1.4       DataCache_0.9         wrapr_1.8.2          
+[19] readstata13_0.9.2     lubridate_1.7.4       knitr_1.21           
+[22] stringr_1.3.1         magrittr_1.5          seas_0.5-2           
+[25] MASS_7.3-50           workflowr_1.1.1       nvimcom_0.9-75       
+
+loaded via a namespace (and not attached):
+ [1] Rcpp_1.0.0        lattice_0.20-35   utf8_1.1.4       
+ [4] assertthat_0.2.0  rprojroot_1.3-2   digest_0.6.18    
+ [7] R6_2.3.0          cellranger_1.1.0  plyr_1.8.4       
+[10] backports_1.1.3   evaluate_0.12     highr_0.7        
+[13] httr_1.4.0        pillar_1.3.1      rlang_0.3.1      
+[16] lazyeval_0.2.1    readxl_1.2.0      rstudioapi_0.9.0 
+[19] whisker_0.3-2     R.utils_2.7.0     R.oo_1.22.0      
+[22] rmarkdown_1.11    labeling_0.3      munsell_0.5.0    
+[25] broom_0.5.1       compiler_3.4.4    modelr_0.1.2     
+[28] xfun_0.4          pkgconfig_2.0.2   htmltools_0.3.6  
+[31] tidyselect_0.2.5  codetools_0.2-15  fansi_0.4.0      
+[34] withr_2.1.2       crayon_1.3.4      R.methodsS3_1.7.1
+[37] grid_3.4.4        nlme_3.1-137      jsonlite_1.6     
+[40] gtable_0.2.0      git2r_0.24.0      scales_1.0.0     
+[43] cli_1.0.1         stringi_1.2.4     xml2_1.2.0       
+[46] generics_0.0.2    tools_3.4.4       glue_1.3.0       
+[49] hms_0.4.2         yaml_2.2.0        colorspace_1.4-0 
+[52] rvest_0.3.2       bindr_0.1.1       haven_2.0.0      </code></pre>
+</div>
+</div>
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+http://docs.mathjax.org/en/latest/configuration.html.  This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+<hr>
+<p>
+  This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a>
+  analysis was created with
+  <a href="https://github.com/jdblischak/workflowr">workflowr</a> 1.1.1
+</p>
+<hr>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
