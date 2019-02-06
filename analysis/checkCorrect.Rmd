@@ -1,0 +1,234 @@
+---
+title: "Check Correct"
+site: workflowr::wflow_site
+output:
+  workflowr::wflow_html:
+    toc: true
+---
+
+```{r pre_initial, echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+options(stringsAsFactors=F) 
+source('lib/functions.R')
+
+```
+
+# Read in base dat
+```{r} 
+
+read.csv( 'data/package/admission.csv' ) %>%
+  as_tibble() %>% 
+  { . } -> df
+
+```
+
+#Frequency tables
+
+
+```{r outliers}
+
+# numeric variables
+
+df %>%
+  select( -starts_with( 'diag' ), -starts_with( 'proc' ) ) %>% 
+  select_if( function(x) {class(x)=='integer'} ) %>%
+  { . } -> df_1
+
+f=names( df_1 ) [1]
+for (f in names( df_1 )) {
+
+  p= ggplot( df_1, aes_string( x=f )) + 
+    geom_histogram( bins=30)
+
+  print(p)
+}
+
+
+#character variables
+
+df %>%
+  select( -starts_with( 'diag' ), -starts_with( 'proc' ) ) %>% 
+  select_if( function(x) {class(x)=='character'} ) %>%
+  { . } -> df_1
+for (f in names( df_1 )) {
+  p= ggplot( df_1, aes_string( x=f )) + geom_bar()
+  print(p)
+}
+
+#
+#diagnosis variables
+
+df %>%
+  select( starts_with( 'diag' ) ) %>% 
+  gather( junk, diag ) %>%
+  ggplot( aes( x=diag )) + geom_bar()
+
+df %>%
+  select( starts_with( 'proc' ) ) %>% 
+  gather( junk, proc ) %>%
+  ggplot( aes( x=proc )) + geom_bar()
+
+# out of spec values
+
+```
+
+# Values not in code tables
+
+```{r mismatched_values}
+# each of the lookup tables
+
+files=c(
+"data/package/admission_type.csv",
+"data/package/campus.csv",
+"data/package/country_of_birth.csv",
+"data/package/hospital_insurance.csv",
+"data/package/indigenous_status.csv",
+"data/package/marital_status.csv",
+"data/package/postcode.csv",
+"data/package/separation_mode.csv",
+"data/package/sex.csv",
+"data/package/speciality.csv")
+
+lookup_files = c("data/package/diagnosis_desc.csv", "data/package/procedure_desc.csv")
+
+i=files[4]
+
+for (i in files) {
+
+  read.csv( i ) %>%
+    as_tibble() %>% 
+    { . } -> df_tocheck
+
+  field = names( df_tocheck ) [1]
+
+  as_tibble() %>%
+    cat( paste( "### Checking for extraneous", field, "in admission file\n"))
+  df %>% 
+    anti_join( df_tocheck , by=field) %>%
+    select_at( vars( field ))
+}
+
+
+cat( paste( "### Checking for extraneous diagnosis in admission file\n"))
+read.csv( lookup_files[1] ) %>%
+  as_tibble() %>% 
+  { . } -> df_tocheck
+
+field = names( df_tocheck ) [1]
+df %>%
+  select( starts_with( 'diag' ) ) %>% 
+  gather( junk, diag_code ) %>% 
+  anti_join( df_tocheck , by=field) %>% 
+  select_at( vars( field ))
+
+
+cat( paste( "### Checking for extraneous procedure in admission file\n"))
+read.csv( lookup_files[2] ) %>%
+  as_tibble() %>% 
+  { . } -> df_tocheck
+
+field = names( df_tocheck ) [1]
+
+df %>%
+  select( starts_with( 'proc' ) ) %>% 
+  gather( junk, procedure_code ) %>% 
+  anti_join( df_tocheck , by=field) %>% 
+  select_at( vars( field ))
+
+
+
+```
+
+# values that don't match semantically
+## old dates
+
+```{r}
+
+df %>%
+  filter( admission_date < '2018') %>%
+  kable()
+
+```
+
+## dates that have not happened dates
+
+```{r}
+
+df %>%
+  filter( admission_date >= '2019') %>%
+  kable()
+
+```
+
+
+# values that don't match arithmetically
+
+```{r}
+
+#date vs LOS
+
+
+df %>%
+  filter( as.Date( separation_date ) - as.Date( admission_date )+ 1 != patient_days_total ) %>%
+  select( patient_id, admission_date, separation_date, patient_days_total ) %>%
+  kable()
+
+
+
+```
+
+
+## seperation date before admission_date
+
+```{r}
+
+
+df %>%
+  filter( as.Date( separation_date ) < as.Date( admission_date )) %>%
+  kable()
+
+```
+
+# incorrect format values
+## incorrect dates
+
+```{r}
+
+df %>%
+  filter( as.character( as.Date( separation_date ) ) !=  separation_date ) %>%
+  select( patient_id, separation_date ) %>%
+  kable()
+
+df %>%
+  filter( as.character( as.Date( admission_date ) ) !=  admission_date ) %>%
+  select( patient_id, admission_date ) %>%
+  kable()
+
+```
+
+##  missing mandatory values - patient_id, given_name
+```{r}
+
+df %>%
+  filter(
+         is.na( patient_id ) | patient_id=='' |
+         is.na( given_name ) | given_name=='' 
+         ) %>%
+  select( patient_id, given_name ) %>%
+  kable()
+
+```
+
+#duplicate patient_id
+
+
+```{r}
+
+df %>%
+  count( patient_id ) %>%
+  filter( n>1 ) %>%
+  kable()
+
+```
+
+
+
