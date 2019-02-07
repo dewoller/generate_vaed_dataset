@@ -144,9 +144,7 @@ df %>%
 ```{r}
 
 df %>%
-  filter( admission_date < '2018') %>%
-  kable()
-
+  filter( admission_date < '2018') 
 ```
 
 ## dates that have not happened dates
@@ -154,9 +152,7 @@ df %>%
 ```{r}
 
 df %>%
-  filter( admission_date >= '2019') %>%
-  kable()
-
+  filter( admission_date >= '2019') 
 ```
 
 
@@ -169,9 +165,7 @@ df %>%
 
 df %>%
   filter( as.Date( separation_date ) - as.Date( admission_date )+ 1 != patient_days_total ) %>%
-  select( patient_id, admission_date, separation_date, patient_days_total ) %>%
-  kable()
-
+  select( admission_id, admission_date, separation_date, patient_days_total ) 
 
 
 ```
@@ -183,9 +177,7 @@ df %>%
 
 
 df %>%
-  filter( as.Date( separation_date ) < as.Date( admission_date )) %>%
-  kable()
-
+  filter( as.Date( separation_date ) < as.Date( admission_date )) 
 ```
 
 # incorrect format values
@@ -195,38 +187,34 @@ df %>%
 
 df %>%
   filter( as.character( as.Date( separation_date ) ) !=  separation_date ) %>%
-  select( patient_id, separation_date ) %>%
-  kable()
+  select( admission_id, separation_date ) 
 
 df %>%
   filter( as.character( as.Date( admission_date ) ) !=  admission_date ) %>%
-  select( patient_id, admission_date ) %>%
-  kable()
+  select( admission_id, admission_date ) 
 
 ```
 
-##  missing mandatory values - patient_id, given_name
+##  missing mandatory values - admission_id, given_name
 ```{r}
 
 df %>%
   filter(
-         is.na( patient_id ) | patient_id=='' |
+         is.na( admission_id ) | admission_id=='' |
          is.na( given_name ) | given_name=='' 
          ) %>%
-  select( patient_id, given_name ) %>%
-  kable()
+  select( admission_id, given_name ) 
 
 ```
 
-#duplicate patient_id
+#duplicate admission_id
 
 
 ```{r}
 
 df %>%
-  count( patient_id ) %>%
-  filter( n>1 ) %>%
-  kable()
+  count( admission_id ) %>%
+  filter( n>1 ) 
 
 ```
 
