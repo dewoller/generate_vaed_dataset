@@ -337,3 +337,41 @@ lsos()
 
 
 ################################################################################
+
+
+
+# numeric variables
+
+#generate_outlier( 1:10, 4 )
+
+
+generate_outlier = function(field, n_outliers) {
+  rng = range( field )
+  diff = rng[2] - rng[1]
+  field[ sample.int(  length( field ), n_outliers) ] =
+    rng[2] + runif(n_outliers,  diff * 2, diff * 5 )
+  field
+}
+
+################################################################################
+
+#
+#random_alter_string( 'sadfsdf' )
+#random_alter_string( 'sadfsdf', str_range="AZ" )
+
+random_alter_string = function( s, str_range = NA ) {
+  slen = str_length(s)
+  pos = sample.int( slen, 1 )
+  chars = str_split(s, '')[[1]] 
+
+  if ( is.na( str_range )) {
+    char_to_replace = chars %>% gtools::asc() %>% range( )
+  } else {
+    char_to_replace = str_split(str_range, '')[[1]] %>% gtools::asc() %>% range( )
+  }
+  chars[ pos ] = runif( 1, char_to_replace[1], char_to_replace[2] + 1 ) %>% floor() %>%  gtools::chr()
+  paste0( chars, collapse='')
+}
+
+################################################################################
+

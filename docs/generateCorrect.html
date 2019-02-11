@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Generate Correct Dataset</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">generate_data</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/jdblischak/workflowr">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Generate Correct Dataset</h1>
+
+</div>
+
+
+<p><strong>Last updated:</strong> 2019-02-08</p>
+<strong>workflowr checks:</strong> <small>(Click a bullet for more information)</small>
+<ul>
+<li>
+<p><details> <summary> <strong style="color:red;">✖</strong> <strong>R Markdown file:</strong> uncommitted changes </summary> The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+</details>
+</li>
+<li>
+<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Environment:</strong> empty </summary></p>
+<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+</details>
+</li>
+<li>
+<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Seed:</strong> <code>set.seed(20190205)</code> </summary></p>
+<p>The command <code>set.seed(20190205)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+</details>
+</li>
+<li>
+<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Session information:</strong> recorded </summary></p>
+<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+</details>
+</li>
+<li>
+<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/dewoller/generate_vaed_dataset/tree/27c4290ef3bbdd94deb67ae6647f353f46098d34" target="_blank">27c4290</a> </summary></p>
+Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+<pre><code>
+Untracked files:
+    Untracked:  analysis/permuteReal.Rmd
+    Untracked:  analysis/permuteTutorial.Rmd
+    Untracked:  data/archive/country_of_birth.csv
+    Untracked:  data/tutorial/
+
+Unstaged changes:
+    Modified:   analysis/checkCorrect.Rmd
+    Modified:   analysis/generateCorrect.Rmd
+    Modified:   data/package/admission.csv
+    Modified:   data/package/country_of_birth.csv
+    Modified:   data/package/postcode.csv
+    Modified:   lib/functions.R
+
+</code></pre>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes. </details>
+</li>
+</ul>
+<details> <summary> <small><strong>Expand here to see past versions:</strong></small> </summary>
+<ul>
+<table style="border-collapse:separate; border-spacing:5px;">
+<thead>
+<tr>
+<th style="text-align:left;">
+File
+</th>
+<th style="text-align:left;">
+Version
+</th>
+<th style="text-align:left;">
+Author
+</th>
+<th style="text-align:left;">
+Date
+</th>
+<th style="text-align:left;">
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Rmd
+</td>
+<td style="text-align:left;">
+<a href="https://github.com/dewoller/generate_vaed_dataset/blob/b43b18febe461d80bb6cc1fecadeb2d5aa78428a/analysis/generateCorrect.Rmd" target="_blank">b43b18f</a>
+</td>
+<td style="text-align:left;">
+Dennis Wollersheim
+</td>
+<td style="text-align:left;">
+2019-02-06
+</td>
+<td style="text-align:left;">
+initial generate
+</td>
+</tr>
+</tbody>
+</table>
+</ul>
+<p></details></p>
+<hr />
+<div id="prepare-standard-tables" class="section level1">
+<h1>Prepare standard tables</h1>
+<pre class="r"><code>options(stringsAsFactors=F) 
+source(&#39;lib/functions.R&#39;)</code></pre>
+<pre><code>Loading required package: workflowr</code></pre>
+<pre><code>This is workflowr version 1.1.1
+Run ?workflowr for help getting started</code></pre>
+<pre><code>Loading required package: seas</code></pre>
+<pre><code>Loading required package: MASS</code></pre>
+<pre><code>Loading required package: magrittr</code></pre>
+<pre><code>Loading required package: stringr</code></pre>
+<pre><code>Loading required package: knitr</code></pre>
+<pre><code>Loading required package: lubridate</code></pre>
+<pre><code>
+Attaching package: &#39;lubridate&#39;</code></pre>
+<pre><code>The following object is masked from &#39;package:base&#39;:
+
+    date</code></pre>
+<pre><code>Loading required package: readstata13</code></pre>
+<pre><code>Loading required package: wrapr</code></pre>
+<pre><code>Loading required package: DataCache</code></pre>
+<pre><code>
+Attaching package: &#39;DataCache&#39;</code></pre>
+<pre><code>The following object is masked from &#39;package:lubridate&#39;:
+
+    now</code></pre>
+<pre><code>Loading required package: fuzzyjoin</code></pre>
+<pre><code>Loading required package: BiocGenerics</code></pre>
+<pre><code>Loading required package: parallel</code></pre>
+<pre><code>
+Attaching package: &#39;BiocGenerics&#39;</code></pre>
+<pre><code>The following objects are masked from &#39;package:parallel&#39;:
+
+    clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,
+    clusterExport, clusterMap, parApply, parCapply, parLapply,
+    parLapplyLB, parRapply, parSapply, parSapplyLB</code></pre>
+<pre><code>The following objects are masked from &#39;package:lubridate&#39;:
+
+    intersect, setdiff, union</code></pre>
+<pre><code>The following objects are masked from &#39;package:stats&#39;:
+
+    IQR, mad, sd, var, xtabs</code></pre>
+<pre><code>The following objects are masked from &#39;package:base&#39;:
+
+    anyDuplicated, append, as.data.frame, cbind, colMeans,
+    colnames, colSums, do.call, duplicated, eval, evalq, Filter,
+    Find, get, grep, grepl, intersect, is.unsorted, lapply,
+    lengths, Map, mapply, match, mget, order, paste, pmax,
+    pmax.int, pmin, pmin.int, Position, rank, rbind, Reduce,
+    rowMeans, rownames, rowSums, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which, which.max, which.min</code></pre>
+<pre><code>Loading required package: S4Vectors</code></pre>
+<pre><code>Loading required package: stats4</code></pre>
+<pre><code>
+Attaching package: &#39;S4Vectors&#39;</code></pre>
+<pre><code>The following objects are masked from &#39;package:lubridate&#39;:
+
+    second, second&lt;-</code></pre>
+<pre><code>The following object is masked from &#39;package:base&#39;:
+
+    expand.grid</code></pre>
+<pre><code>
+Attaching package: &#39;IRanges&#39;</code></pre>
+<pre><code>The following object is masked from &#39;package:lubridate&#39;:
+
+    %within%</code></pre>
+<pre><code>Loading required package: multidplyr</code></pre>
+<pre><code>Loading required package: tidyverse</code></pre>
+<pre><code>── Attaching packages ────────────────────────────────── tidyverse 1.2.1 ──</code></pre>
+<pre><code>✔ ggplot2 3.1.0     ✔ readr   1.3.1
+✔ tibble  2.0.1     ✔ purrr   0.2.5
+✔ tidyr   0.8.2     ✔ dplyr   0.7.8
+✔ ggplot2 3.1.0     ✔ forcats 0.3.0</code></pre>
+<pre><code>── Conflicts ───────────────────────────────────── tidyverse_conflicts() ──
+✖ IRanges::%within%()      masks lubridate::%within%()
+✖ lubridate::as.difftime() masks base::as.difftime()
+✖ dplyr::coalesce()        masks wrapr::coalesce()
+✖ dplyr::collapse()        masks IRanges::collapse()
+✖ dplyr::combine()         masks BiocGenerics::combine()
+✖ lubridate::date()        masks base::date()
+✖ dplyr::desc()            masks IRanges::desc()
+✖ tidyr::expand()          masks S4Vectors::expand()
+✖ tidyr::extract()         masks magrittr::extract()
+✖ dplyr::filter()          masks stats::filter()
+✖ dplyr::first()           masks S4Vectors::first()
+✖ IRanges::intersect()     masks S4Vectors::intersect(), BiocGenerics::intersect(), lubridate::intersect(), base::intersect()
+✖ dplyr::lag()             masks stats::lag()
+✖ DataCache::now()         masks lubridate::now()
+✖ ggplot2::Position()      masks BiocGenerics::Position(), base::Position()
+✖ purrr::reduce()          masks IRanges::reduce()
+✖ dplyr::rename()          masks S4Vectors::rename()
+✖ S4Vectors::second()      masks lubridate::second()
+✖ S4Vectors::second&lt;-()    masks lubridate::second&lt;-()
+✖ dplyr::select()          masks MASS::select()
+✖ purrr::set_names()       masks magrittr::set_names()
+✖ IRanges::setdiff()       masks S4Vectors::setdiff(), BiocGenerics::setdiff(), lubridate::setdiff(), base::setdiff()
+✖ dplyr::slice()           masks IRanges::slice()
+✖ IRanges::union()         masks S4Vectors::union(), BiocGenerics::union(), lubridate::union(), base::union()
+✖ tibble::view()           masks wrapr::view()</code></pre>
+<pre><code>Loading required package: tictoc</code></pre>
+<pre><code>Loading required package: hashmap</code></pre>
+<pre class="r"><code>indigenous_status = c(&quot;Neither Aboriginal nor Torres Strait Islander&quot;,
+                      &quot;Aboriginal&quot;,
+                      &quot;Torres Strait Islander&quot;,
+                      &quot;Both Aboriginal  and Torres Strait Islander&quot;)
+data.frame(indigenous_status_id=1:4, 
+           indigenous_status_desc=indigenous_status ) %&gt;% 
+write.csv(&#39;data/package/indigenous_status.csv&#39;, row.names=FALSE)
+
+
+ms=  c(
+       &quot;Never married&quot;,
+       &quot;Widowed&quot;,
+       &quot;Divorced&quot;,
+       &quot;Separated&quot;,
+       &quot;Married (registered and de facto)&quot;, &quot;Unknown&quot;)
+
+data.frame(marital_status_id=1:6, 
+           marital_status_desc=ms ) %&gt;% 
+  write.csv(&#39;data/package/marital_status.csv&#39;,row.names=FALSE)
+
+data.frame(
+           hospital_insurance_id=1:2, 
+           hospital_insurance_desc=c(&#39;Hospital Insurance&#39;,&#39;No Hospital Insurance&#39; )) %&gt;% 
+  write.csv(&#39;data/package/hospital_insurance.csv&#39;,row.names=FALSE)</code></pre>
+</div>
+<div id="read-in-existing-data-add-to-df-randomly" class="section level1">
+<h1>read in existing data, add to df randomly</h1>
+<pre class="r"><code>read.csv(&#39;data/admission_code.csv&#39; ) %&gt;%
+  as_tibble() %&gt;% 
+  rename( admission_id=patient_id ) %&gt;%
+  { . } -&gt; df
+
+read.csv(&#39;data/diagnosis_desc.csv&#39; ) %&gt;%
+  as_tibble() %&gt;% 
+  select( diag_code, diag_desc ) %&gt;%
+  { . } -&gt; df_diag
+
+
+read.csv(&#39;data/procedure_desc.csv&#39; ) %&gt;%
+  as_tibble() %&gt;% 
+  select( procedure_code, procedure_desc ) %&gt;%
+  { . } -&gt; df_proc
+
+
+df %&gt;%
+  select(starts_with(&#39;diag&#39; )) %&gt;% 
+  gather( id, diag_code ) %&gt;% 
+  distinct( diag_code )  %&gt;%
+  inner_join( df_diag ) %&gt;%
+  write.csv( &#39;data/package/diagnosis_desc.csv&#39;, row.names=F)</code></pre>
+<pre><code>Joining, by = &quot;diag_code&quot;</code></pre>
+<pre class="r"><code>df %&gt;%
+  select(starts_with(&#39;proc&#39; )) %&gt;% 
+  gather( id, procedure_code ) %&gt;% 
+  distinct( procedure_code )  %&gt;%
+  inner_join( df_proc ) %&gt;%
+  write.csv( &#39;data/package/procedure_desc.csv&#39;, row.names=F)</code></pre>
+<pre><code>Joining, by = &quot;procedure_code&quot;</code></pre>
+<pre class="r"><code>read.csv(&#39;data/name_source.csv&#39; ) %&gt;%
+  as_tibble() %&gt;% 
+  { . } -&gt; df_names
+
+
+df_names %&gt;% 
+  inner_join( df_names %&gt;%
+                distinct( NameSet )  %&gt;%
+                mutate( weight = c(100,10,10,10,10 ))) %&gt;% 
+  { . } -&gt; df_names</code></pre>
+<pre><code>Joining, by = &quot;NameSet&quot;</code></pre>
+<pre class="r"><code>df %&gt;%
+  mutate( given_name = sample_n( df_names, nrow(df), replace=TRUE, weight=df_names$weight ) %&gt;%
+            mutate( name = paste( GivenName, Surname ))  %$%
+            name
+          ) %&gt;% 
+  { . } -&gt; df
+
+df %&gt;%
+  inner_join( df %&gt;% 
+             distinct( given_name ) %&gt;% 
+             mutate( patient_id = paste0(&quot;UR&quot;, row_number()+100000))
+           ) %&gt;% 
+  { . } -&gt; df</code></pre>
+<pre><code>Joining, by = &quot;given_name&quot;</code></pre>
+<pre class="r"><code>read.csv( &#39;data/archive/country_of_birth.csv&#39;, colClasses=c(&#39;character&#39;, &#39;character&#39;) ) %&gt;%
+  as_tibble() %&gt;%
+  select( country_id, country_description ) %&gt;%
+  mutate( weight=ifelse( country_id==&#39;1101&#39; , 50, 1 )) %&gt;%
+  write.csv(&#39;data/package/country_of_birth.csv&#39;, row.names=F)
+
+read.csv( &#39;data/package/country_of_birth.csv&#39;, colClasses=c(&#39;character&#39;, &#39;character&#39;, &#39;numeric&#39;) ) %&gt;%
+  as_tibble() %&gt;% 
+  { . } -&gt; df_tofill
+
+df %&gt;%
+  mutate( country_id = sample_n( df_tofill, nrow(df), replace=TRUE, weight=df_tofill$weight )  %$% country_id) %&gt;% 
+  { . } -&gt; df
+
+
+
+read.csv( &#39;data/package/campus.csv&#39; ) %&gt;%
+  as_tibble() %&gt;% 
+  mutate( weight=1) %&gt;%
+  { . } -&gt; df_tofill
+
+df %&gt;%
+  mutate( campus_id = sample_n( df_tofill, nrow(df), replace=TRUE, weight=df_tofill$weight )  %$% campus_id) %&gt;% 
+  { . } -&gt; df
+
+
+
+
+read.csv( &#39;data/package/hospital_insurance.csv&#39; ) %&gt;%
+  as_tibble() %&gt;% 
+  mutate( weight=1) %&gt;%
+  { . } -&gt; df_tofill
+
+df %&gt;%
+  mutate( hospital_insurance_id = sample_n( df_tofill, nrow(df), replace=TRUE, weight=df_tofill$weight )  %$% hospital_insurance_id) %&gt;% 
+  { . } -&gt; df
+
+read.csv( &#39;data/package/indigenous_status.csv&#39; ) %&gt;%
+  as_tibble() %&gt;% 
+  mutate( weight=c(30,2,2,1)) %&gt;%
+  { . } -&gt; df_tofill
+
+df %&gt;%
+  mutate( indigenous_status_id = sample_n( df_tofill, nrow(df), replace=TRUE, weight=df_tofill$weight )  %$% indigenous_status_id) %&gt;% 
+  { . } -&gt; df
+
+read.csv( &#39;data/package/marital_status.csv&#39; ) %&gt;%
+  as_tibble() %&gt;% 
+  mutate( weight=c(1,1,1,1,4,.1)) %&gt;%
+  { . } -&gt; df_tofill
+
+df %&gt;%
+  mutate( marital_status_id = sample_n( df_tofill, nrow(df), replace=TRUE, weight=df_tofill$weight )  %$% marital_status_id) %&gt;% 
+  select( marital_status_id, everything()) %&gt;%
+  { . } -&gt; df
+
+read.csv( &#39;data/package/postcode.csv&#39;, colClasses=&#39;character&#39; ) %&gt;%
+  as_tibble() %&gt;% 
+  filter( State==&#39;VIC&#39; ) %&gt;%
+  mutate( weight=ifelse( postcode &lt;= &#39;3207&#39;, 30,1 )) %&gt;%
+  { . } -&gt; df_tofill
+
+df %&gt;%
+  mutate( postcode = sample_n( df_tofill, nrow(df), replace=TRUE, weight=df_tofill$weight )  %$% postcode) %&gt;% 
+  select( postcode, everything()) %&gt;%
+  { . } -&gt; df
+
+read.csv( &#39;data/package/speciality.csv&#39;, colClasses=&#39;character&#39; ) %&gt;%
+  as_tibble() %&gt;% 
+  mutate( weight=1 ) %&gt;%
+  { . } -&gt; df_tofill
+
+df %&gt;%
+  mutate( speciality_id = sample_n( df_tofill, nrow(df), replace=TRUE, weight=df_tofill$weight )  %$% speciality_id) %&gt;% 
+  select( speciality_id, everything()) %&gt;%
+  { . } -&gt; df
+
+
+df %&gt;%
+  mutate( date_of_birth = make_date( year=year(today()) - age_years - 1, 
+                                    month=1, 
+                                    day=1 ) + 
+         sample( 0:364, n(), replace=T)) %&gt;%
+  mutate( admission_date = make_date( year=year(today())-1, month=1, day=1 ) + sample( 0:364, n(), replace=T)) %&gt;%
+  mutate( separation_date = admission_date + los - 1  ) %&gt;%
+  rename( patient_days_total=los ) %&gt;%
+  select( names( . ) %&gt;% sort() ) %&gt;%
+  select( -age_years ) %&gt;%
+  { . } -&gt; df
+
+df%&gt;% write.csv( &#39;data/package/admission.csv&#39;, row.names=FALSE)</code></pre>
+<div id="session-information" class="section level2">
+<h2>Session information</h2>
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 3.4.4 (2018-03-15)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Ubuntu 18.04.1 LTS
+
+Matrix products: default
+BLAS: /usr/lib/x86_64-linux-gnu/openblas/libblas.so.3
+LAPACK: /usr/lib/x86_64-linux-gnu/libopenblasp-r0.2.20.so
+
+locale:
+ [1] LC_CTYPE=en_AU.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_AU.UTF-8        LC_COLLATE=en_AU.UTF-8    
+ [5] LC_MONETARY=en_AU.UTF-8    LC_MESSAGES=en_AU.UTF-8   
+ [7] LC_PAPER=en_AU.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_AU.UTF-8 LC_IDENTIFICATION=C       
+
+attached base packages:
+[1] stats4    parallel  stats     graphics  grDevices utils     datasets 
+[8] methods   base     
+
+other attached packages:
+ [1] bindrcpp_0.2.2        hashmap_0.2.2         tictoc_1.0           
+ [4] forcats_0.3.0         dplyr_0.7.8           purrr_0.2.5          
+ [7] readr_1.3.1           tidyr_0.8.2           tibble_2.0.1         
+[10] ggplot2_3.1.0         tidyverse_1.2.1       multidplyr_0.0.0.9000
+[13] IRanges_2.12.0        S4Vectors_0.16.0      BiocGenerics_0.24.0  
+[16] fuzzyjoin_0.1.4       DataCache_0.9         wrapr_1.8.2          
+[19] readstata13_0.9.2     lubridate_1.7.4       knitr_1.21           
+[22] stringr_1.3.1         magrittr_1.5          seas_0.5-2           
+[25] MASS_7.3-50           workflowr_1.1.1       nvimcom_0.9-75       
+
+loaded via a namespace (and not attached):
+ [1] Rcpp_1.0.0        lattice_0.20-35   assertthat_0.2.0 
+ [4] rprojroot_1.3-2   digest_0.6.18     R6_2.3.0         
+ [7] cellranger_1.1.0  plyr_1.8.4        backports_1.1.3  
+[10] evaluate_0.12     httr_1.4.0        pillar_1.3.1     
+[13] rlang_0.3.1       lazyeval_0.2.1    readxl_1.2.0     
+[16] rstudioapi_0.9.0  whisker_0.3-2     R.utils_2.7.0    
+[19] R.oo_1.22.0       rmarkdown_1.11    munsell_0.5.0    
+[22] broom_0.5.1       compiler_3.4.4    modelr_0.1.2     
+[25] xfun_0.4          pkgconfig_2.0.2   htmltools_0.3.6  
+[28] tidyselect_0.2.5  codetools_0.2-15  withr_2.1.2      
+[31] crayon_1.3.4      R.methodsS3_1.7.1 grid_3.4.4       
+[34] nlme_3.1-137      jsonlite_1.6      gtable_0.2.0     
+[37] git2r_0.24.0      scales_1.0.0      cli_1.0.1        
+[40] stringi_1.2.4     xml2_1.2.0        generics_0.0.2   
+[43] tools_3.4.4       glue_1.3.0        hms_0.4.2        
+[46] yaml_2.2.0        colorspace_1.4-0  rvest_0.3.2      
+[49] bindr_0.1.1       haven_2.0.0      </code></pre>
+</div>
+</div>
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+http://docs.mathjax.org/en/latest/configuration.html.  This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+<hr>
+<p>
+  This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a>
+  analysis was created with
+  <a href="https://github.com/jdblischak/workflowr">workflowr</a> 1.1.1
+</p>
+<hr>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

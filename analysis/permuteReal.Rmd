@@ -1,0 +1,84 @@
+---
+title: "Permute Real"
+site: workflowr::wflow_site
+output:
+  workflowr::wflow_html:
+    toc: false
+---
+
+```{r pre_initial, echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+options(stringsAsFactors=F) 
+source('lib/functions.R')
+
+```
+
+# Read in base data
+
+```{r read_in_data} 
+
+read.csv( 'data/package/admission.csv', colClasses='character' ) %>%
+  as_tibble() %>% 
+  mutate( patient_days_total = as.numeric( patient_days_total ) ) %>%
+  { . } -> df
+
+number_of_errors=10
+final_sample_size = 300
+
+df %>% 
+  sample_n( final_sample_size ) %>% 
+  { . } -> df
+
+size = nrow(df)
+```
+
+#make_bad_data
+
+
+```{r make_bad_data}
+
+df %>%
+  mutate( patient_days_total = generate_outlier( patient_days_total , number_of_errors ) %>% round(0)) %>%
+# duplicates
+  mutate( 
+         admission_id = ifelse( row_number() %in% sample.int( size, number_of_errors ),
+                         lag( admission_id ), admission_id ),
+  # inconsistency 
+         adm_type_id = ifelse( row_number() %in% sample.int( size, number_of_errors ),
+                              random_alter_string( adm_type_id, 'AZ' ), adm_type_id ),
+         admission_date = ifelse( row_number() %in% sample.int( size, number_of_errors ),
+                       random_alter_string( admission_date ), admission_date ),
+         campus_id = ifelse( row_number() %in% sample.int( size, number_of_errors ),
+                       random_alter_string( campus_id ), campus_id ),
+         country_id = ifelse( row_number() %in% sample.int( size, number_of_errors ),
+                       random_alter_string( country_id ), country_id ),
+         date_of_birth = ifelse( row_number() %in% sample.int( size, number_of_errors ),
+                       random_alter_string( date_of_birth ), date_of_birth ),
+         diag_code_1 = ifelse( row_number() %in% sample.int( size, number_of_errors ),
+                       random_alter_string( diag_code_1 ), diag_code_1 ),
+         diag_code_2 = ifelse( row_number() %in% sample.int( size, number_of_errors ),
+                              random_alter_string( diag_code_2 ), diag_code_2 ),
+         diag_code_3 = ifelse( row_number() %in% sample.int( size, number_of_errors ),
+                              random_alter_string( diag_code_3 ), diag_code_3 ),
+         proc_code_3 = ifelse( row_number() %in% sample.int( size, number_of_errors ),
+                              random_alter_string( proc_code_3 ), proc_code_3 ),
+         proc_code_2 = ifelse( row_number() %in% sample.int( size, number_of_errors ),
+                       random_alter_string( proc_code_2 ), proc_code_2 ),
+         proc_code_1 = ifelse( row_number() %in% sample.int( size, number_of_errors ),
+                              random_alter_string( proc_code_1 ), proc_code_1 ),
+         given_name = ifelse( row_number() %in% sample.int( size, number_of_errors ),
+                              random_alter_string( given_name ), given_name ),
+         postcode = ifelse( row_number() %in% sample.int( size, number_of_errors ),
+                       random_alter_string( postcode ), postcode ),
+         #  currency
+         admission_date = ifelse( row_number() %in% sample.int( size, number_of_errors ),
+                                 ( paste0( '1984-', str_sub( admission_date, 6, 11) ), admission_date ),
+         separation_date = ifelse( row_number() %in% sample.int( size, number_of_errors ),
+                                 ( paste0( '1984-', str_sub( separation_date, 6, 11) ), separation_date ),
+         ) %>% 
+         { . } -> df_incorrect
+
+df_incorrect %>% write.csv('data/tutorial/mbs_damaged.csv', row.names=F)
+
+```
+
+

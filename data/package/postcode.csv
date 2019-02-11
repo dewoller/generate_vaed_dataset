@@ -1,4 +1,4 @@
-﻿Postcode,Locality,State,Comments,DeliveryOffice,PresortIndicator,ParcelZone,BSPnumber,BSPname,isArchived
+﻿postcode,locality,State,Comments,DeliveryOffice,PresortIndicator,ParcelZone,BSPnumber,BSPname,isArchived
 0200,AUSTRALIAN NATIONAL UNIVERSITY,ACT,PO Boxes,AUSTRALIAN NATIONAL UNI LPO,150,N2,19,CANBERRA,False
 0221,BARTON,ACT,LVR Special Mailing,,150,N2,19,CANBERRA,False
 0800,DARWIN,NT,,DARWIN DELIVERY CENTRE,85,NT1,1,DARWIN,False

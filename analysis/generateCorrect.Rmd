@@ -1,10 +1,13 @@
 ---
-title: "Home"
+title: "Generate Correct Dataset"
 site: workflowr::wflow_site
 output:
   workflowr::wflow_html:
     toc: false
 ---
+
+# Prepare standard tables
+
 ```{r}
 options(stringsAsFactors=F) 
 source('lib/functions.R')
@@ -37,11 +40,13 @@ data.frame(
 ```
 
 
+# read in existing data, add to df randomly
 
 ```{r}
 
 read.csv('data/admission_code.csv' ) %>%
   as_tibble() %>% 
+  rename( admission_id=patient_id ) %>%
   { . } -> df
 
 read.csv('data/diagnosis_desc.csv' ) %>%
@@ -87,17 +92,23 @@ df %>%
             name
           ) %>% 
   { . } -> df
-         
 
-read.csv( 'data/package/country_of_birth.csv', colClasses=c('character', 'character', 'numeric') ) %>%
+df %>%
+  inner_join( df %>% 
+             distinct( given_name ) %>% 
+             mutate( patient_id = paste0("UR", row_number()+100000))
+           ) %>% 
+  { . } -> df
+
+read.csv( 'data/archive/country_of_birth.csv', colClasses=c('character', 'character') ) %>%
   as_tibble() %>%
-  select( country_id, country_name ) %>%
-  mutate( weight=ifelse( country_id=='1101' , 100, 1 )) %>%
-  filter( weight==100) %>%
+  select( country_id, country_description ) %>%
+  mutate( weight=ifelse( country_id=='1101' , 50, 1 )) %>%
   write.csv('data/package/country_of_birth.csv', row.names=F)
 
 read.csv( 'data/package/country_of_birth.csv', colClasses=c('character', 'character', 'numeric') ) %>%
   as_tibble() %>% 
+  filter( str_detect( country_description, 'Australia' ) == 0 | country_id==1101) %>%
   { . } -> df_tofill
 
 df %>%
@@ -136,6 +147,11 @@ df %>%
   mutate( indigenous_status_id = sample_n( df_tofill, nrow(df), replace=TRUE, weight=df_tofill$weight )  %$% indigenous_status_id) %>% 
   { . } -> df
 
+# fix up indigenous status for non-aussies of 
+df %>%
+  mutate( indigenous_status_id = ifelse( country_id == 1101, indigenous_status_id , 1))    %>% 
+  { . } -> df
+
 read.csv( 'data/package/marital_status.csv' ) %>%
   as_tibble() %>% 
   mutate( weight=c(1,1,1,1,4,.1)) %>%
@@ -149,11 +165,11 @@ df %>%
 read.csv( 'data/package/postcode.csv', colClasses='character' ) %>%
   as_tibble() %>% 
   filter( State=='VIC' ) %>%
-  mutate( weight=ifelse( Postcode <= '3207', 30,1 )) %>%
+  mutate( weight=ifelse( postcode <= '3207', 30,1 )) %>%
   { . } -> df_tofill
 
 df %>%
-  mutate( postcode = sample_n( df_tofill, nrow(df), replace=TRUE, weight=df_tofill$weight )  %$% Postcode) %>% 
+  mutate( postcode = sample_n( df_tofill, nrow(df), replace=TRUE, weight=df_tofill$weight )  %$% postcode) %>% 
   select( postcode, everything()) %>%
   { . } -> df
 
@@ -169,11 +185,11 @@ df %>%
 
 
 df %>%
-  mutate( date_of_birth = make_date( year=year(today()) - age_years, 
+  mutate( date_of_birth = make_date( year=year(today()) - age_years - 1, 
                                     month=1, 
                                     day=1 ) + 
          sample( 0:364, n(), replace=T)) %>%
-  mutate( admission_date = make_date( year=year(today()), month=1, day=1 ) + sample( 0:364, n(), replace=T)) %>%
+  mutate( admission_date = make_date( year=year(today())-1, month=1, day=1 ) + sample( 0:364, n(), replace=T)) %>%
   mutate( separation_date = admission_date + los - 1  ) %>%
   rename( patient_days_total=los ) %>%
   select( names( . ) %>% sort() ) %>%
@@ -183,6 +199,7 @@ df %>%
 df%>% write.csv( 'data/package/admission.csv', row.names=FALSE)
 
 
+#TODO: indigenous and born in AUstralia
 
 ```
 
