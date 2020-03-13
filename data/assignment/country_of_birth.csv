@@ -1,0 +1,352 @@
+country_id,country_description,weight
+0001,At Sea,1
+0004,Unknown (the destination or origin of the goods is unknown),1
+0005,Unidentified (the country reported on import/export documentation is not recognised),1
+0601,Asia-Pacific Economic Co-operation (APEC),1
+0602,Association of South East Asian Nations (ASEAN),1
+0603,European Economic Area (EEA),1
+0604,European Union (EU),1
+0605,Organisation for Economic Co-operation and Development (OECD),1
+0606,Organisation of Petroleum Exporting Countries (OPEC),1
+0607,South Pacific Regional Trade and Economic Co-operation Agreement (SPARTECA),1
+0608,The Commonwealth,1
+0611,Europe,1
+0612,Europe and the Former USSR,1
+0613,Former USSR,1
+0614,Asia,1
+0615,East Asia,1
+0616,Africa,1
+0617,Arab League,1
+0618,Economic and Monetary Union of the European Union (EMU),1
+0701,"Africa, nec",1
+0702,"Americas, nec",1
+0703,"Asia, nec",1
+0704,Belgium and Luxembourg,1
+0705,Central America and the Caribbean (excludes Mexico),1
+0706,Christmas Island,1
+0707,Cocos (Keeling) Islands,1
+0708,Country conf. Alumina (a secondary (International Trade specific) confidentiality restriction for exports of alumina to specific countries),1
+0711,Denmark (includes Greenland and Faroe Islands),1
+0712,Eurodollar Market,1
+0713,"Europe, nec",1
+0714,Falkland Islands (includes South Georgia and South Sandwich Islands),1
+0715,France (includes Andorra and Monaco),1
+0716,French Antilles (Guadeloupe and Martinique),1
+0717,French Southern Territories,1
+0718,International Capital Markets,1
+0721,International Institutions,1
+0722,International Waters (goods placed in the ocean outside any territorial waters or exclusive economic zone),1
+0724,Johnston and Sand Islands,1
+0725,Midway Islands,1
+0726,Morocco (includes places under Spanish sovereignty),1
+0727,No Country Details (overseas country detail for exports not available due to a confidentiality restriction),1
+0728,"Oceania, nec",1
+0731,Other ASEAN,1
+0732,"Other Asia, nec (excludes ASEAN)",1
+0733,Other EU,1
+0734,Other Europe,1
+0735,Other Europe (excludes EU and OECD),1
+0736,Other OECD,1
+0737,Other OECD in Europe,1
+0741,"Reserve Bank Gold (gold, held by the Reserve Bank of Australia as part of reserve assets, that cannot be allocated by country)",1
+0742,"Ships' and Aircraft Stores (stores, including fuel, loaded onto foreign registered ships and aircraft)",1
+0743,Switzerland (includes Liechtenstein),1
+0744,United States Miscellaneous Islands,1
+0745,Wake Island,1
+0746,"Australia (includes External Territories, Australian Antarctic Territory and Norfolk Island)",1
+0747,JPDA (Joint Petrolium Development Area - administered by Australia and East Timor),1
+0748,"APEC, nfd",1
+0751,"ASEAN, nfd",1
+0752,"EEA, nfd",1
+0753,"EU, nfd",1
+0754,"OECD, nfd",1
+0755,"OPEC, nfd",1
+0756,"SPARTECA, nfd",1
+0757,"The Commonwealth, nfd",1
+0758,"Arab League, nfd",1
+0761,"EMU, nfd",1
+1000,Oceania and Antarctica,1
+1100,Australia (includes External Territories),1
+1101,Australia,200
+1102,Norfolk Island,1
+1199,"Australian External Territories, nec",1
+1201,New Zealand,1
+1300,Melanesia,1
+1301,New Caledonia,1
+1302,Papua New Guinea,1
+1303,Solomon Islands,1
+1304,Vanuatu,1
+1400,Micronesia,1
+1401,Guam,1
+1402,Kiribati,1
+1403,Marshall Islands,1
+1404,"Micronesia, Federated States of",1
+1405,Nauru,1
+1406,Northern Mariana Islands,1
+1407,Palau,1
+1500,Polynesia (excludes Hawaii),1
+1501,Cook Islands,1
+1502,Fiji,1
+1503,French Polynesia,1
+1504,Niue,1
+1505,Samoa,1
+1506,"Samoa, American",1
+1507,Tokelau,1
+1508,Tonga,1
+1511,Tuvalu,1
+1512,Wallis and Futuna,1
+1513,Pitcairn Islands,1
+1599,"Polynesia (excludes Hawaii), nec",1
+1600,Antarctica,1
+1601,Adélie Land (France),1
+1602,Argentinian Antarctic Territory,1
+1603,Australian Antarctic Territory,1
+1604,British Antarctic Territory,1
+1605,Chilean Antarctic Territory,1
+1606,Queen Maud Land (Norway),1
+1607,Ross Dependency (New Zealand),1
+2000,North-West Europe,1
+2100,"United Kingdom, Channel Islands and Isle of Man",1
+2102,England,1
+2103,Isle of Man,1
+2104,Northern Ireland,1
+2105,Scotland,1
+2106,Wales,1
+2107,Guernsey,1
+2108,Jersey,1
+2201,Ireland,1
+2300,Western Europe,1
+2301,Austria,1
+2302,Belgium,1
+2303,France,1
+2304,Germany,1
+2305,Liechtenstein,1
+2306,Luxembourg,1
+2307,Monaco,1
+2308,Netherlands,1
+2311,Switzerland,1
+2400,Northern Europe,1
+2401,Denmark,1
+2402,Faroe Islands,1
+2403,Finland,1
+2404,Greenland,1
+2405,Iceland,1
+2406,Norway,1
+2407,Sweden,1
+2408,Aland Islands,1
+3000,Southern and Eastern Europe,1
+3100,Southern Europe,1
+3101,Andorra,1
+3102,Gibraltar,1
+3103,Holy See,1
+3105,Malta,1
+3106,Portugal,1
+3107,San Marino,1
+3108,Spain,1
+3200,South Eastern Europe,1
+3201,Albania,1
+3202,Bosnia and Herzegovina,1
+3203,Bulgaria,1
+3204,Croatia,1
+3205,Cyprus,1
+3206,Former Yugoslav Republic of Macedonia (FYROM),1
+3207,Greece,1
+3208,Moldova,1
+3211,Romania,1
+3212,Slovenia,1
+3214,Montenegro,1
+3215,Serbia,1
+3216,Kosovo,1
+3300,Eastern Europe,1
+3301,Belarus,1
+3302,Czech Republic,1
+3303,Estonia,1
+3304,Hungary,1
+3305,Latvia,1
+3306,Lithuania,1
+3307,Poland,1
+3308,Russian Federation,1
+3311,Slovakia,1
+3312,Ukraine,1
+4000,North Africa and the Middle East,1
+4100,North Africa,1
+4101,Algeria,1
+4102,Egypt,1
+4103,Libya,1
+4104,Morocco,1
+4105,Sudan,1
+4106,Tunisia,1
+4107,Western Sahara,1
+4108,Spanish North Africa,1
+4200,Middle East,1
+4201,Bahrain,1
+4202,Gaza Strip and West Bank,1
+4203,Iran,1
+4204,Iraq,1
+4205,Israel,1
+4206,Jordan,1
+4207,Kuwait,1
+4208,Lebanon,1
+4211,Oman,1
+4212,Qatar,1
+4213,Saudi Arabia,1
+4214,Syria,1
+4215,Turkey,1
+4216,United Arab Emirates,1
+4217,Yemen,1
+5000,South-East Asia,1
+5100,Mainland South-East Asia,1
+5101,Burma (Myanmar),1
+5102,Cambodia,1
+5103,Laos,1
+5104,Thailand,1
+5105,Vietnam,1
+5200,Maritime South-East Asia,1
+5201,Brunei Darussalam,1
+5202,Indonesia,1
+5203,Malaysia,1
+5204,Philippines,1
+5205,Singapore,1
+5206,East Timor,1
+6000,North-East Asia,1
+6100,Chinese Asia (includes Mongolia),1
+6101,China (excludes SARs and Taiwan),1
+6102,Hong Kong (SAR of China),1
+6103,Macau (SAR of China),1
+6104,Mongolia,1
+6105,Taiwan,1
+6200,Japan and the Koreas,1
+6201,Japan,1
+6202,"Korea, Democratic People's Republic of (North)",1
+6203,"Korea, Republic of (South)",1
+7000,Southern and Central Asia,1
+7100,Southern Asia,1
+7101,Bangladesh,1
+7102,Bhutan,1
+7103,India,1
+7104,Maldives,1
+7105,Nepal,1
+7106,Pakistan,1
+7107,Sri Lanka,1
+7200,Central Asia,1
+7201,Afghanistan,1
+7202,Armenia,1
+7203,Azerbaijan,1
+7204,Georgia,1
+7205,Kazakhstan,1
+7206,Kyrgyzstan,1
+7207,Tajikistan,1
+7208,Turkmenistan,1
+7211,Uzbekistan,1
+8000,Americas,1
+8100,Northern America,1
+8101,Bermuda,1
+8102,Canada,1
+8103,St Pierre and Miquelon,1
+8104,United States of America,1
+8200,South America,1
+8201,Argentina,1
+8202,Bolivia,1
+8203,Brazil,1
+8204,Chile,1
+8205,Colombia,1
+8206,Ecuador,1
+8207,Falkland Islands,1
+8208,French Guiana,1
+8211,Guyana,1
+8212,Paraguay,1
+8213,Peru,1
+8214,Suriname,1
+8215,Uruguay,1
+8216,Venezuela,1
+8299,"South America, nec",1
+8300,Central America,1
+8301,Belize,1
+8302,Costa Rica,1
+8303,El Salvador,1
+8304,Guatemala,1
+8305,Honduras,1
+8306,Mexico,1
+8307,Nicaragua,1
+8308,Panama,1
+8400,Caribbean,1
+8401,Anguilla,1
+8402,Antigua and Barbuda,1
+8403,Aruba,1
+8404,Bahamas,1
+8405,Barbados,1
+8406,Cayman Islands,1
+8407,Cuba,1
+8408,Dominica,1
+8411,Dominican Republic,1
+8412,Grenada,1
+8413,Guadeloupe,1
+8414,Haiti,1
+8415,Jamaica,1
+8416,Martinique,1
+8417,Montserrat,1
+8418,Netherlands Antilles,1
+8421,Puerto Rico,1
+8422,St Kitts and Nevis,1
+8423,St Lucia,1
+8424,St Vincent and the Grenadines,1
+8425,Trinidad and Tobago,1
+8426,Turks and Caicos Islands,1
+8427,"Virgin Islands, British",1
+8428,"Virgin Islands, United States",1
+8431,St Barthelemy,1
+8432,St Martin (French part),1
+9000,Sub-Saharan Africa,1
+9100,Central and West Africa,1
+9101,Benin,1
+9102,Burkina Faso,1
+9103,Cameroon,1
+9104,Cape Verde,1
+9105,Central African Republic,1
+9106,Chad,1
+9107,Congo,1
+9108,"Congo, Democratic Republic of",1
+9111,Côte d'Ivoire,1
+9112,Equatorial Guinea,1
+9113,Gabon,1
+9114,Gambia,1
+9115,Ghana,1
+9116,Guinea,1
+9117,Guinea-Bissau,1
+9118,Liberia,1
+9121,Mali,1
+9122,Mauritania,1
+9123,Niger,1
+9124,Nigeria,1
+9125,Sao Tomé and Principe,1
+9126,Senegal,1
+9127,Sierra Leone,1
+9128,Togo,1
+9200,Southern and East Africa,1
+9201,Angola,1
+9202,Botswana,1
+9203,Burundi,1
+9204,Comoros,1
+9205,Djibouti,1
+9206,Eritrea,1
+9207,Ethiopia,1
+9208,Kenya,1
+9211,Lesotho,1
+9212,Madagascar,1
+9213,Malawi,1
+9214,Mauritius,1
+9215,Mayotte,1
+9216,Mozambique,1
+9217,Namibia,1
+9218,Réunion,1
+9221,Rwanda,1
+9222,St Helena,1
+9223,Seychelles,1
+9224,Somalia,1
+9225,South Africa,1
+9226,Swaziland,1
+9227,Tanzania,1
+9228,Uganda,1
+9231,Zambia,1
+9232,Zimbabwe,1
+9299,"Southern and East Africa, nec",1

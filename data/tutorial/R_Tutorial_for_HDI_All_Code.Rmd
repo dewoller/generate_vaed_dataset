@@ -1,0 +1,370 @@
+---
+title: "HDI Tutorial - Fundamentals of Data Quality Managment"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Load in Data 
+```{r}
+
+#loading tidyverse library
+library( tidyverse )
+# Loading the library for reading of CSV files
+library( readr )
+
+#Loading the mbs dataset
+mbs = read_csv("mbs_to_check.csv")
+
+#Load the patient dataset
+patient = read_csv('patient.csv')
+
+```
+
+# Single Field Inconsistency
+
+```{r}
+
+
+#which mbs records have no corresponding patient 
+mbs %>%
+  anti_join( patient , by='patient_id') 
+
+
+#which mbs records have no corresponding patient 
+mbs %>%
+  anti_join( patient , by='patient_id') %>%
+  distinct( patient_id )
+
+
+#filter unwanted records.
+mbs %>%
+  filter(patient_id != '03053561135') %>%
+  filter(patient_id != '00006710520') %>%
+  filter( !is.na( patient_id)) 
+
+
+#keep mbs records which have corresponding patients
+mbs %>%
+  inner_join( patient , by='patient_id')
+
+
+#keep mbs records which have corresponding patients, drop extra fields:
+mbs %>%
+  inner_join( patient , by='patient_id') %>%
+  select(-yob, -sex,-state ) 
+
+
+
+#keep mbs records which have corresponding patients, drop extra fields, save results
+mbs %>%
+  inner_join( patient , by='patient_id') %>%
+  select(-yob, -sex,-state ) %>%
+  {.} -> mbs1
+
+
+# to check if all mismatch values are removed from mbs1
+mbs1 %>%
+  anti_join(patient)
+ 
+
+
+mbs %>% count()
+mbs1 %>% count()
+
+mbs %>% distinct(patient_id) %>% count()
+mbs1 %>% distinct(patient_id) %>% count()
+
+mbs1 %>%
+  write_csv( 'mbs1.csv' )
+```
+# Multi Field Inconsistency
+
+```{r}
+
+mbs1 = read_csv( 'mbs1.csv')
+
+#Display distinct provider descriptions in mbs1
+mbs1 %>%
+  distinct(provider_desc) %>% 
+  arrange(provider_desc) %>% 
+  View
+
+
+#Filter and display provider descriptions starting with the initials ‘Dent’
+mbs1 %>%
+  distinct(provider_desc) %>% 
+  arrange(provider_desc) %>%
+  filter( str_detect( provider_desc,'^Dent'))
+
+
+
+#Display short descriptions associated with provider descriptions starting with initials ‘Dent’
+mbs1 %>%
+  filter( str_detect( provider_desc,'^Dent'))%>%
+  distinct(short_description) %>% View
+
+
+#Select Dent's doing 'Physio'
+mbs1 %>%
+  filter( str_detect( provider_desc,'^Dent') & 
+         str_detect(short_description,'^Physio'))
+
+
+#Repair short descriptions for 'Dent's doing 'Physio'
+mbs1 %>%
+  filter( str_detect( provider_desc,'^Dent') & 
+         str_detect(short_description,'^Physio')) %>%
+mutate( short_description = "Unknown Service")
+
+
+#Store corrected short descriptions
+mbs1 %>%
+  filter( str_detect( provider_desc,'^Dent') & 
+         str_detect(short_description,'^Physio')) %>%
+mutate( short_description = "Unknown Service") %>%
+{.} -> mbs1_corrected_short_desc
+
+
+# Combine originally correct with newly corrected, store in mbs1_corrected
+mbs1 %>%
+  filter( !( str_detect( provider_desc,'^Dent') & 
+            str_detect(short_description,'^Physio') )) %>%
+bind_rows(mbs1_corrected_short_desc ) %>%
+{.} -> mbs1_corrected
+
+
+#Filter out rows with provider descriptions starting with ‘Dent’ that also have a short description starting with ‘Physiotherapy’
+mbs1 %>%
+  filter( str_detect( provider_desc,'^Dent') & 
+         str_detect(short_description,'^Physio')) 
+
+
+#Remove rows with provider description starting with ‘Dent’ and short description containing ‘Physiotherapy’, store this new data set as mbs2
+mbs1 %>%
+  filter( !( str_detect( provider_desc,'^Dent') & 
+            str_detect(short_description,'^Physio'))) %>%
+  {.}->mbs2
+
+
+mbs1 %>% count()
+mbs1_corrected %>% count()
+mbs2 %>% count()
+
+mbs2 %>%
+  write_csv( 'mbs2.csv' )
+
+```
+# Duplication
+
+```{r}
+
+
+
+
+mbs2 = read_csv( 'mbs2.csv')
+
+#Count the number of each mbs_id in the dataset
+mbs2 %>%
+  count(mbs_id) 
+
+
+mbs2 %>%
+  count(mbs_id) %>%
+  filter( n> 1)
+
+mbs2 %>%
+  count(mbs_id) %>%
+  filter( n> 1) %>%
+  {.} -> duplicated_mbs_id
+
+
+#Select out all mbs data with duplicated id’s 
+mbs2 %>%
+  inner_join(duplicated_mbs_id)
+
+
+mbs2 %>%
+  inner_join(duplicated_mbs_id) %>%
+  distinct() 
+
+
+mbs2 %>%
+  inner_join(duplicated_mbs_id) %>%
+  distinct() %>%
+  count(mbs_id) %>%
+  filter( n == 1 )
+
+
+
+#Remove entries with mbs_ids found in the duplicate_mbs_id dataset
+mbs2 %>%
+  anti_join(duplicated_mbs_id) %>%
+  {.}->mbs3
+
+
+#Count the number of times an mbs_id appears in the dataset to check that all duplication has been removed
+mbs3 %>%
+  count(mbs_id) %>%
+  arrange(desc(n))
+
+
+mbs2 %>% count()
+mbs3 %>% count()
+mbs3 %>%
+  write_csv( 'mbs3.csv' )
+
+```
+# Inaccuracy
+
+```{r}
+
+
+
+
+mbs3 = read_csv( 'mbs3.csv')
+
+# search for invalid provider_category
+mbs3 %>%
+  filter(provider_category < 0 | provider_category > 650 )
+
+mbs3 %>%
+  filter(provider_category < 0 | provider_category > 650 ) %>%
+  filter(provider_category != 9999 )
+
+
+
+# what is the range of the mbs3 data
+summary(mbs3)
+
+
+
+#Generate a scatter plot with benpaid and schedfee as variables
+ggplot(data=mbs3)+
+  aes(x=benpaid)+
+  aes(y= schedfee)+
+  geom_point()
+
+
+#Generate a scatter plot with benpaid and feecharged as variables
+ggplot(data = mbs3)+
+  aes(x = benpaid)+
+  aes(y = feecharged)+
+  geom_point()
+
+
+#Filter dataset to remove all entries with outliers, removes entries that have either feecharged, benpaid or schedfee over 400000
+mbs3%>% 
+  filter(feecharged < 400000)%>%
+  filter(benpaid < 400000)%>% 
+  filter(schedfee < 400000)%>%
+  {.}-> mbs4
+
+
+#Generate a scatter plot with feecharged and schedfee as variables 
+ggplot( data=mbs4 ) +
+  aes( x=benpaid ) +
+  aes( y=schedfee ) +
+  geom_point()
+
+
+mbs3 %>% count()
+mbs4 %>% count()
+
+mbs4 %>%
+  write_csv( 'mbs4.csv' )
+
+
+```
+# Incompleteness
+
+```{r}
+
+
+
+
+mbs4 = read_csv( 'mbs4.csv')
+
+# count the number of NA values in the mbs_id field
+mbs4 %>%
+  summarise( sum( is.na( mbs_id))) 
+
+# count the number of NA values in each column
+mbs4 %>%
+  map_dfr( function(x) { sum(is.na(x)) })
+
+
+# what does mbs4 look like with the rows containing NA dropped
+mbs4 %>%
+  drop_na( provider_id, short_description, category, group_id)
+# create a mbs5 variable containing the non-NA values from mbs4
+mbs4 %>%
+  drop_na( provider_id, short_description, category, group_id) %>%
+  {.} -> mbs5
+
+mbs4 %>% count()
+mbs5 %>% count()
+
+mbs5 %>%
+  write_csv( 'mbs5.csv' )
+
+```
+# Currency
+
+```{r}
+
+
+
+
+mbs5 = read_csv( 'mbs5.csv')
+
+summary(mbs5)
+
+mbs5 %>%
+  ggplot() +
+  aes( supply_date ) +
+  geom_histogram(bins = 80 )
+
+mbs5 %>%
+ filter(supply_date < '1984-01-01')
+
+
+#Remove data entries that were created before 1984 and plot histogram
+mbs5 %>%
+ filter(supply_date > '1984-01-01') %>%
+  ggplot() +
+  aes( supply_date ) +
+  geom_histogram( bins = 20)
+
+#Remove data entries that were created before 1984, and summarise
+mbs5 %>%
+ filter(supply_date > '1984-01-01') %>%
+  pluck('supply_date') %>%
+ summary()
+
+
+#Remove data entries that were created before 1984, and summarise
+mbs5 %>%
+ filter(supply_date >= '1984-01-01') %>%
+ {.} -> mbs6
+
+mbs5 %>% count()
+mbs6 %>% count()
+
+mbs6 %>%
+ write_csv( 'mbs6.csv' )
+
+
+```
+
+
+
+
+
+
+

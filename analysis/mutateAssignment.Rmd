@@ -1,0 +1,243 @@
+---
+title: "Mutate Assignment - Insert errors"
+site: workflowr::wflow_site
+output:
+  workflowr::wflow_html:
+    toc: false
+---
+
+```{r pre_initial, echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+options(stringsAsFactors=F)
+source('lib/functions.R')
+set.seed( 42 )
+```
+
+# Read in base data correctly
+
+```{r read_in_data}
+
+col_types = cols(
+     adm_type_id = col_character(),
+     admission_date = col_date(format = ""),
+     admission_id = col_character(),
+     admitting_unit_id = col_character(),
+     age_years = col_double(),
+     campus_id = col_character(),
+     country_id = col_character(),
+     date_of_birth = col_date(format = ""),
+     given_name = col_character(),
+     hospital_insurance_id = col_character(),
+     indigenous_status_id = col_character(),
+     marital_status_id = col_character(),
+     patient_days_total = col_double(),
+     patient_id = col_character(),
+     postcode = col_character(),
+     sep_mode_id = col_character(),
+     separation_date = col_date(format = ""),
+     sex_id = col_character(),
+     accommodation_type_id = col_character()
+)
+
+read_csv( 'data/assignment/admission.csv' , col_types=col_types) %>%
+  { . } -> df
+
+
+size = nrow(df)
+error_size=10
+
+```
+
+#make counts
+
+
+```{r make_counts}
+
+
+
+
+df %>%
+  filter( accommodation_type_id == '3') %>%
+  count() %>%
+  pluck('n') %>%
+  { . } -> n_sameday
+
+df %>%
+  filter( admitting_unit_id == 'BIRT') %>%
+  count() %>%
+  pluck('n') %>%
+  { . } -> n_birt
+
+df %>%
+  filter( indigenous_status_id <4) %>%
+  count() %>%
+  pluck('n') %>%
+  { . } -> n_indigineous
+
+df %>%
+ filter( admitting_unit_id == 'BIRT') %>%
+ count() %>%
+ pluck('n') %>%
+ { . } -> n_birt
+
+
+
+
+```
+
+# inconsistency
+
+
+```{r inconsistency}
+
+
+
+# inaccuracy 1
+df %>%
+  mutate( patient_days_total = generate_outlier( patient_days_total, error_size ) %>% round(0) ) %>%
+  # duplicates
+  mutate(
+         admission_id = if_else( row_number() %in% sample.int( size, error_size ),
+                         lag( admission_id ), admission_id )
+         ) %>%
+  #
+  # multi-field inconsistency
+  mutate(
+         accommodation_type_id = if_else( row_number() %in% sample.int( size, error_size * (size/n_sameday)  ) &
+                                        accommodation_type_id == '3',
+                                        '1', accommodation_type_id )
+         ) %>%
+  mutate(
+         sex_id = if_else( row_number() %in% sample.int( size, error_size * (size/n_birt/3)  ) &
+                         admitting_unit_id=='BIRT',
+                       '1', sex_id )
+         ) %>%
+  mutate(
+         country_id = if_else( row_number() %in% sample.int( size, error_size * (size/n_indigineous)  ) &
+                         indigenous_status_id < 4,
+                             '2105', country_id )
+         ) %>%
+   mutate(
+         patient_id = if_else( row_number() %in% sample.int( size, error_size ),
+                              '', patient_id ),
+         sex_id = if_else( row_number() %in% sample.int( size, error_size ),
+                             random_alter_string( sex_id ), sex_id ),
+         admission_date = admission_date -
+           if_else( row_number() %in% sample.int( size, error_size ),
+                  sample.int( 20000, 1, replace=T)+10000, 0),
+         admitting_unit_id = if_else( row_number() %in% sample.int( size, error_size ),
+                       random_alter_string( admitting_unit_id ), admitting_unit_id ),
+         campus_id = if_else( row_number() %in% sample.int( size, error_size ),
+                            random_alter_string( campus_id ), campus_id ),
+         country_id = if_else( row_number() %in% sample.int( size, error_size ),
+                                    random_alter_string( country_id ), country_id )
+         ) %>%
+  { . } -> df_incorrect
+
+
+```
+
+# read admitting unit 2
+
+
+```{r  admitting_unit_read}
+
+
+
+
+
+col_types = cols(
+                 campus_id = col_character(),
+                 campus_name = col_character(),
+                 public_hospital_indicator = col_character(),
+                 type = col_character()
+)
+
+read_csv( 'data/assignment/campus_answers.csv' , col_types = col_types   ) %>%
+  replace_na(list( type='') ) %>%
+  { . } -> df_campus
+
+
+read_csv( 'data/assignment/admitting_unit_answers.csv') %>%
+  replace_na(list( campus_category_not='', campus_category_should='') ) %>%
+  { . } -> df_admitting_unit
+
+
+```
+
+# admitting_unit function
+
+
+```{r  admitting_unit_function}
+
+
+
+
+################################################################################
+# find_inappropriate_admitting_unit
+# sprinkle error_size incorrect admitting_unit_id's into admitting_unit_id, according to type
+################################################################################
+find_inappropriate_admitting_unit = function( type, df_admitting_unit,  admitting_unit_id, error_size  ) {
+  n = length(type)
+  type=type[1]
+
+if (type != "") {
+
+    df_admitting_unit %>%
+      filter(  campus_category_should != type )  %>%
+      filter(  campus_category_not == type )  %>%
+      # we have all the incorrect admitting units for this type
+      sample_n( error_size, replace=TRUE ) %>%
+      pluck( 'admitting_unit_id') %>%
+      { . } -> errors
+
+    if (length(errors)>0 ) {
+      admitting_unit_id[ sample.int( n, error_size ) ] = errors
+    }
+
+  }
+
+  admitting_unit_id
+
+
+}
+################################################################################
+################################################################################
+
+```
+
+# admitting_unit
+
+
+```{r  admitting_unit}
+
+
+df_incorrect %>%
+  left_join( df_admitting_unit, by='admitting_unit_id'  ) %>%
+  filter( campus_category_not!= '') %>%
+  count() %>%
+  pluck('n') %>%
+  { . } -> n_campus_category_not
+
+
+df_incorrect  %>%
+  inner_join( df_campus %>% select( campus_id, type ), by='campus_id') %>%
+  group_by( type ) %>%
+  mutate( admitting_unit_id = find_inappropriate_admitting_unit( type, df_admitting_unit,  admitting_unit_id, error_size/2  ) ) %>%
+  ungroup() %>%
+  select(-type) %>%
+  { . } -> df_incorrect
+
+
+df_incorrect %>%
+  mutate( b=random_alter_date( admission_date ) ) %>%
+  select(b, everything()) %>%
+  mutate( admission_date  = if_else( row_number() %in% sample.int( size, error_size ), 
+                                   b, admission_date) ) %>%
+  select(-b) %>%
+  mutate( date_of_birth  = if_else( row_number() %in% sample.int( size, error_size ), 
+                                   date_of_birth - 3000, date_of_birth) ) %>% 
+                                   { . } -> df_incorrect
+
+write_csv( df_incorrect, 'data/assignment/admissions_with_errors.csv')
+
+```

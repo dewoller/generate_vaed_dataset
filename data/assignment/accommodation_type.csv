@@ -1,0 +1,11 @@
+accommodation_type_id,accommodation_type_desc,weight
+R,Off-site,1
+4,In the Home (Hospital - HITH,2
+7,Ward Based/Medi-Hotel combination,1
+S,ED Short Stay Unit,4
+M,Medical Assessment and Planning Unit,2
+P,Psychiatric Assessment and Planning Unit,1
+6,Emergency Department,4
+3,Same Day accommodation,10
+2,Overnight accommodation: single room,3
+1,Overnight accommodation: shared room,3

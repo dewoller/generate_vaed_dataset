@@ -7,26 +7,24 @@ output:
 ---
 
 ```{r pre_initial, echo=FALSE, results='hide', message=FALSE, warning=FALSE}
-options(stringsAsFactors=F) 
+options(stringsAsFactors=F)
 source('lib/functions.R')
-
+set.seed( 42 )
 ```
 
-# Read in base data
+# Read in base data correctly
 
-```{r read_in_data} 
+```{r read_in_data}
 
-read.csv( 'data/tutorial/mbs_todamage.csv', colClasses='character' ) %>%
-  as_tibble() %>% 
-  mutate( 
-         benpaid = as.numeric( benpaid ), 
-         feecharged = as.numeric( feecharged ), 
-         schedfee = as.numeric( schedfee ), 
+read_csv( 'data/tutorial/archive/mbs.csv', colClasses='character' ) %>%
+  mutate(
+         benpaid = as.numeric( benpaid ),
+         feecharged = as.numeric( feecharged ),
+         schedfee = as.numeric( schedfee ),
          mbs_id = row_number() +10000) %>%
   select( mbs_id, everything() ) %>%
   { . } -> df
 
-df %>% write.csv( 'data/tutorial/mbs_correct.csv', row.names=FALSE)
 
 size = nrow(df)
 error_size=10
@@ -37,37 +35,91 @@ error_size=10
 
 
 ```{r make_bad_data}
+# inaccuracy 1
 df %>%
-  mutate( 
+  filter( benpaid >=0 & feecharged >=0 & schedfee >=0 ) %>%
+  mutate(
          benpaid = generate_outlier( benpaid, error_size ) %>% round(2),
          feecharged = generate_outlier( feecharged, error_size ) %>% round(2),
          schedfee = generate_outlier( schedfee, error_size ) %>% round(2)
          ) %>%
+#
 # duplicates
-  mutate( 
+  mutate(
          mbs_id = ifelse( row_number() %in% sample.int( size, error_size ),
                          lag( mbs_id ), mbs_id )
-         ) %>% 
-  # missing values
-  mutate( 
+         ) %>%
+#
+# inconsistency
+  mutate(
          provider_id = ifelse( row_number() %in% sample.int( size, error_size ),
-                              random_alter_string( provider_id ), provider_id ),
+                              '', provider_id ),
          patient_id = ifelse( row_number() %in% sample.int( size, error_size ),
                               random_alter_string( patient_id ), patient_id ),
          patient_id = ifelse( row_number() %in% sample.int( size, error_size ),
                              '', patient_id ),
-         supply_date = ifelse( row_number() %in% sample.int( size, error_size ),
-                              random_alter_string( supply_date ), supply_date ),
+         supply_date = as.Date( supply_date) +
+          ifelse( row_number() %in% sample.int( size, error_size ),
+                 sample.int( 20000, 1, replace=T)-10000, 0),
          item = ifelse( row_number() %in% sample.int( size, error_size ),
                               random_alter_string( item ), item ),
          provider_category = str_trim(provider_category),
          provider_category = ifelse( row_number() %in% sample.int( size, error_size ),
                               random_alter_string( provider_category ), provider_category )
-         ) %>% 
-         { . } -> df_incorrect
+         ) %>%
+  left_join(
+             read_csv( 'data/tutorial/provider.csv', col_types='cc'), by='provider_category'
+             ) %>%
+  mutate (
+          item = ifelse( row_number() %in% sample.int( size, 1000, replace=T ) &
+                        str_detect( provider_desc, regex('^Dent')),
+                      10960, item )
+          ) %>%
+  left_join( read_csv('data/tutorial/mbs_item.csv' ), by='item'  ) %>%
+  { . } -> df_incorrect
 
-df_incorrect %>% write.csv('data/tutorial/mbs_damaged.csv', row.names=F)
+df_incorrect %>% write_csv('data/tutorial/mbs_to_check.csv')
+
+df %>%
+  select( supply_date ) %>%
+  mutate( supply_date = as.Date( supply_date) ) %>%
+  mutate( b=random_alter_date( supply_date ) ) %>%
+  mutate( c = supply_date - ifelse( row_number() %in% sample.int( size, error_size ), 0, 1000 ))
 
 ```
+```{r, eval=F}
+
+df %>%
+  inner_join(
+            read_csv( 'data/tutorial/provider.csv', col_types='cc')
+            ) %>%
+  mutate (
+          item = ifelse( row_number() %in% sample.int( size, 1000, replace=T ) &
+                        str_detect( provider_desc, regex('^Dent')),
+                      10960, item )
+          ) %>%
+  inner_join( read_csv('data/tutorial/mbs_item.csv' )  ) %>%
+  write_csv('data/tutorial/archive/mbs_correct.csv')
+
+
+```
+
+# provider exploration
+```{r df}
+
+df_incorrect %>%
+  filter( str_detect( provider_desc, regex('^Dent'))) %>%
+  filter( !str_detect( short_description, regex('palate|mandibular|teeth|tooth|oral|crown|calculus', ignore_case=TRUE) )) %>%
+  count( short_description, provider_desc, sort=T )
+
+df_incorrect %>%
+  filter( provider_id == '')
+
+
+
+
+```
+
+
 
 

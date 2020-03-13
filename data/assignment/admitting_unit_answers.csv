@@ -1,0 +1,109 @@
+admitting_unit_id,admitting_unit_desc,campus_category_not,campus_category_should
+HIV,AIDS/HIV Unit,,
+ADDU,Alcohol & Drug Dependency,,
+ANAE,Anaesthetic,,
+BIRT,Birthing Unit,aged,women
+CARS,Cardiac Surgical,,
+CART,Cardio Thoracic Surgical,,
+CARD,Cardiology,,
+CCU,Coronary Care Unit,,
+DAY,Day surgery,,
+DENT,Dental/Oral,,dental
+DERM,Dermatology,,
+ENT,Ear Nose and Throat,,ent
+EMED,Emergency Medicine,,
+ENDO,Endocrinology and Diabetes,,
+ENDS,Endoscopy,,
+GAST,Gastroenterology,,
+GENM,General Medical,,
+GENO,General Medical/Surgical,,
+GENS,General Surgical,,
+GERI,Geriatric,children,aged
+GYNA,Gynaecology Medical,,women
+GYNC,Gynaecology Medical/Surgical,,women
+GYNO,Gynaecology Oncology,,women
+GYNS,Gynaecology Surgical,,women
+HAEM,Haematology,,
+HIGH,High Dependency Unit,,
+HYPE,Hyperbaric,,
+IMMU,Immunology,,
+INFE,Infectious Diseases,,
+ICU,Intensive Care,,
+MAXI,Maxillofacial,,
+NEOI,Neonatal Intensive Care,aged,children
+NEON,Neonatology,aged,children
+NEUR,Neurology,,
+NSUR,Neurosurgery,,
+OBSG,Obstetric/Gynaecology,,women
+OBST,Obstetric/Maternity,aged,women
+ONCM,Oncology - Medical,,
+ONCR,Oncology - Radiation,,
+ONCS,Oncology - Surgical,,
+OPHT,Ophthalmology,ent,
+ORTH,Orthopaedic,,aged
+OUTS,Outpatients - Specialists,,
+PECS,Paediatric - Cardiac Surgical,aged,children
+PECA,Paediatric - Cardiology,aged,children
+PECY,Paediatric - Cystic Fibrosis,aged,children
+PEDE,Paediatric - Dental/Oral,aged,children
+PEDR,Paediatric - Dermatology,aged,children
+PEDV,Paediatric - Developmental,aged,children
+PEEN,Paediatric - Ear Nose and Throat,aged,children
+PEED,Paediatric - Endocrinology/Diabetics,aged,children
+PEGA,Paediatric - Gastroenterology,aged,children
+PEGE,Paediatric - General,aged,children
+PEIC,Paediatric - Intensive Care,aged,children
+PELT,Paediatric - Liver Transplant,aged,children
+PEMA,Paediatric - Maxillofacial,aged,children
+PENE,Paediatric - Nephrology,aged,children
+PENL,Paediatric - Neurology,aged,children
+PENS,Paediatric - Neurosurgery,aged,children
+PEON,Paediatric - Oncology,aged,children
+PEOP,Paediatric - Ophthalmology,aged,children
+PEOR,Paediatric - Orthopaedic,aged,children
+PEPL,Paediatric - Plastic/Reconstructive Surgery/Burns,aged,children
+PERE,Paediatric - Respiratory Medicine,aged,children
+PERH,Paediatric - Rheumatology,aged,children
+PESP,Paediatric - Spinal,aged,children
+PESU,Paediatric - Surgery,aged,children
+PEUR,Paediatric - Urology,aged,children
+PALL,Palliative - Designated Unit,,aged
+PALG,Palliative - General,,aged
+PAIN,Persistent Pain,,
+PLAS,Plastic/Reconstructive Surgery/Burns,,
+PYYA,Psychiatric Adolescent Acute Unit,,psych
+PYYW,Psychiatric Adolescent Acute Unit in Adult Ward,,psych
+PYAA,Psychiatric Adult Acute Unit,,psych
+PYAQ,Psychiatric Adult Extended - Acquired Brain Damage Unit,,psych
+PYDD,Psychiatric Adult Extended - Dual Diagnosis Unit,,psych
+PYSH,Psychiatric Adult Extended - High Security Unit,,psych
+PYPG,Psychiatric Adult Extended - Older Persons Unit,,psych
+PYSM,Psychiatric Adult Extended - Secure Unit,,psych
+PYET,Psychiatric Adult Extended - Treatment Rehab Unit,,psych
+PYRA,Psychiatric Adult Residential,,psych
+PYAW,Psychiatric Adult Special Care Suite,,psych
+PYCA,Psychiatric Child Acute Unit,,psych
+PYCW,Psychiatric Child Acute Unit in Paediatric Ward,,psych
+PYFA,Psychiatric Forensic Acute,,psych
+PYGE,Psychiatric Older Persons - Acute,,psych
+PYOA,Psychiatric Young Persons (Youth) Acute Unit,,psych
+RADI,Radiology,,
+REHD,Rehabilitation - Designated Unit,,
+REHG,Rehabilitation - General,,
+REHA,Rehabilitation - Geriatric,,
+RENA,Renal/Nephrology,,
+RESP,Respite,,
+RHEU,Rheumatology,,
+SLEP,Sleep Centre,,
+SPIN,Spinal Injuries,dental,
+THOS,Thoracic Surgery,,
+THOR,Thoracic/Respiratory Medical,psych,
+TRAB,Transplantation Unit - Bone,,
+TRAM,Transplantation Unit - Bone Marrow,,
+TRAH,Transplantation Unit - Heart/Lung,ent,
+TRAL,Transplantation Unit - Liver,,
+TRAP,Transplantation Unit - Pancreas,,
+TRAR,Transplantation Unit - Renal,,
+UROL,Urology,,
+VASC,Vascular,,
+WOCH,Women and Child Health Medical/Surgical,,women

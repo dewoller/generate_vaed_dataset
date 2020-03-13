@@ -1,0 +1,199 @@
+---
+title: "Check Correct Version 2  2020-02-21"
+site: workflowr::wflow_site
+output:
+  workflowr::wflow_html:
+    toc: true
+---
+
+```{r pre_initial, echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+options(stringsAsFactors=F)
+source('lib/functions.R')
+
+```
+
+# Read in base dat
+```{r}
+
+col_types = cols(
+     adm_type_id = col_character(),
+     admission_date = col_date(format = ""),
+     admission_id = col_character(),
+     admitting_unit_id = col_character(),
+     campus_id = col_character(),
+     country_id = col_character(),
+     date_of_birth = col_date(format = ""),
+     given_name = col_character(),
+     hospital_insurance_id = col_character(),
+     indigenous_status_id = col_character(),
+     marital_status_id = col_character(),
+     patient_days_total = col_double(),
+     patient_id = col_character(),
+     postcode = col_character(),
+     sep_mode_id = col_character(),
+     separation_date = col_date(format = ""),
+     sex_id = col_character(),
+     accommodation_type_id = col_character()
+)
+#
+read_csv( 'data/assignment/admissions_with_errors.csv' , col_types = col_types) %>%
+  { . } -> df
+
+
+```
+
+#Frequency tables
+
+
+```{r outliers}
+
+# histogram for numeric variables
+
+df %>%
+  select_if( function(x) {class(x)=='numeric' | class(x)=='Date'} ) %>%
+  { . } -> df_1
+
+f=names( df_1 ) [1]
+for (f in names( df_1 )) {
+
+  p= ggplot( df_1, aes_string( x=f )) +
+    geom_histogram( bins=30)
+
+  print(p)
+}
+
+
+#character variables
+# barchart for character varialbes
+
+df %>%
+  select_if( function(x) {class(x)=='character'} ) %>%
+  { . } -> df_1
+for (f in names( df_1 )) {
+  p= ggplot( df_1, aes_string( x=f )) + geom_bar()
+  print(p)
+}
+
+```
+
+# Values not in code tables
+
+```{r mismatched_values}
+# each of the lookup tables
+
+files=c(
+"data/assignment/admission_type.csv",
+"data/assignment/campus.csv",
+"data/assignment/country_of_birth.csv",
+"data/assignment/hospital_insurance.csv",
+"data/assignment/indigenous_status.csv",
+"data/assignment/marital_status.csv",
+"data/assignment/postcode.csv",
+"data/assignment/separation_mode.csv",
+"data/assignment/sex.csv",
+"data/assignment/admitting_unit.csv")
+
+
+i=files[4]
+
+for (i in files) {
+
+  read_csv( i, col_types='cc' ) %>%
+    { . } -> df_tocheck
+
+  field = names( df_tocheck ) [1]
+
+  cat( paste( "### Checking for extraneous", field, "in admission file\n"))
+
+  df %>%
+    anti_join( df_tocheck , by=field) %>%
+    select_at( vars( field ))
+
+}
+
+
+
+```
+
+# values that don't match semantically
+## old dates
+
+```{r}
+
+df %>%
+  filter( admission_date < '2018')
+```
+
+## dates that have not happened dates
+
+```{r}
+
+df %>%
+  filter( admission_date >= '2019')
+```
+
+
+# values that don't match arithmetically
+
+```{r}
+
+#date vs LOS
+
+
+df %>%
+  filter( as.Date( separation_date ) - as.Date( admission_date )+ 1 != patient_days_total ) %>%
+  select( admission_id, admission_date, separation_date, patient_days_total )
+
+
+```
+
+
+## seperation date before admission_date
+
+```{r}
+
+
+df %>%
+  filter( as.Date( separation_date ) < as.Date( admission_date ))
+```
+
+# incorrect format values
+## incorrect dates
+
+```{r}
+
+df %>%
+  filter( as.character( as.Date( separation_date ) ) !=  separation_date ) %>%
+  select( admission_id, separation_date )
+
+df %>%
+  filter( as.character( as.Date( admission_date ) ) !=  admission_date ) %>%
+  select( admission_id, admission_date )
+
+```
+
+##  missing mandatory values - admission_id, given_name
+```{r}
+
+df %>%
+  filter(
+         is.na( admission_id ) | admission_id=='' |
+         is.na( given_name ) | given_name==''
+         ) %>%
+  select( admission_id, given_name )
+
+```
+
+#duplicate admission_id
+
+
+```{r}
+
+df %>%
+  count( admission_id ) %>%
+  filter( n>1 )
+
+```
+
+
+

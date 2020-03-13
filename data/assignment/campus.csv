@@ -1,0 +1,411 @@
+campus_id,campus_name,public_hospital_indicator
+1010,"Alfred, The [Prahran]",1
+1021,"Bendigo Hospital, The",1
+1022,Bendigo Health Care Group - Anne Caudle,1
+1031,Austin Hospital,1
+1032,Heidelberg Repatriation Hospital,1
+1040,Bairnsdale Regional Health Service,1
+1050,Box Hill Hospital,1
+1071,Hamilton Base Hospital,1
+1072,Penshurst & District Memorial,1
+1090,Bundoora Extended Care Centre,1
+1102,East Grampians Health Service [Willaura],1
+1101,East Grampians Health Service [Ararat],1
+1123,Goulburn Valley Health [Waranga],1
+1121,Goulburn Valley Health [Shepparton],1
+1122,Goulburn Valley Health [Tatura],1
+1130,Colac Area Health,1
+1150,Northeast Health Wangaratta,1
+1160,Mercy Hospital for Women,1
+1170,Monash Medical Centre [Clayton],1
+1180,Footscray Hospital,1
+1191,Royal Childrens Hospital [Parkville],1
+1210,Maroondah Hospital [East Ringwood],1
+1220,Monash Medical Centre [Moorabbin],1
+1230,Royal Womens Parkville,1
+1240,"Royal Victorian Eye & Ear Hospital, The [East Melbourne]",1
+1250,Rosebud Hospital,1
+1260,Kyabram & District Health Service,1
+1270,Kyneton District Health Service,1
+1280,"Northern Hospital, The [Epping]",1
+1290,Tallangatta Health Service,1
+1320,Werribee Mercy Hospital,1
+1321,Mercy Mental Health Ursula Frayne Centre,1
+1332,Royal Melbourne Hospital Mental Health Services - Orygen Inpatient Unit [Footscray],1
+1334,Royal Melbourne Hospital - City Campus,1
+1335,Royal Melbourne Hospital - Royal Park campus,1
+1340,Heathcote Health,1
+1351,Maryborough District Health Service [Maryborough],1
+1352,Maryborough District Health Service [Dunolly],1
+1360,Sandringham & District Memorial Hospital,1
+1370,Caulfield General Medical Centre,1
+1390,Sunshine Hospital,1
+1450,St Vincents Hospital,1
+1460,Williamstown Hospital,1
+1480,Kooweerup Regional Health Service,1
+1491,Swan Hill District Health [Swan Hill],1
+1492,Swan Hill District Health [Nyah],1
+1500,Hesse Rural Health Service [Winchelsea],1
+1550,Peter MacCallum Cancer Institute,1
+1560,East Wimmera Health Service [Wycheproof],1
+1571,Rural Northwest Health [Warracknabeal],1
+1572,Rural Northwest Health [Hopetoun],1
+1580,West Gippsland Healthcare Group [Warragul],1
+1590,Angliss Hospital,1
+1650,Albury Wodonga Health - Albury,1
+1660,Albury Wodonga Health - Wodonga,1
+1670,Bass Coast Health,1
+1700,St Georges Health - Aged Care,1
+1770,Yarram & District Health Service,1
+1780,Yarrawonga District Health Service,1
+1881,Alpine Health [Myrtleford],1
+1882,Alpine Health [Bright],1
+1883,Alpine Health [Mount Beauty],1
+1900,Tweddle Child & Family Health Centre [Footscray],1
+2010,Ballarat Health Services [Base Campus],1
+2020,Otway Health [Apollo Bay],1
+2030,Kingston Centre [Cheltenham],1
+2040,Omeo District Health,1
+2050,University Hospital Geelong,1
+2060,Central Gippsland Health Service [Sale],1
+2070,Ballarat Health Services [Queen Elizabeth Campus],1
+2080,Caritas Christi Hospice Ltd [Kew],1
+2090,Casterton Memorial Hospital,1
+2100,OConnell Family Centre (Grey Sisters) Inc. [Canterbury],1
+2111,Dandenong Campus,1
+2120,"Peter James Centre, The [East Burwood]",1
+2130,Cohuna District Hospital,1
+2140,Coleraine District Health Services,1
+2150,Corryong Health,1
+2160,South West Healthcare [Warrnambool],1
+2170,Wimmera Base Hospital [Horsham],1
+3180,Dimboola District Hospital,1
+2180,Echuca Regional Health,1
+2190,Seymour Health,1
+2220,Frankston Hospital,1
+2230,Beaufort & Skipton Health Service [Skipton],1
+2240,Kerang District Health,1
+2251,Korumburra Hospital,1
+2252,Leongatha Memorial Hospital,1
+2260,Stawell Regional Health,1
+1232,Womens Sandringham,1
+2320,New Mildura Base Hospital,1
+2330,Wantirna Health,1
+2350,Heywood Rural Health,1
+2360,Timboon & District Healthcare Service,1
+2371,West Wimmera Health Service [Nhill],1
+2372,West Wimmera Health Service [Kaniva],1
+2373,West Wimmera Health Service [Jeparit],1
+2374,West Wimmera Health Service [Rainbow],1
+2210,West Wimmera Health Service [Rupanyup],1
+2390,Mallee Track Health & Community Service,1
+2440,Latrobe Regional Hospital [Traralgon],1
+2450,Moyne Health Services [Port Fairy],1
+2460,Portland District Health,1
+2480,East Wimmera Health Service [St Arnaud],1
+2550,Lorne Community Hospital,1
+2580,Central Gippsland Health Service [Maffra],1
+2590,Maldon Hospital,1
+2650,Cranbourne Int Care Centre,1
+2670,Mansfield District Hospital,1
+2700,Sunbury Day Hospital,1
+2970,Broadmeadows Health Service,1
+3010,Alexandra District Health,1
+3020,Djerriwarrh Health Service [Bacchus Marsh],1
+3030,Numurkah & District Health Service,1
+3040,Grace McKellar Centre [Geelong],1
+3050,Calvary Health Care Bethlehem,1
+3060,Boort District Health,1
+3080,South West Healthcare [Camperdown],1
+3110,Queen Elizabeth Centre [Noble Park],1
+3120,Beaufort & Skipton Health Service [Beaufort],1
+3130,Robinvale District Health Services,1
+2660,Manangatang & District Hospital,1
+3140,Rochester & Elmore District Health Service,1
+3190,East Wimmera Health Service [Donald],1
+3220,Royal Talbot Rehabilitation Centre [Kew],1
+3240,Edenhope & District Hospital,1
+3330,Healesville and District Hospital,1
+3350,Terang & Mortlake Health Service [Terang],1
+3370,Inglewood & District Health Service,1
+3460,"Kilmore & District Hospital, The",1
+3590,Yea & District Memorial Hospital,1
+3660,Casey Hospital,1
+3670,Craigieburn Health Service,1
+3680,Melton Health,1
+3690,Yarra Ranges Health,1
+4010,Nathalia District Hospital,1
+4050,Benalla Health,1
+4083,Golf Links Road Rehabilitation and PCU,1
+4084,The Mornington Centre,1
+4120,East Wimmera Health Service [Birchip],1
+4130,East Wimmera Health Service [Charlton],1
+4161,Daylesford District Hospital,1
+4162,Creswick District Hospital,1
+4240,South Gippsland Hospital [Foster],1
+4460,Beechworth Health Service,1
+5000,Test Hospital,1
+5010,Castlemaine Health,1
+5050,Orbost Regional Health,1
+5110,Royal Dental Hospital [Melbourne],1
+5120,Cobram District Health,1
+6000,Epping Private Hospital,0
+6020,La Trobe Private Hospital,0
+6030,St John of God Bendigo Hospital,0
+6040,Eastlink Surgery Centre,0
+6060,Mandometer,0
+6070,Ballan & District Soldiers Memorial Bush Nursing Hospital & Hostel Inc.,0
+6080,St John of God Berwick Hospital,0
+6090,St John of God Berwick Day Oncology Centre,0
+6100,St John of God Warrnambool Hospital,0
+6110,Hampton Park Womens Health Centre,0
+6120,Chelsea Heights Day Procedure Centre,0
+6130,Dr Scope,0
+6150,Cobden and District Bush Nursing Hospital Inc.,0
+6170,Euroa Health Inc,0
+6180,Essendon Day Procedure Centre,0
+6200,"Valley Private Hospital, The [Mulgrave]",0
+6210,"Avenue Private Hospital, The [Windsor]",0
+6220,Brunswick Private Hospital,0
+6230,The Victoria Clinic,0
+6240,Berwick Surgicentre,0
+6250,Linley Clinic,0
+6270,Toorak Cosmetic Surgery Day Centre,0
+6291,"Bays Hospital, The [Mornington]",0
+6292,"Bays Hospital, The [Hastings]",0
+6300,Essendon Private Hospital Victoria,0
+6310,Melbourne Endoscopy Monash Day Hospital [Clayton],0
+6320,Monash Surgical Private Hospital [Clayton],0
+6330,Nagambie Hospital Inc.,0
+6340,South West Regional Cancer Centre,0
+6350,Neerim District Soldiers Memorial Hospital Inc.,0
+6360,Monash House Private Hospital,0
+6370,Vermont Private Hospital,0
+6380,Skin Cancer Day Surgery,0
+6390,Diaverum North Melbourne Dialysis Clinic,0
+6400,Knox Private Hospital [Wantirna],0
+6410,Ivanhoe Endoscopy and Day Procedure Centre,0
+6420,Malvern Private Hospital [East Malvern],0
+6430,Marie Stopes International East St Kilda,0
+6440,Holmesglen Private Hospital,0
+6450,St Vincents Private Hospital East Melbourne,0
+6470,Epworth Freemasons,0
+6480,Epworth Geelong,0
+6490,Epworth Hospital [Richmond],0
+6500,Beleura Private Hospital [Mornington],0
+6840,Cabrini Health Elsternwick Rehabilitation Service,0
+6511,Cabrini Malvern,0
+6512,Cabrini Prahran,0
+6513,Cabrini Brighton,0
+6514,Cabrini Hopetoun,0
+6520,St John of God Ballarat Hospital,0
+6530,"Geelong Clinic, The",0
+6550,St John of God Geelong Hospital,0
+6570,Murray Valley Private Hospital [Wodonga],0
+6600,Waverley Private Hospital [Mt Waverley],0
+6610,Reservoir Private Hospital Day Procedure Centre,0
+6620,St Vincents Private Hospital Fitzroy,0
+6650,Bellbird Private Hospital [Blackburn],0
+6660,Rosebud Day Hospital,0
+6680,Noble Park Endoscopy Centre,0
+6690,Bayside Endoscopy Day Hospital,0
+6700,St Vincents Private Hospital Werribee,0
+6710,Epworth Rehabilitation Camberwell,0
+6720,Epworth Hawthorn,0
+6730,Epworth Cliveden,0
+6750,Wangaratta Private Hospital,0
+6770,"Melbourne Private Hospital, The [Parkville]",0
+6780,St John of God Pinelodge Clinic,0
+6790,Peninsula Private Hospital [Frankston],0
+6800,Western Private Hospital [Footscray],0
+6810,Dorset Private Hospital (Pascoe Vale),0
+6830,Epworth Rehabilitation Brighton,0
+6880,Linacre Private Hospital,0
+6890,St Vincents Private Hospital Kew,0
+6900,Springvale Endoscopy Services,0
+6910,Warringal Private Hospital [Heidelberg],0
+6920,Cotham Private Hospital [Kew],0
+6930,Sir John Monash Private Hospital [Clayton],0
+6940,St John of God Hospital Berwick Kangan Drive,0
+6950,"Albert Road Clinic, The [South Melbourne]",0
+6960,Melbourne Endoscopy Group Day Procedure Centre,0
+6970,"Melbourne Eastern Private Hospital, The",0
+6990,Melbourne Day Surgery,0
+7000,New Age Dental,0
+7010,Vision Laser St Kilda Road,0
+7020,Kew Endoscopy Centre,0
+7040,Vision Day Surgery Eastern,0
+7050,Windsor Avenue Day Surgery,0
+7060,Mornington Endoscopy,0
+7070,North Eastern Rehabilitation Centre,0
+7090,Maryvale Private Hospital [Morwell],0
+7100,Hyperbaric Health (Berwick),0
+7110,Donvale Rehabilitation Hospital,0
+7120,St Kilda Day Hospital,0
+7130,Skin & Cancer Foundation Incorporated,0
+7140,Manningham Day Procedure Centre,0
+7150,Melbourne Oral & Facial Surgery,0
+7160,East Melbourne Day Procedure Centre (Fertility Control Clinic),0
+7171,St Albans Endoscopy Centre,0
+7180,Tarietta Day Surgery,0
+7220,Heyfield Hospital Inc,0
+7230,Clinic of Cosmetic Medicine,0
+7240,Hyperbaric Health Brunswick,0
+7250,Goonawarra Day Hospital,0
+7260,Stonnington Day Surgery,0
+7270,Sea Lake & District Health Service Inc.,1
+7280,St John of God Frankson Rehabilitation Hospital,0
+7290,"Melbourne Clinic Private Hospital, The [Richmond]",0
+7300,Wyndham Clinic,0
+7310,Bayside Day Procedure and Specialist Centre,0
+7320,Nunyara Centre,0
+7330,The Victorian Cosmetic Institute,0
+7340,Hyperbaric Health Bundoora,0
+7350,South Eastern Private Hospital [Noble Park],0
+7360,Eastside Endoscopy Centre,0
+7370,Epworth Eastern Hospital,0
+7380,Diaverum Diamond Valley Dialysis Clinic,0
+7390,Northpark Private Hospital [Bundoora],0
+7400,Heidelberg Endoscopy and Day Surgery Centre,0
+7410,Fresenius Medical Care Sunshine Dialysis Clinic,0
+7430,The Hader Clinic,0
+7440,Greensborough Day Surgery,0
+7450,Paras Clinic,0
+7460,Arrow Health,0
+7480,DayHab,0
+7500,Habitat Therapeutics,0
+7510,Darebin Endoscopy Services,0
+7540,Westpoint Endoscopy Day Hospital,0
+7580,Bundoora Endoscopy,0
+7680,Toorak-Malvern Day Surgery Centre,0
+7710,Marie Stopes International Maroondah,0
+7720,Frances Perry Private Hospital [Carlton],0
+7730,Rosebud Surgicentre,0
+7740,Como Private Hospital,0
+7750,Vision Day Surgery Camberwell,0
+7770,Dandenong Eye Clinic,0
+7780,Digestive Health Centre,0
+7790,Keilor Private,0
+7810,Ringwood Private Hospital,0
+7830,Werribee Endoscopy,0
+7840,Shepparton Private Hospital,0
+7850,Chesterville Day Hospital [Cheltenham],0
+7870,"Victorian Rehabilitation Centre, The [Glen Waverley]",0
+7880,Waverley Endoscopy Suites [Mt Waverley],0
+7890,Corymbia House,0
+7900,Frankston Private Day Surgery,0
+7910,Masada Private Hospital [East St Kilda],0
+7930,Mildura Private Hospital,0
+7950,Specialist Centre Docklands,0
+7960,Geelong Private Hospital,0
+7970,Jolimont Endoscopy [East Melbourne],0
+8050,"Womens Clinic Day Surgical Centre, The",0
+8090,Delmont Private Hospital [Burwood],0
+8180,Forest Hill Dialysis Centre,0
+8190,Bayswater Day Procedure Centre,0
+8200,Monash IVF Geelong,0
+8210,Western Gastroenterology Services [Footscray],0
+8220,Kew Dialysis Clinic,0
+8230,Epping Radiation Oncology Centre,0
+8240,Western Radiation Oncology Centre,0
+8231,Frankston Radiation Oncology Centre,0
+8232,Ringwood Radiation Oncology Centre,0
+8233,Murray Valley Radiation Oncology Centre,0
+8234,Genesis Care Radiation Oncology Centre,0
+8235,Icon Cancer Centre,0
+8236,Genesis Care Radiation Oncology Centre Cabrini,0
+8250,Genesis Care Radiation Oncology Centre,0
+8260,Imaging@Olympic Park,0
+8270,Altona Endoscopy,0
+8280,East Melbourne Specialist Day Hospital,0
+8290,Sydenham Endoscopy and Day Surgery,0
+8320,PANCH Day Surgery Centre,0
+8340,The Glen Endoscopy,0
+8350,Ballarat Surgicentre,0
+8420,Melbourne Medibrain and Medisleep Centre,0
+8430,Ballarat Day Procedure Centre,0
+8440,Mitcham Private Hospital,0
+8450,Casey Day Procedure Centre,0
+8460,Glen Eira Day Surgery,0
+8480,Appearance Medical Centre,0
+8530,Coburg Endoscopy Centre,0
+8550,John Fawkner - Moreland Private Hospital,0
+8720,"Southern Eye Centre, Day Surgery & Laser Clinic [Frankston]",0
+8800,Glenferrie Private Hospital,0
+8810,Vision Day Surgery Footscray,0
+8840,Windsor Private Hospital,0
+8850,Northwest Day Hospital,0
+8860,Victoria Parade Surgery Centre,0
+8870,Western Day Surgery,0
+8890,Jessie McPherson Private Hospital [Clayton],0
+8900,Glen Iris Private,0
+8920,Peninsula Oncology Centre,0
+8930,Specialist Surgicentre Geelong,0
+8940,Bentleigh Surgicentre,0
+8950,Bendigo Day Surgery,0
+8960,Malvern Dialysis Centre,0
+8980,Brighton Plastic Surgery Centre,0
+9007,Interstate - Queensland - Major Specialist/Teaching,1
+9017,Interstate - Queensland - Other Public Acute,1
+9027,Interstate - Queensland - Extended Care,1
+9037,Interstate - Queensland - Private,0
+9057,Interstate - Queensland - Psychiatric,1
+9067,Interstate - Queensland - Rehabilitation,1
+9097,Interstate - Queensland - Other Healthcare Accommodation,1
+9107,Interstate - New South Wales - Major Specialist/Teaching,1
+9117,Interstate - New South Wales - Other Public Acute,1
+9127,Interstate - New South Wales - Extended Care,1
+9137,Interstate - New South Wales - Private,0
+9157,Interstate - New South Wales - Psychiatric,1
+9167,Interstate - New South Wales - Rehabilitation,1
+9197,Interstate - New South Wales - Other Healthcare Accommodation,1
+9207,Interstate - Tasmania - Major Specialist/Teaching,1
+9217,Interstate - Tasmania - Other Public Acute,1
+9227,Interstate - Tasmania - Extended Care,1
+9237,Interstate - Tasmania - Private,0
+9257,Interstate - Tasmania - Psychiatric,1
+9267,Interstate - Tasmania - Rehabilitation,1
+9297,Interstate - Tasmania - Other Healthcare Accommodation,1
+9307,Interstate - South Australia - Major Specialist/Teaching,1
+9317,Interstate - South Australia - Other Public Acute,1
+9327,Interstate - South Australia - Extended Care,1
+9337,Interstate - South Australia - Private,0
+9357,Interstate - South Australia - Psychiatric,1
+9367,Interstate - South Australia - Rehabilitation,1
+9397,Interstate - South Australia - Other Healthcare Accommodation,1
+9407,Interstate - Western Australia - Major Specialist/Teaching,1
+9417,Interstate - Western Australia - Other Public Acute,1
+9427,Interstate - Western Australia - Extended Care,1
+9437,Interstate - Western Australia - Private,0
+9457,Interstate - Western Australia - Psychiatric,1
+9467,Interstate - Western Australia - Rehabilitation,1
+9497,Interstate - Western Australia - Other Healthcare Accommodation,1
+9507,Interstate - ACT - Major Specialist/Teaching,1
+9517,Interstate - ACT - Other Public Acute,1
+9527,Interstate - ACT - Extended Care,1
+9537,Interstate - ACT - Private,0
+9557,Interstate - ACT - Psychiatric,1
+9567,Interstate - ACT - Rehabilitation,1
+9597,Interstate - ACT - Other Healthcare Accommodation,1
+9607,Interstate - Northern Territory - Major Specialist/Teaching,1
+9617,Interstate - Northern Territory - Other Public Acute,1
+9627,Interstate - Northern Territory - Extended Care,1
+9637,Interstate - Northern Territory - Private,0
+9657,Interstate - Northern Territory - Psychiatric,1
+9667,Interstate - Northern Territory - Rehabilitation,1
+9697,Interstate - Northern Territory - Other Healthcare Accommodation,1
+9707,Interstate - New Zealand - Major Specialist/Teaching,1
+9717,Interstate - New Zealand - Other Public Acute,1
+9727,Interstate - New Zealand - Extended Care,1
+9737,Interstate - New Zealand - Private,0
+9757,Interstate - New Zealand - Psychiatric,1
+9767,Interstate - New Zealand - Rehabilitation,1
+9797,Interstate - New Zealand - Other Healthcare Accommodation,1
+9807,Interstate - Other overseas - Major Specialist/Teaching,1
+9817,Interstate - Other overseas - Other Public Acute,1
+9827,Interstate - Other overseas - Extended Care,1
+9837,Interstate - Other overseas - Private,0
+9857,Interstate - Other overseas - Psychiatric,1
+9867,Interstate - Other overseas - Rehabilitation,1
+9897,Interstate - Other overseas - Other Healthcare Accommodation,1
+9999,Unknown Transfer Destination/Source,1

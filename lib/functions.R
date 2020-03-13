@@ -3,27 +3,27 @@
 source( "lib/functions_preload.R")
 detach_all_packages()
 
-safe_load( 'workflowr')
-safe_load("seas")
-safe_load("magrittr")
-safe_load("stringr")
-safe_load("knitr")
-#safe_load("kableExtra")
-#safe_load("pander")
-safe_load("lubridate")
+library( workflowr)
+library(seas)
+library(magrittr)
+library(stringr)
+library(knitr)
+#library(kableExtra)
+#library(pander)
+library(lubridate)
 
-safe_load("readstata13" )
-#safe_load("foreign" )
-safe_load("wrapr" )   # for the qc function
+library(readstata13 )
+#library(foreign )
+library(wrapr )   # for the qc function
 
-#safe_load("ordinal" )
-safe_load("DataCache", dev='jbryer/DataCache' )
-safe_load( 'fuzzyjoin')
-library('IRanges')
-safe_load("multidplyr", dev = "hadley/multidplyr")
-safe_load("tidyverse")
-safe_load("tictoc")
-safe_load("hashmap")
+#library(ordinal )
+library(DataCache)
+library( fuzzyjoin)
+library(IRanges)
+library(multidplyr)
+library(tidyverse)
+library(tictoc)
+library(hashmap)
 
 
 
@@ -49,13 +49,13 @@ sadgg <- function ( plot ) {
 
   list.files( base_dir ) %>%
     as.tibble() %>%
-    separate(value, into='n', sep="_", extra='drop') %>% 
+    separate(value, into='n', sep="_", extra='drop') %>%
     mutate( n=as.numeric(n) ) %>%
-    summarise( maxn=max(n)) %$% maxn %>% 
+    summarise( maxn=max(n)) %$% maxn %>%
     { . } -> maxn
-  if (maxn==-Inf) { maxn=0}    
+  if (maxn==-Inf) { maxn=0}
 
-  filename = paste0( sprintf( "%03d_", maxn+1), 
+  filename = paste0( sprintf( "%03d_", maxn+1),
                     paste( plot$mapping, collapse='_'),
                     '.', filetype)
 
@@ -102,7 +102,7 @@ save_data<- function( item ) {
 	if( is.vector(item) ) {
 		lapply( item, save_data_single )
 	} else {
-		save_data_single( item ) 
+		save_data_single( item )
 	}
 }
 #################################################################################
@@ -114,7 +114,7 @@ read_data<- function( item ) {
 	if( is.vector(item) ) {
 		lapply( item, read_data_single )
 	} else {
-		read_data_single( item ) 
+		read_data_single( item )
 	}
 }
 #################################################################################
@@ -128,7 +128,7 @@ my_year_length <- function( year ) {
 # seqNext ------------------------------------------------------------------
 seqNext <- function(x1, y1) {
   dat <- data.frame( x= x1
-  			 , y=y1) 
+  			 , y=y1)
   unname(
     predict(lm(y ~ x, data=dat), newdata=list(x=c(2016)))
   )
@@ -157,7 +157,7 @@ slurpTable <- function( name ) {
 			SELECT * FROM ", name
 			, sep=""
 			)
-	dbGetQuery(con, state_geo_query ) %>% 
+	dbGetQuery(con, state_geo_query ) %>%
 		as.tibble() %>%
 	return( . )
 }
@@ -196,7 +196,7 @@ singleFacetPlot_boxplot = function( df_raw_input, var1, var2 ) {
 			group_by_at( vars(gb)) %>%
 			summarise( no_users = n()) %>%
 			ggplot() +
-			geom_boxplot( mapping=aes_string(x = var1, y= "no_users" , color=var1, fill=var1)) + 
+			geom_boxplot( mapping=aes_string(x = var1, y= "no_users" , color=var1, fill=var1)) +
 			ggtitle( paste("The range of LGA number of users for each", var1, "facetted by", var2)) +
 			facet_wrap( as.formula(paste("~", var2)), ncol=2, scales='fixed')
 }
@@ -248,10 +248,10 @@ rows = function(x) lapply(seq_len(nrow(x)), function(i) lapply(x,"[",i))
 # send formattded to clipboard
 
 xc = function (df ) {
-  df %>% 
+  df %>%
     mutate_if( really_is_numeric, round, 2 ) %>%
     tableHTML::tableHTML() %>% clipr::write_clip()
-} 
+}
 
 
 #-----------------------------------------------------------------------------
@@ -333,7 +333,7 @@ lsos <- function(..., n=10) {
   .ls.objects(..., order.by="Size", decreasing=TRUE, head=TRUE, n=n)
 }
 
-lsos()
+#lsos()
 
 
 ################################################################################
@@ -362,7 +362,7 @@ generate_outlier = function(field, n_outliers) {
 random_alter_string = function( s, str_range = NA ) {
   slen = str_length(s)
   pos = sample.int( slen, 1 )
-  chars = str_split(s, '')[[1]] 
+  chars = str_split(s, '')[[1]]
 
   if ( is.na( str_range )) {
     char_to_replace = chars %>% gtools::asc() %>% range( )
@@ -371,6 +371,23 @@ random_alter_string = function( s, str_range = NA ) {
   }
   chars[ pos ] = runif( 1, char_to_replace[1], char_to_replace[2] + 1 ) %>% floor() %>%  gtools::chr()
   paste0( chars, collapse='')
+}
+
+
+################################################################################
+
+#
+#random_alter_date( as.Date( '1999-10-10' )  )
+#random_alter_date( as.Date( '1999-10-10' ), date_range=365*10  )
+#random_alter_date( rep( as.Date( '1999-10-10' ), 10 ), date_range=365*10  )
+
+random_alter_date = function( in_date, date_range = 365 ) {
+
+
+  offset = sample.int( date_range*2, length( in_date), replace=T ) - date_range
+
+  runif( 1, 1,100)  # to keep standard
+  in_date + as.difftime( offset, units='days')
 }
 
 ################################################################################

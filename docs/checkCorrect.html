@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -74,9 +74,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -90,7 +88,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -195,8 +192,6 @@ $(document).ready(function () {
 });
 </script>
 
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
 
 <style type="text/css">
@@ -241,6 +236,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -253,48 +249,9 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -308,6 +265,12 @@ $(document).ready(function ()  {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -343,8 +306,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -353,6 +314,16 @@ div.tocify {
 
 
 </style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row-fluid">
@@ -416,137 +387,282 @@ div.section {
 </div>
 
 
-<p><strong>Last updated:</strong> 2019-02-08</p>
-<strong>workflowr checks:</strong> <small>(Click a bullet for more information)</small>
-<ul>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
 <li>
-<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>R Markdown file:</strong> up-to-date </summary></p>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2020-02-20
+</p>
+<p>
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
+</p>
+<p>
+<strong>Knit directory:</strong> <code>generate_data/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+</p>
+<p>
+This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
+  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.4.0.9001). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
+<div class="panel-body">
 <p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
-</details>
-</li>
-<li>
-<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Environment:</strong> empty </summary></p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
 <p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
-</details>
-</li>
-<li>
-<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Seed:</strong> <code>set.seed(20190205)</code> </summary></p>
-<p>The command <code>set.seed(20190205)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
-</details>
-</li>
-<li>
-<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Session information:</strong> recorded </summary></p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20190205code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20190205)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20190205code" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20190205)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div class="panel-body">
 <p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
-</details>
-</li>
-<li>
-<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/dewoller/generate_vaed_dataset/tree/894f887494890455da2ec74ba6bec47eda333ca1" target="_blank">894f887</a> </summary></p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdewollergeneratevaeddatasettree3aa5884fdc12e598d9310dbe5feb4da610010095targetblank3aa5884a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/dewoller/generate_vaed_dataset/tree/3aa5884fdc12e598d9310dbe5feb4da610010095" target="_blank">3aa5884</a> </a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomdewollergeneratevaeddatasettree3aa5884fdc12e598d9310dbe5feb4da610010095targetblank3aa5884a" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+</p>
 <pre><code>
+Ignored files:
+    Ignored:    data/tutorial/.Rhistory
+    Ignored:    data/tutorial/.Rproj.user/
+
 Untracked files:
-    Untracked:  analysis/permuteReal.Rmd
-    Untracked:  analysis/permuteTutorial.Rmd
-    Untracked:  data/archive/country_of_birth.csv
-    Untracked:  data/tutorial/
+    Untracked:  data/admission_code_full.csv
+    Untracked:  data/tutorial/01a_Inconsistency_missing_values.R
+    Untracked:  data/tutorial/01b_Inconsistency_Line_level.R
+    Untracked:  data/tutorial/02_duplicate_check.R
+    Untracked:  data/tutorial/03_inaccuracy.R
+    Untracked:  data/tutorial/04_incompleteness.R
+    Untracked:  data/tutorial/05_currency.R
+    Untracked:  data/tutorial/R_Tutorial_for_HDI_All_Code.Rmd
+    Untracked:  data/tutorial/archive/
+    Untracked:  data/tutorial/mbs1.csv
+    Untracked:  data/tutorial/mbs2.csv
+    Untracked:  data/tutorial/mbs3.csv
+    Untracked:  data/tutorial/mbs4.csv
+    Untracked:  data/tutorial/mbs5.csv
+    Untracked:  data/tutorial/mbs6.csv
+    Untracked:  data/tutorial/mbs_to_check.csv
+    Untracked:  data/tutorial/mbs_tutorial.zip
+    Untracked:  data/tutorial/tutorial.Rproj
+    Untracked:  try.xlsx
 
 Unstaged changes:
-    Modified:   analysis/generateCorrect.Rmd
+    Deleted:    .Rprofile
+    Modified:   analysis/permuteTutorial.Rmd
     Modified:   data/package/admission.csv
-    Modified:   data/package/country_of_birth.csv
-    Modified:   data/package/postcode.csv
+    Deleted:    data/tutorial/mbs.csv
+    Modified:   data/tutorial/mbs_correct.csv
+    Deleted:    data/tutorial/mbs_damaged.csv
+    Deleted:    data/tutorial/mbs_todamage.csv
+    Deleted:    data/tutorial/mbs_tutorial_data_csv.zip
+    Modified:   data/tutorial/patient.csv
+    Modified:   data/tutorial/provider.csv
     Modified:   lib/functions.R
 
 </code></pre>
-Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes. </details>
-</li>
-</ul>
-<details> <summary> <small><strong>Expand here to see past versions:</strong></small> </summary>
-<ul>
-<table style="border-collapse:separate; border-spacing:5px;">
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+
+<p>
+These are the previous versions of the R Markdown and HTML files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view them.
+</p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
 <thead>
 <tr>
-<th style="text-align:left;">
+<th>
 File
 </th>
-<th style="text-align:left;">
+<th>
 Version
 </th>
-<th style="text-align:left;">
+<th>
 Author
 </th>
-<th style="text-align:left;">
+<th>
 Date
 </th>
-<th style="text-align:left;">
+<th>
 Message
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
-Rmd
-</td>
-<td style="text-align:left;">
-<a href="https://github.com/dewoller/generate_vaed_dataset/blob/894f887494890455da2ec74ba6bec47eda333ca1/analysis/checkCorrect.Rmd" target="_blank">894f887</a>
-</td>
-<td style="text-align:left;">
-Dennis Wollersheim
-</td>
-<td style="text-align:left;">
-2019-02-08
-</td>
-<td style="text-align:left;">
-wflow_publish(“analysis/checkCorrect.Rmd”)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
+<td>
 html
 </td>
-<td style="text-align:left;">
-<a href="https://cdn.rawgit.com/dewoller/generate_vaed_dataset/27c4290ef3bbdd94deb67ae6647f353f46098d34/docs/checkCorrect.html" target="_blank">27c4290</a>
+<td>
+<a href="https://rawcdn.githack.com/dewoller/generate_vaed_dataset/5f2210ec3f5e23f44a5ddf265dbea2267ad900ea/docs/checkCorrect.html" target="_blank">5f2210e</a>
 </td>
-<td style="text-align:left;">
+<td>
 Dennis Wollersheim
 </td>
-<td style="text-align:left;">
+<td>
 2019-02-07
 </td>
-<td style="text-align:left;">
+<td>
 Build site.
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td>
 Rmd
 </td>
-<td style="text-align:left;">
-<a href="https://github.com/dewoller/generate_vaed_dataset/blob/ee29d97532260155100b8271c9886354181e3a3a/analysis/checkCorrect.Rmd" target="_blank">ee29d97</a>
+<td>
+<a href="https://github.com/dewoller/generate_vaed_dataset/blob/894f887494890455da2ec74ba6bec47eda333ca1/analysis/checkCorrect.Rmd" target="_blank">894f887</a>
 </td>
-<td style="text-align:left;">
+<td>
 Dennis Wollersheim
 </td>
-<td style="text-align:left;">
+<td>
 2019-02-07
 </td>
-<td style="text-align:left;">
+<td>
+wflow_publish(“analysis/checkCorrect.Rmd”)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/dewoller/generate_vaed_dataset/27c4290ef3bbdd94deb67ae6647f353f46098d34/docs/checkCorrect.html" target="_blank">27c4290</a>
+</td>
+<td>
+Dennis Wollersheim
+</td>
+<td>
+2019-02-06
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/dewoller/generate_vaed_dataset/blob/ee29d97532260155100b8271c9886354181e3a3a/analysis/checkCorrect.Rmd" target="_blank">ee29d97</a>
+</td>
+<td>
+Dennis Wollersheim
+</td>
+<td>
+2019-02-06
+</td>
+<td>
 wflow_publish(“analysis/checkCorrect.Rmd”)
 </td>
 </tr>
 </tbody>
 </table>
-</ul>
-<p></details></p>
-<hr />
+</div>
+<hr>
+</div>
+</div>
+</div>
 <div id="read-in-base-dat" class="section level1">
 <h1>Read in base dat</h1>
 <pre class="r"><code>read.csv( &#39;data/package/admission.csv&#39; ) %&gt;%
   as_tibble() %&gt;% 
   { . } -&gt; df</code></pre>
-</div>
-<div id="frequency-tables" class="section level1">
-<h1>Frequency tables</h1>
+<p>#Frequency tables</p>
 <pre class="r"><code># numeric variables
 
 df %&gt;%
@@ -563,246 +679,375 @@ for (f in names( df_1 )) {
   print(p)
 }</code></pre>
 <p><img src="figure/checkCorrect.Rmd/outliers-1.png" width="672" style="display: block; margin: auto;" /></p>
-<details> <summary><em>Expand here to see past versions of outliers-1.png:</em></summary>
-<table style="border-collapse:separate; border-spacing:5px;">
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-outliers-1">
+Past versions of outliers-1.png
+</button>
+</p>
+<div id="fig-outliers-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
 <thead>
 <tr>
-<th style="text-align:left;">
+<th>
 Version
 </th>
-<th style="text-align:left;">
+<th>
 Author
 </th>
-<th style="text-align:left;">
+<th>
 Date
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td>
+<a href="https://github.com/dewoller/generate_vaed_dataset/blob/5f2210ec3f5e23f44a5ddf265dbea2267ad900ea/docs/figure/checkCorrect.Rmd/outliers-1.png" target="_blank">5f2210e</a>
+</td>
+<td>
+Dennis Wollersheim
+</td>
+<td>
+2019-02-07
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/dewoller/generate_vaed_dataset/blob/27c4290ef3bbdd94deb67ae6647f353f46098d34/docs/figure/checkCorrect.Rmd/outliers-1.png" target="_blank">27c4290</a>
 </td>
-<td style="text-align:left;">
+<td>
 Dennis Wollersheim
 </td>
-<td style="text-align:left;">
-2019-02-07
+<td>
+2019-02-06
 </td>
 </tr>
 </tbody>
 </table>
-<p></details> <img src="figure/checkCorrect.Rmd/outliers-2.png" width="672" style="display: block; margin: auto;" /></p>
-<details> <summary><em>Expand here to see past versions of outliers-2.png:</em></summary>
-<table style="border-collapse:separate; border-spacing:5px;">
+</div>
+</div>
+<p><img src="figure/checkCorrect.Rmd/outliers-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-outliers-2">
+Past versions of outliers-2.png
+</button>
+</p>
+<div id="fig-outliers-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
 <thead>
 <tr>
-<th style="text-align:left;">
+<th>
 Version
 </th>
-<th style="text-align:left;">
+<th>
 Author
 </th>
-<th style="text-align:left;">
+<th>
 Date
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td>
+<a href="https://github.com/dewoller/generate_vaed_dataset/blob/5f2210ec3f5e23f44a5ddf265dbea2267ad900ea/docs/figure/checkCorrect.Rmd/outliers-2.png" target="_blank">5f2210e</a>
+</td>
+<td>
+Dennis Wollersheim
+</td>
+<td>
+2019-02-07
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/dewoller/generate_vaed_dataset/blob/27c4290ef3bbdd94deb67ae6647f353f46098d34/docs/figure/checkCorrect.Rmd/outliers-2.png" target="_blank">27c4290</a>
 </td>
-<td style="text-align:left;">
+<td>
 Dennis Wollersheim
 </td>
-<td style="text-align:left;">
-2019-02-07
+<td>
+2019-02-06
 </td>
 </tr>
 </tbody>
 </table>
-<p></details> <img src="figure/checkCorrect.Rmd/outliers-3.png" width="672" style="display: block; margin: auto;" /></p>
-<details> <summary><em>Expand here to see past versions of outliers-3.png:</em></summary>
-<table style="border-collapse:separate; border-spacing:5px;">
+</div>
+</div>
+<p><img src="figure/checkCorrect.Rmd/outliers-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-outliers-3">
+Past versions of outliers-3.png
+</button>
+</p>
+<div id="fig-outliers-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
 <thead>
 <tr>
-<th style="text-align:left;">
+<th>
 Version
 </th>
-<th style="text-align:left;">
+<th>
 Author
 </th>
-<th style="text-align:left;">
+<th>
 Date
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td>
+<a href="https://github.com/dewoller/generate_vaed_dataset/blob/5f2210ec3f5e23f44a5ddf265dbea2267ad900ea/docs/figure/checkCorrect.Rmd/outliers-3.png" target="_blank">5f2210e</a>
+</td>
+<td>
+Dennis Wollersheim
+</td>
+<td>
+2019-02-07
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/dewoller/generate_vaed_dataset/blob/27c4290ef3bbdd94deb67ae6647f353f46098d34/docs/figure/checkCorrect.Rmd/outliers-3.png" target="_blank">27c4290</a>
 </td>
-<td style="text-align:left;">
+<td>
 Dennis Wollersheim
 </td>
-<td style="text-align:left;">
-2019-02-07
+<td>
+2019-02-06
 </td>
 </tr>
 </tbody>
 </table>
-<p></details> <img src="figure/checkCorrect.Rmd/outliers-4.png" width="672" style="display: block; margin: auto;" /></p>
-<details> <summary><em>Expand here to see past versions of outliers-4.png:</em></summary>
-<table style="border-collapse:separate; border-spacing:5px;">
+</div>
+</div>
+<p><img src="figure/checkCorrect.Rmd/outliers-4.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-outliers-4">
+Past versions of outliers-4.png
+</button>
+</p>
+<div id="fig-outliers-4" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
 <thead>
 <tr>
-<th style="text-align:left;">
+<th>
 Version
 </th>
-<th style="text-align:left;">
+<th>
 Author
 </th>
-<th style="text-align:left;">
+<th>
 Date
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td>
+<a href="https://github.com/dewoller/generate_vaed_dataset/blob/5f2210ec3f5e23f44a5ddf265dbea2267ad900ea/docs/figure/checkCorrect.Rmd/outliers-4.png" target="_blank">5f2210e</a>
+</td>
+<td>
+Dennis Wollersheim
+</td>
+<td>
+2019-02-07
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/dewoller/generate_vaed_dataset/blob/27c4290ef3bbdd94deb67ae6647f353f46098d34/docs/figure/checkCorrect.Rmd/outliers-4.png" target="_blank">27c4290</a>
 </td>
-<td style="text-align:left;">
+<td>
 Dennis Wollersheim
 </td>
-<td style="text-align:left;">
-2019-02-07
+<td>
+2019-02-06
 </td>
 </tr>
 </tbody>
 </table>
-<p></details> <img src="figure/checkCorrect.Rmd/outliers-5.png" width="672" style="display: block; margin: auto;" /></p>
-<details> <summary><em>Expand here to see past versions of outliers-5.png:</em></summary>
-<table style="border-collapse:separate; border-spacing:5px;">
+</div>
+</div>
+<p><img src="figure/checkCorrect.Rmd/outliers-5.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-outliers-5">
+Past versions of outliers-5.png
+</button>
+</p>
+<div id="fig-outliers-5" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
 <thead>
 <tr>
-<th style="text-align:left;">
+<th>
 Version
 </th>
-<th style="text-align:left;">
+<th>
 Author
 </th>
-<th style="text-align:left;">
+<th>
 Date
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td>
+<a href="https://github.com/dewoller/generate_vaed_dataset/blob/5f2210ec3f5e23f44a5ddf265dbea2267ad900ea/docs/figure/checkCorrect.Rmd/outliers-5.png" target="_blank">5f2210e</a>
+</td>
+<td>
+Dennis Wollersheim
+</td>
+<td>
+2019-02-07
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/dewoller/generate_vaed_dataset/blob/27c4290ef3bbdd94deb67ae6647f353f46098d34/docs/figure/checkCorrect.Rmd/outliers-5.png" target="_blank">27c4290</a>
 </td>
-<td style="text-align:left;">
+<td>
 Dennis Wollersheim
 </td>
-<td style="text-align:left;">
-2019-02-07
+<td>
+2019-02-06
 </td>
 </tr>
 </tbody>
 </table>
-<p></details> <img src="figure/checkCorrect.Rmd/outliers-6.png" width="672" style="display: block; margin: auto;" /></p>
-<details> <summary><em>Expand here to see past versions of outliers-6.png:</em></summary>
-<table style="border-collapse:separate; border-spacing:5px;">
+</div>
+</div>
+<p><img src="figure/checkCorrect.Rmd/outliers-6.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-outliers-6">
+Past versions of outliers-6.png
+</button>
+</p>
+<div id="fig-outliers-6" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
 <thead>
 <tr>
-<th style="text-align:left;">
+<th>
 Version
 </th>
-<th style="text-align:left;">
+<th>
 Author
 </th>
-<th style="text-align:left;">
+<th>
 Date
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td>
+<a href="https://github.com/dewoller/generate_vaed_dataset/blob/5f2210ec3f5e23f44a5ddf265dbea2267ad900ea/docs/figure/checkCorrect.Rmd/outliers-6.png" target="_blank">5f2210e</a>
+</td>
+<td>
+Dennis Wollersheim
+</td>
+<td>
+2019-02-07
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/dewoller/generate_vaed_dataset/blob/27c4290ef3bbdd94deb67ae6647f353f46098d34/docs/figure/checkCorrect.Rmd/outliers-6.png" target="_blank">27c4290</a>
 </td>
-<td style="text-align:left;">
+<td>
 Dennis Wollersheim
 </td>
-<td style="text-align:left;">
-2019-02-07
+<td>
+2019-02-06
 </td>
 </tr>
 </tbody>
 </table>
-<p></details> <img src="figure/checkCorrect.Rmd/outliers-7.png" width="672" style="display: block; margin: auto;" /></p>
-<details> <summary><em>Expand here to see past versions of outliers-7.png:</em></summary>
-<table style="border-collapse:separate; border-spacing:5px;">
+</div>
+</div>
+<p><img src="figure/checkCorrect.Rmd/outliers-7.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-outliers-7">
+Past versions of outliers-7.png
+</button>
+</p>
+<div id="fig-outliers-7" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
 <thead>
 <tr>
-<th style="text-align:left;">
+<th>
 Version
 </th>
-<th style="text-align:left;">
+<th>
 Author
 </th>
-<th style="text-align:left;">
+<th>
 Date
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td>
 <a href="https://github.com/dewoller/generate_vaed_dataset/blob/27c4290ef3bbdd94deb67ae6647f353f46098d34/docs/figure/checkCorrect.Rmd/outliers-7.png" target="_blank">27c4290</a>
 </td>
-<td style="text-align:left;">
+<td>
 Dennis Wollersheim
 </td>
-<td style="text-align:left;">
-2019-02-07
+<td>
+2019-02-06
 </td>
 </tr>
 </tbody>
 </table>
-<p></details> <img src="figure/checkCorrect.Rmd/outliers-8.png" width="672" style="display: block; margin: auto;" /></p>
-<details> <summary><em>Expand here to see past versions of outliers-8.png:</em></summary>
-<table style="border-collapse:separate; border-spacing:5px;">
+</div>
+</div>
+<p><img src="figure/checkCorrect.Rmd/outliers-8.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-outliers-8">
+Past versions of outliers-8.png
+</button>
+</p>
+<div id="fig-outliers-8" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
 <thead>
 <tr>
-<th style="text-align:left;">
+<th>
 Version
 </th>
-<th style="text-align:left;">
+<th>
 Author
 </th>
-<th style="text-align:left;">
+<th>
 Date
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td>
 <a href="https://github.com/dewoller/generate_vaed_dataset/blob/27c4290ef3bbdd94deb67ae6647f353f46098d34/docs/figure/checkCorrect.Rmd/outliers-8.png" target="_blank">27c4290</a>
 </td>
-<td style="text-align:left;">
+<td>
 Dennis Wollersheim
 </td>
-<td style="text-align:left;">
-2019-02-07
+<td>
+2019-02-06
 </td>
 </tr>
 </tbody>
 </table>
-<p></details></p>
+</div>
+</div>
 <pre class="r"><code>#character variables
 
 df %&gt;%
@@ -814,276 +1059,391 @@ for (f in names( df_1 )) {
   print(p)
 }</code></pre>
 <p><img src="figure/checkCorrect.Rmd/outliers-9.png" width="672" style="display: block; margin: auto;" /></p>
-<details> <summary><em>Expand here to see past versions of outliers-9.png:</em></summary>
-<table style="border-collapse:separate; border-spacing:5px;">
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-outliers-9">
+Past versions of outliers-9.png
+</button>
+</p>
+<div id="fig-outliers-9" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
 <thead>
 <tr>
-<th style="text-align:left;">
+<th>
 Version
 </th>
-<th style="text-align:left;">
+<th>
 Author
 </th>
-<th style="text-align:left;">
+<th>
 Date
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td>
 <a href="https://github.com/dewoller/generate_vaed_dataset/blob/27c4290ef3bbdd94deb67ae6647f353f46098d34/docs/figure/checkCorrect.Rmd/outliers-9.png" target="_blank">27c4290</a>
 </td>
-<td style="text-align:left;">
+<td>
 Dennis Wollersheim
 </td>
-<td style="text-align:left;">
-2019-02-07
+<td>
+2019-02-06
 </td>
 </tr>
 </tbody>
 </table>
-<p></details> <img src="figure/checkCorrect.Rmd/outliers-10.png" width="672" style="display: block; margin: auto;" /></p>
-<details> <summary><em>Expand here to see past versions of outliers-10.png:</em></summary>
-<table style="border-collapse:separate; border-spacing:5px;">
+</div>
+</div>
+<p><img src="figure/checkCorrect.Rmd/outliers-10.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-outliers-10">
+Past versions of outliers-10.png
+</button>
+</p>
+<div id="fig-outliers-10" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
 <thead>
 <tr>
-<th style="text-align:left;">
+<th>
 Version
 </th>
-<th style="text-align:left;">
+<th>
 Author
 </th>
-<th style="text-align:left;">
+<th>
 Date
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td>
 <a href="https://github.com/dewoller/generate_vaed_dataset/blob/27c4290ef3bbdd94deb67ae6647f353f46098d34/docs/figure/checkCorrect.Rmd/outliers-10.png" target="_blank">27c4290</a>
 </td>
-<td style="text-align:left;">
+<td>
 Dennis Wollersheim
 </td>
-<td style="text-align:left;">
-2019-02-07
+<td>
+2019-02-06
 </td>
 </tr>
 </tbody>
 </table>
-<p></details> <img src="figure/checkCorrect.Rmd/outliers-11.png" width="672" style="display: block; margin: auto;" /></p>
-<details> <summary><em>Expand here to see past versions of outliers-11.png:</em></summary>
-<table style="border-collapse:separate; border-spacing:5px;">
+</div>
+</div>
+<p><img src="figure/checkCorrect.Rmd/outliers-11.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-outliers-11">
+Past versions of outliers-11.png
+</button>
+</p>
+<div id="fig-outliers-11" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
 <thead>
 <tr>
-<th style="text-align:left;">
+<th>
 Version
 </th>
-<th style="text-align:left;">
+<th>
 Author
 </th>
-<th style="text-align:left;">
+<th>
 Date
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td>
 <a href="https://github.com/dewoller/generate_vaed_dataset/blob/27c4290ef3bbdd94deb67ae6647f353f46098d34/docs/figure/checkCorrect.Rmd/outliers-11.png" target="_blank">27c4290</a>
 </td>
-<td style="text-align:left;">
+<td>
 Dennis Wollersheim
 </td>
-<td style="text-align:left;">
-2019-02-07
+<td>
+2019-02-06
 </td>
 </tr>
 </tbody>
 </table>
-<p></details> <img src="figure/checkCorrect.Rmd/outliers-12.png" width="672" style="display: block; margin: auto;" /></p>
-<details> <summary><em>Expand here to see past versions of outliers-12.png:</em></summary>
-<table style="border-collapse:separate; border-spacing:5px;">
+</div>
+</div>
+<p><img src="figure/checkCorrect.Rmd/outliers-12.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-outliers-12">
+Past versions of outliers-12.png
+</button>
+</p>
+<div id="fig-outliers-12" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
 <thead>
 <tr>
-<th style="text-align:left;">
+<th>
 Version
 </th>
-<th style="text-align:left;">
+<th>
 Author
 </th>
-<th style="text-align:left;">
+<th>
 Date
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td>
 <a href="https://github.com/dewoller/generate_vaed_dataset/blob/27c4290ef3bbdd94deb67ae6647f353f46098d34/docs/figure/checkCorrect.Rmd/outliers-12.png" target="_blank">27c4290</a>
 </td>
-<td style="text-align:left;">
+<td>
 Dennis Wollersheim
 </td>
-<td style="text-align:left;">
-2019-02-07
+<td>
+2019-02-06
 </td>
 </tr>
 </tbody>
 </table>
-<p></details> <img src="figure/checkCorrect.Rmd/outliers-13.png" width="672" style="display: block; margin: auto;" /></p>
-<details> <summary><em>Expand here to see past versions of outliers-13.png:</em></summary>
-<table style="border-collapse:separate; border-spacing:5px;">
+</div>
+</div>
+<p><img src="figure/checkCorrect.Rmd/outliers-13.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-outliers-13">
+Past versions of outliers-13.png
+</button>
+</p>
+<div id="fig-outliers-13" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
 <thead>
 <tr>
-<th style="text-align:left;">
+<th>
 Version
 </th>
-<th style="text-align:left;">
+<th>
 Author
 </th>
-<th style="text-align:left;">
+<th>
 Date
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td>
 <a href="https://github.com/dewoller/generate_vaed_dataset/blob/27c4290ef3bbdd94deb67ae6647f353f46098d34/docs/figure/checkCorrect.Rmd/outliers-13.png" target="_blank">27c4290</a>
 </td>
-<td style="text-align:left;">
+<td>
 Dennis Wollersheim
 </td>
-<td style="text-align:left;">
-2019-02-07
+<td>
+2019-02-06
 </td>
 </tr>
 </tbody>
 </table>
-<p></details> <img src="figure/checkCorrect.Rmd/outliers-14.png" width="672" style="display: block; margin: auto;" /></p>
-<details> <summary><em>Expand here to see past versions of outliers-14.png:</em></summary>
-<table style="border-collapse:separate; border-spacing:5px;">
+</div>
+</div>
+<p><img src="figure/checkCorrect.Rmd/outliers-14.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-outliers-14">
+Past versions of outliers-14.png
+</button>
+</p>
+<div id="fig-outliers-14" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
 <thead>
 <tr>
-<th style="text-align:left;">
+<th>
 Version
 </th>
-<th style="text-align:left;">
+<th>
 Author
 </th>
-<th style="text-align:left;">
+<th>
 Date
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td>
+<a href="https://github.com/dewoller/generate_vaed_dataset/blob/5f2210ec3f5e23f44a5ddf265dbea2267ad900ea/docs/figure/checkCorrect.Rmd/outliers-14.png" target="_blank">5f2210e</a>
+</td>
+<td>
+Dennis Wollersheim
+</td>
+<td>
+2019-02-07
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/dewoller/generate_vaed_dataset/blob/27c4290ef3bbdd94deb67ae6647f353f46098d34/docs/figure/checkCorrect.Rmd/outliers-14.png" target="_blank">27c4290</a>
 </td>
-<td style="text-align:left;">
+<td>
 Dennis Wollersheim
 </td>
-<td style="text-align:left;">
-2019-02-07
+<td>
+2019-02-06
 </td>
 </tr>
 </tbody>
 </table>
-<p></details> <img src="figure/checkCorrect.Rmd/outliers-15.png" width="672" style="display: block; margin: auto;" /></p>
-<details> <summary><em>Expand here to see past versions of outliers-15.png:</em></summary>
-<table style="border-collapse:separate; border-spacing:5px;">
+</div>
+</div>
+<p><img src="figure/checkCorrect.Rmd/outliers-15.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-outliers-15">
+Past versions of outliers-15.png
+</button>
+</p>
+<div id="fig-outliers-15" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
 <thead>
 <tr>
-<th style="text-align:left;">
+<th>
 Version
 </th>
-<th style="text-align:left;">
+<th>
 Author
 </th>
-<th style="text-align:left;">
+<th>
 Date
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td>
+<a href="https://github.com/dewoller/generate_vaed_dataset/blob/5f2210ec3f5e23f44a5ddf265dbea2267ad900ea/docs/figure/checkCorrect.Rmd/outliers-15.png" target="_blank">5f2210e</a>
+</td>
+<td>
+Dennis Wollersheim
+</td>
+<td>
+2019-02-07
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/dewoller/generate_vaed_dataset/blob/27c4290ef3bbdd94deb67ae6647f353f46098d34/docs/figure/checkCorrect.Rmd/outliers-15.png" target="_blank">27c4290</a>
 </td>
-<td style="text-align:left;">
+<td>
 Dennis Wollersheim
 </td>
-<td style="text-align:left;">
-2019-02-07
+<td>
+2019-02-06
 </td>
 </tr>
 </tbody>
 </table>
-<p></details> <img src="figure/checkCorrect.Rmd/outliers-16.png" width="672" style="display: block; margin: auto;" /></p>
-<details> <summary><em>Expand here to see past versions of outliers-16.png:</em></summary>
-<table style="border-collapse:separate; border-spacing:5px;">
+</div>
+</div>
+<p><img src="figure/checkCorrect.Rmd/outliers-16.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-outliers-16">
+Past versions of outliers-16.png
+</button>
+</p>
+<div id="fig-outliers-16" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
 <thead>
 <tr>
-<th style="text-align:left;">
+<th>
 Version
 </th>
-<th style="text-align:left;">
+<th>
 Author
 </th>
-<th style="text-align:left;">
+<th>
 Date
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td>
+<a href="https://github.com/dewoller/generate_vaed_dataset/blob/5f2210ec3f5e23f44a5ddf265dbea2267ad900ea/docs/figure/checkCorrect.Rmd/outliers-16.png" target="_blank">5f2210e</a>
+</td>
+<td>
+Dennis Wollersheim
+</td>
+<td>
+2019-02-07
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/dewoller/generate_vaed_dataset/blob/27c4290ef3bbdd94deb67ae6647f353f46098d34/docs/figure/checkCorrect.Rmd/outliers-16.png" target="_blank">27c4290</a>
 </td>
-<td style="text-align:left;">
+<td>
 Dennis Wollersheim
 </td>
-<td style="text-align:left;">
-2019-02-07
+<td>
+2019-02-06
 </td>
 </tr>
 </tbody>
 </table>
-<p></details> <img src="figure/checkCorrect.Rmd/outliers-17.png" width="672" style="display: block; margin: auto;" /></p>
-<details> <summary><em>Expand here to see past versions of outliers-17.png:</em></summary>
-<table style="border-collapse:separate; border-spacing:5px;">
+</div>
+</div>
+<p><img src="figure/checkCorrect.Rmd/outliers-17.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-outliers-17">
+Past versions of outliers-17.png
+</button>
+</p>
+<div id="fig-outliers-17" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
 <thead>
 <tr>
-<th style="text-align:left;">
+<th>
 Version
 </th>
-<th style="text-align:left;">
+<th>
 Author
 </th>
-<th style="text-align:left;">
+<th>
 Date
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
-<a href="https://github.com/dewoller/generate_vaed_dataset/blob/27c4290ef3bbdd94deb67ae6647f353f46098d34/docs/figure/checkCorrect.Rmd/outliers-17.png" target="_blank">27c4290</a>
+<td>
+<a href="https://github.com/dewoller/generate_vaed_dataset/blob/5f2210ec3f5e23f44a5ddf265dbea2267ad900ea/docs/figure/checkCorrect.Rmd/outliers-17.png" target="_blank">5f2210e</a>
 </td>
-<td style="text-align:left;">
+<td>
 Dennis Wollersheim
 </td>
-<td style="text-align:left;">
+<td>
 2019-02-07
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/dewoller/generate_vaed_dataset/blob/27c4290ef3bbdd94deb67ae6647f353f46098d34/docs/figure/checkCorrect.Rmd/outliers-17.png" target="_blank">27c4290</a>
+</td>
+<td>
+Dennis Wollersheim
+</td>
+<td>
+2019-02-06
 </td>
 </tr>
 </tbody>
 </table>
-<p></details></p>
+</div>
+</div>
 <pre class="r"><code>#
 #diagnosis variables
 
@@ -1092,41 +1452,96 @@ df %&gt;%
   gather( junk, diag ) %&gt;%
   ggplot( aes( x=diag )) + geom_bar()</code></pre>
 <p><img src="figure/checkCorrect.Rmd/outliers-18.png" width="672" style="display: block; margin: auto;" /></p>
-<details> <summary><em>Expand here to see past versions of outliers-18.png:</em></summary>
-<table style="border-collapse:separate; border-spacing:5px;">
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-outliers-18">
+Past versions of outliers-18.png
+</button>
+</p>
+<div id="fig-outliers-18" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
 <thead>
 <tr>
-<th style="text-align:left;">
+<th>
 Version
 </th>
-<th style="text-align:left;">
+<th>
 Author
 </th>
-<th style="text-align:left;">
+<th>
 Date
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
-<a href="https://github.com/dewoller/generate_vaed_dataset/blob/27c4290ef3bbdd94deb67ae6647f353f46098d34/docs/figure/checkCorrect.Rmd/outliers-18.png" target="_blank">27c4290</a>
+<td>
+<a href="https://github.com/dewoller/generate_vaed_dataset/blob/5f2210ec3f5e23f44a5ddf265dbea2267ad900ea/docs/figure/checkCorrect.Rmd/outliers-18.png" target="_blank">5f2210e</a>
 </td>
-<td style="text-align:left;">
+<td>
 Dennis Wollersheim
 </td>
-<td style="text-align:left;">
+<td>
 2019-02-07
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/dewoller/generate_vaed_dataset/blob/27c4290ef3bbdd94deb67ae6647f353f46098d34/docs/figure/checkCorrect.Rmd/outliers-18.png" target="_blank">27c4290</a>
+</td>
+<td>
+Dennis Wollersheim
+</td>
+<td>
+2019-02-06
 </td>
 </tr>
 </tbody>
 </table>
-<p></details></p>
+</div>
+</div>
 <pre class="r"><code>df %&gt;%
   select( starts_with( &#39;proc&#39; ) ) %&gt;% 
   gather( junk, proc ) %&gt;%
   ggplot( aes( x=proc )) + geom_bar()</code></pre>
 <p><img src="figure/checkCorrect.Rmd/outliers-19.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-outliers-19">
+Past versions of outliers-19.png
+</button>
+</p>
+<div id="fig-outliers-19" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/dewoller/generate_vaed_dataset/blob/5f2210ec3f5e23f44a5ddf265dbea2267ad900ea/docs/figure/checkCorrect.Rmd/outliers-19.png" target="_blank">5f2210e</a>
+</td>
+<td>
+Dennis Wollersheim
+</td>
+<td>
+2019-02-07
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code># out of spec values</code></pre>
 </div>
 <div id="values-not-in-code-tables" class="section level1">
@@ -1163,8 +1578,12 @@ for (i in files) {
     anti_join( df_tocheck , by=field) %&gt;%
     select_at( vars( field ))
 }</code></pre>
-<pre><code> ### Checking for extraneous adm_type_id in admission file
- ### Checking for extraneous campus_id in admission file
+<pre><code> ### Checking for extraneous adm_type_id in admission file</code></pre>
+<pre><code>Note: Using an external vector in selections is ambiguous.
+ℹ Use `all_of(field)` instead of `field` to silence this message.
+ℹ See &lt;https://tidyselect.r-lib.org/reference/faq-external-vector.html&gt;.
+This message is displayed once per session.</code></pre>
+<pre><code> ### Checking for extraneous campus_id in admission file
  ### Checking for extraneous country_id in admission file
  ### Checking for extraneous hospital_insurance_id in admission file
  ### Checking for extraneous indigenous_status_id in admission file
@@ -1211,29 +1630,36 @@ df %&gt;%
   filter( admission_date &lt; &#39;2018&#39;) </code></pre>
 <pre><code># A tibble: 0 x 23
 # … with 23 variables: adm_type_id &lt;chr&gt;, admission_date &lt;chr&gt;,
-#   admission_id &lt;int&gt;, campus_id &lt;chr&gt;, country_id &lt;int&gt;,
-#   date_of_birth &lt;chr&gt;, diag_code_1 &lt;chr&gt;, diag_code_2 &lt;chr&gt;,
-#   diag_code_3 &lt;chr&gt;, given_name &lt;chr&gt;, hospital_insurance_id &lt;int&gt;,
-#   indigenous_status_id &lt;int&gt;, marital_status_id &lt;int&gt;,
-#   patient_days_total &lt;int&gt;, patient_id &lt;chr&gt;, postcode &lt;int&gt;,
-#   proc_code_1 &lt;int&gt;, proc_code_2 &lt;int&gt;, proc_code_3 &lt;int&gt;,
-#   sep_mode_id &lt;chr&gt;, separation_date &lt;chr&gt;, sex_id &lt;int&gt;,
-#   speciality_id &lt;chr&gt;</code></pre>
+#   admission_id &lt;int&gt;, campus_id &lt;chr&gt;, country_id &lt;int&gt;, date_of_birth &lt;chr&gt;,
+#   diag_code_1 &lt;chr&gt;, diag_code_2 &lt;chr&gt;, diag_code_3 &lt;chr&gt;, given_name &lt;chr&gt;,
+#   hospital_insurance_id &lt;int&gt;, indigenous_status_id &lt;int&gt;,
+#   marital_status_id &lt;int&gt;, patient_days_total &lt;int&gt;, patient_id &lt;chr&gt;,
+#   postcode &lt;int&gt;, proc_code_1 &lt;int&gt;, proc_code_2 &lt;int&gt;, proc_code_3 &lt;int&gt;,
+#   sep_mode_id &lt;chr&gt;, separation_date &lt;chr&gt;, sex_id &lt;int&gt;, speciality_id &lt;chr&gt;</code></pre>
 </div>
 <div id="dates-that-have-not-happened-dates" class="section level2">
 <h2>dates that have not happened dates</h2>
 <pre class="r"><code>df %&gt;%
   filter( admission_date &gt;= &#39;2019&#39;) </code></pre>
-<pre><code># A tibble: 0 x 23
-# … with 23 variables: adm_type_id &lt;chr&gt;, admission_date &lt;chr&gt;,
-#   admission_id &lt;int&gt;, campus_id &lt;chr&gt;, country_id &lt;int&gt;,
-#   date_of_birth &lt;chr&gt;, diag_code_1 &lt;chr&gt;, diag_code_2 &lt;chr&gt;,
-#   diag_code_3 &lt;chr&gt;, given_name &lt;chr&gt;, hospital_insurance_id &lt;int&gt;,
-#   indigenous_status_id &lt;int&gt;, marital_status_id &lt;int&gt;,
-#   patient_days_total &lt;int&gt;, patient_id &lt;chr&gt;, postcode &lt;int&gt;,
-#   proc_code_1 &lt;int&gt;, proc_code_2 &lt;int&gt;, proc_code_3 &lt;int&gt;,
-#   sep_mode_id &lt;chr&gt;, separation_date &lt;chr&gt;, sex_id &lt;int&gt;,
-#   speciality_id &lt;chr&gt;</code></pre>
+<pre><code># A tibble: 2,699 x 23
+   adm_type_id admission_date admission_id campus_id country_id date_of_birth
+   &lt;chr&gt;       &lt;chr&gt;                 &lt;int&gt; &lt;chr&gt;          &lt;int&gt; &lt;chr&gt;        
+ 1 X           2019-05-02         21000122 1492            3216 1955-01-17   
+ 2 C           2019-06-09         21001635 2070            3105 1996-04-30   
+ 3 X           2019-12-26         21001894 1334            1101 1942-07-24   
+ 4 C           2019-12-31         21001970 2120            1101 1936-07-19   
+ 5 X           2019-04-10         21004850 2260            4202 1928-08-07   
+ 6 X           2019-01-09         21004930 3080            8200 1938-06-04   
+ 7 L           2019-01-17         21007084 2070            8299 1965-11-03   
+ 8 C           2019-07-09         21007325 1660            3304 1927-06-11   
+ 9 L           2019-08-07         21008333 1180            3300 1964-09-29   
+10 L           2019-09-26         21008501 1370            2406 1986-07-25   
+# … with 2,689 more rows, and 17 more variables: diag_code_1 &lt;chr&gt;,
+#   diag_code_2 &lt;chr&gt;, diag_code_3 &lt;chr&gt;, given_name &lt;chr&gt;,
+#   hospital_insurance_id &lt;int&gt;, indigenous_status_id &lt;int&gt;,
+#   marital_status_id &lt;int&gt;, patient_days_total &lt;int&gt;, patient_id &lt;chr&gt;,
+#   postcode &lt;int&gt;, proc_code_1 &lt;int&gt;, proc_code_2 &lt;int&gt;, proc_code_3 &lt;int&gt;,
+#   sep_mode_id &lt;chr&gt;, separation_date &lt;chr&gt;, sex_id &lt;int&gt;, speciality_id &lt;chr&gt;</code></pre>
 </div>
 </div>
 <div id="values-that-dont-match-arithmetically" class="section level1">
@@ -1253,14 +1679,12 @@ df %&gt;%
   filter( as.Date( separation_date ) &lt; as.Date( admission_date )) </code></pre>
 <pre><code># A tibble: 0 x 23
 # … with 23 variables: adm_type_id &lt;chr&gt;, admission_date &lt;chr&gt;,
-#   admission_id &lt;int&gt;, campus_id &lt;chr&gt;, country_id &lt;int&gt;,
-#   date_of_birth &lt;chr&gt;, diag_code_1 &lt;chr&gt;, diag_code_2 &lt;chr&gt;,
-#   diag_code_3 &lt;chr&gt;, given_name &lt;chr&gt;, hospital_insurance_id &lt;int&gt;,
-#   indigenous_status_id &lt;int&gt;, marital_status_id &lt;int&gt;,
-#   patient_days_total &lt;int&gt;, patient_id &lt;chr&gt;, postcode &lt;int&gt;,
-#   proc_code_1 &lt;int&gt;, proc_code_2 &lt;int&gt;, proc_code_3 &lt;int&gt;,
-#   sep_mode_id &lt;chr&gt;, separation_date &lt;chr&gt;, sex_id &lt;int&gt;,
-#   speciality_id &lt;chr&gt;</code></pre>
+#   admission_id &lt;int&gt;, campus_id &lt;chr&gt;, country_id &lt;int&gt;, date_of_birth &lt;chr&gt;,
+#   diag_code_1 &lt;chr&gt;, diag_code_2 &lt;chr&gt;, diag_code_3 &lt;chr&gt;, given_name &lt;chr&gt;,
+#   hospital_insurance_id &lt;int&gt;, indigenous_status_id &lt;int&gt;,
+#   marital_status_id &lt;int&gt;, patient_days_total &lt;int&gt;, patient_id &lt;chr&gt;,
+#   postcode &lt;int&gt;, proc_code_1 &lt;int&gt;, proc_code_2 &lt;int&gt;, proc_code_3 &lt;int&gt;,
+#   sep_mode_id &lt;chr&gt;, separation_date &lt;chr&gt;, sex_id &lt;int&gt;, speciality_id &lt;chr&gt;</code></pre>
 </div>
 </div>
 <div id="incorrect-format-values" class="section level1">
@@ -1288,70 +1712,70 @@ df %&gt;%
   select( admission_id, given_name ) </code></pre>
 <pre><code># A tibble: 0 x 2
 # … with 2 variables: admission_id &lt;int&gt;, given_name &lt;chr&gt;</code></pre>
-</div>
-</div>
-<div id="duplicate-admission_id" class="section level1">
-<h1>duplicate admission_id</h1>
+<p>#duplicate admission_id</p>
 <pre class="r"><code>df %&gt;%
   count( admission_id ) %&gt;%
   filter( n&gt;1 ) </code></pre>
 <pre><code># A tibble: 0 x 2
 # … with 2 variables: admission_id &lt;int&gt;, n &lt;int&gt;</code></pre>
-<div id="session-information" class="section level2">
-<h2>Session information</h2>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>R version 3.4.4 (2018-03-15)
+<pre><code>R version 3.6.1 (2019-07-05)
 Platform: x86_64-pc-linux-gnu (64-bit)
-Running under: Ubuntu 18.04.1 LTS
+Running under: Ubuntu 18.04.4 LTS
 
 Matrix products: default
-BLAS: /usr/lib/x86_64-linux-gnu/openblas/libblas.so.3
+BLAS:   /usr/lib/x86_64-linux-gnu/openblas/libblas.so.3
 LAPACK: /usr/lib/x86_64-linux-gnu/libopenblasp-r0.2.20.so
 
 locale:
- [1] LC_CTYPE=en_AU.UTF-8       LC_NUMERIC=C              
- [3] LC_TIME=en_AU.UTF-8        LC_COLLATE=en_AU.UTF-8    
- [5] LC_MONETARY=en_AU.UTF-8    LC_MESSAGES=en_AU.UTF-8   
- [7] LC_PAPER=en_AU.UTF-8       LC_NAME=C                 
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
-[11] LC_MEASUREMENT=en_AU.UTF-8 LC_IDENTIFICATION=C       
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 
 attached base packages:
 [1] stats4    parallel  stats     graphics  grDevices utils     datasets 
 [8] methods   base     
 
 other attached packages:
- [1] bindrcpp_0.2.2        hashmap_0.2.2         tictoc_1.0           
- [4] forcats_0.3.0         dplyr_0.7.8           purrr_0.2.5          
- [7] readr_1.3.1           tidyr_0.8.2           tibble_2.0.1         
-[10] ggplot2_3.1.0         tidyverse_1.2.1       multidplyr_0.0.0.9000
-[13] IRanges_2.12.0        S4Vectors_0.16.0      BiocGenerics_0.24.0  
-[16] fuzzyjoin_0.1.4       DataCache_0.9         wrapr_1.8.2          
-[19] readstata13_0.9.2     lubridate_1.7.4       knitr_1.21           
-[22] stringr_1.3.1         magrittr_1.5          seas_0.5-2           
-[25] MASS_7.3-50           workflowr_1.1.1       nvimcom_0.9-75       
+ [1] hashmap_0.2.2         tictoc_1.0            forcats_0.4.0        
+ [4] dplyr_0.8.4           purrr_0.3.3           readr_1.3.1          
+ [7] tidyr_1.0.2           tibble_2.1.3          ggplot2_3.2.1        
+[10] tidyverse_1.3.0       multidplyr_0.0.0.9000 IRanges_2.19.10      
+[13] S4Vectors_0.23.18     BiocGenerics_0.31.5   fuzzyjoin_0.1.5      
+[16] DataCache_0.9.1       wrapr_1.8.9           readstata13_0.9.2    
+[19] lubridate_1.7.4       knitr_1.28            stringr_1.4.0        
+[22] magrittr_1.5          seas_0.5-2            MASS_7.3-51.4        
+[25] workflowr_1.4.0.9001  nvimcom_0.9-82       
 
 loaded via a namespace (and not attached):
- [1] Rcpp_1.0.0        lattice_0.20-35   utf8_1.1.4       
- [4] assertthat_0.2.0  rprojroot_1.3-2   digest_0.6.18    
- [7] R6_2.3.0          cellranger_1.1.0  plyr_1.8.4       
-[10] backports_1.1.3   evaluate_0.12     httr_1.4.0       
-[13] pillar_1.3.1      rlang_0.3.1       lazyeval_0.2.1   
-[16] readxl_1.2.0      rstudioapi_0.9.0  whisker_0.3-2    
-[19] R.utils_2.7.0     R.oo_1.22.0       rmarkdown_1.11   
-[22] labeling_0.3      munsell_0.5.0     broom_0.5.1      
-[25] compiler_3.4.4    modelr_0.1.2      xfun_0.4         
-[28] pkgconfig_2.0.2   htmltools_0.3.6   tidyselect_0.2.5 
-[31] codetools_0.2-15  fansi_0.4.0       withr_2.1.2      
-[34] crayon_1.3.4      R.methodsS3_1.7.1 grid_3.4.4       
-[37] nlme_3.1-137      jsonlite_1.6      gtable_0.2.0     
-[40] git2r_0.24.0      scales_1.0.0      cli_1.0.1        
-[43] stringi_1.2.4     xml2_1.2.0        generics_0.0.2   
-[46] tools_3.4.4       glue_1.3.0        hms_0.4.2        
-[49] yaml_2.2.0        colorspace_1.4-0  rvest_0.3.2      
-[52] bindr_0.1.1       haven_2.0.0      </code></pre>
+ [1] Rcpp_1.0.3       lattice_0.20-38  utf8_1.1.4       assertthat_0.2.1
+ [5] rprojroot_1.3-2  digest_0.6.24    R6_2.4.1         cellranger_1.1.0
+ [9] backports_1.1.5  reprex_0.3.0     evaluate_0.14    httr_1.4.1      
+[13] pillar_1.4.3     rlang_0.4.4      lazyeval_0.2.2   readxl_1.3.1    
+[17] rstudioapi_0.11  whisker_0.4      rmarkdown_2.1    labeling_0.3    
+[21] munsell_0.5.0    broom_0.5.4      compiler_3.6.1   modelr_0.1.5    
+[25] xfun_0.11        pkgconfig_2.0.3  htmltools_0.4.0  tidyselect_1.0.0
+[29] codetools_0.2-16 fansi_0.4.1      crayon_1.3.4     dbplyr_1.4.2    
+[33] withr_2.1.2      grid_3.6.1       nlme_3.1-142     jsonlite_1.6.1  
+[37] gtable_0.3.0     lifecycle_0.1.0  DBI_1.1.0        git2r_0.26.1    
+[41] scales_1.1.0     cli_2.0.1        stringi_1.4.5    farver_2.0.1    
+[45] fs_1.3.1         xml2_1.2.2       ellipsis_0.3.0   vctrs_0.2.2     
+[49] generics_0.0.2   tools_3.6.1      glue_1.3.1       hms_0.5.3       
+[53] yaml_2.2.1       colorspace_1.4-1 rvest_0.3.5      haven_2.2.0     </code></pre>
 </div>
 </div>
+</div>
+
 
 <!-- Adjust MathJax settings so that all math formulae are shown using
 TeX fonts only; see
@@ -1364,14 +1788,6 @@ footer is added to webpages before the MathJax javascript. -->
     "HTML-CSS": { availableFonts: ["TeX"] }
   });
 </script>
-
-<hr>
-<p>
-  This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a>
-  analysis was created with
-  <a href="https://github.com/jdblischak/workflowr">workflowr</a> 1.1.1
-</p>
-<hr>
 
 
 </div>
@@ -1390,6 +1806,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

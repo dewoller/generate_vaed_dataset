@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -71,9 +71,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -87,7 +85,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -192,8 +189,6 @@ $(document).ready(function () {
 });
 </script>
 
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
 
 <style type="text/css">
@@ -238,6 +233,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -250,20 +246,17 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -318,122 +311,294 @@ div.section {
 </div>
 
 
-<p><strong>Last updated:</strong> 2019-02-08</p>
-<strong>workflowr checks:</strong> <small>(Click a bullet for more information)</small>
-<ul>
-<li>
-<p><details> <summary> <strong style="color:red;">✖</strong> <strong>R Markdown file:</strong> uncommitted changes </summary> The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
-</details>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Environment:</strong> empty </summary></p>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2020-02-21
+</p>
+<p>
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
+</p>
+<p>
+<strong>Knit directory:</strong> <code>generate_data/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+</p>
+<p>
+This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
+  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.4.0.9001). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
 <p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
-</details>
-</li>
-<li>
-<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Seed:</strong> <code>set.seed(20190205)</code> </summary></p>
-<p>The command <code>set.seed(20190205)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
-</details>
-</li>
-<li>
-<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Session information:</strong> recorded </summary></p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20190205code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20190205)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20190205code" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20190205)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div class="panel-body">
 <p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
-</details>
-</li>
-<li>
-<p><details> <summary> <strong style="color:blue;">✔</strong> <strong>Repository version:</strong> <a href="https://github.com/dewoller/generate_vaed_dataset/tree/27c4290ef3bbdd94deb67ae6647f353f46098d34" target="_blank">27c4290</a> </summary></p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdewollergeneratevaeddatasettree3aa5884fdc12e598d9310dbe5feb4da610010095targetblank3aa5884a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/dewoller/generate_vaed_dataset/tree/3aa5884fdc12e598d9310dbe5feb4da610010095" target="_blank">3aa5884</a> </a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomdewollergeneratevaeddatasettree3aa5884fdc12e598d9310dbe5feb4da610010095targetblank3aa5884a" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+</p>
 <pre><code>
+Ignored files:
+    Ignored:    data/tutorial/.Rhistory
+    Ignored:    data/tutorial/.Rproj.user/
+
 Untracked files:
-    Untracked:  analysis/permuteReal.Rmd
-    Untracked:  analysis/permuteTutorial.Rmd
-    Untracked:  data/archive/country_of_birth.csv
-    Untracked:  data/tutorial/
+    Untracked:  admitting_unit.csv
+    Untracked:  analysis/mutateAssignment.Rmd
+    Untracked:  data/admission_code_full.csv
+    Untracked:  data/assignment/
+    Untracked:  data/tutorial/01a_Inconsistency_missing_values.R
+    Untracked:  data/tutorial/01b_Inconsistency_Line_level.R
+    Untracked:  data/tutorial/02_duplicate_check.R
+    Untracked:  data/tutorial/03_inaccuracy.R
+    Untracked:  data/tutorial/04_incompleteness.R
+    Untracked:  data/tutorial/05_currency.R
+    Untracked:  data/tutorial/R_Tutorial_for_HDI_All_Code.Rmd
+    Untracked:  data/tutorial/archive/
+    Untracked:  data/tutorial/mbs1.csv
+    Untracked:  data/tutorial/mbs2.csv
+    Untracked:  data/tutorial/mbs3.csv
+    Untracked:  data/tutorial/mbs4.csv
+    Untracked:  data/tutorial/mbs5.csv
+    Untracked:  data/tutorial/mbs6.csv
+    Untracked:  data/tutorial/mbs_to_check.csv
+    Untracked:  data/tutorial/mbs_tutorial.zip
+    Untracked:  data/tutorial/tutorial.Rproj
+    Untracked:  try.xlsx
 
 Unstaged changes:
-    Modified:   analysis/checkCorrect.Rmd
+    Deleted:    .Rprofile
     Modified:   analysis/generateCorrect.Rmd
-    Modified:   data/package/admission.csv
-    Modified:   data/package/country_of_birth.csv
-    Modified:   data/package/postcode.csv
+    Deleted:    analysis/permuteReal.Rmd
+    Modified:   analysis/permuteTutorial.Rmd
+    Deleted:    data/package/admission.csv
+    Deleted:    data/package/admission_type.csv
+    Deleted:    data/package/campus.csv
+    Deleted:    data/package/country_of_birth.csv
+    Deleted:    data/package/diagnosis_desc.csv
+    Deleted:    data/package/hospital_insurance.csv
+    Deleted:    data/package/indigenous_status.csv
+    Deleted:    data/package/marital_status.csv
+    Deleted:    data/package/postcode.csv
+    Deleted:    data/package/procedure_desc.csv
+    Deleted:    data/package/separation_mode.csv
+    Deleted:    data/package/sex.csv
+    Deleted:    data/package/speciality.csv
+    Deleted:    data/tutorial/mbs.csv
+    Modified:   data/tutorial/mbs_correct.csv
+    Deleted:    data/tutorial/mbs_damaged.csv
+    Deleted:    data/tutorial/mbs_todamage.csv
+    Deleted:    data/tutorial/mbs_tutorial_data_csv.zip
+    Modified:   data/tutorial/patient.csv
+    Modified:   data/tutorial/provider.csv
     Modified:   lib/functions.R
 
 </code></pre>
-Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes. </details>
-</li>
-</ul>
-<details> <summary> <small><strong>Expand here to see past versions:</strong></small> </summary>
-<ul>
-<table style="border-collapse:separate; border-spacing:5px;">
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+
+<p>
+These are the previous versions of the R Markdown and HTML files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view them.
+</p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
 <thead>
 <tr>
-<th style="text-align:left;">
+<th>
 File
 </th>
-<th style="text-align:left;">
+<th>
 Version
 </th>
-<th style="text-align:left;">
+<th>
 Author
 </th>
-<th style="text-align:left;">
+<th>
 Date
 </th>
-<th style="text-align:left;">
+<th>
 Message
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td>
 Rmd
 </td>
-<td style="text-align:left;">
-<a href="https://github.com/dewoller/generate_vaed_dataset/blob/b43b18febe461d80bb6cc1fecadeb2d5aa78428a/analysis/generateCorrect.Rmd" target="_blank">b43b18f</a>
+<td>
+<a href="https://github.com/dewoller/generate_vaed_dataset/blob/3aa5884fdc12e598d9310dbe5feb4da610010095/analysis/generateCorrect.Rmd" target="_blank">3aa5884</a>
 </td>
-<td style="text-align:left;">
+<td>
 Dennis Wollersheim
 </td>
-<td style="text-align:left;">
-2019-02-06
+<td>
+2019-02-11
 </td>
-<td style="text-align:left;">
+<td>
+finished section 2
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/dewoller/generate_vaed_dataset/3aa5884fdc12e598d9310dbe5feb4da610010095/docs/generateCorrect.html" target="_blank">3aa5884</a>
+</td>
+<td>
+Dennis Wollersheim
+</td>
+<td>
+2019-02-11
+</td>
+<td>
+finished section 2
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/dewoller/generate_vaed_dataset/blob/b43b18febe461d80bb6cc1fecadeb2d5aa78428a/analysis/generateCorrect.Rmd" target="_blank">b43b18f</a>
+</td>
+<td>
+Dennis Wollersheim
+</td>
+<td>
+2019-02-05
+</td>
+<td>
 initial generate
 </td>
 </tr>
 </tbody>
 </table>
-</ul>
-<p></details></p>
-<hr />
+</div>
+<hr>
+</div>
+</div>
+</div>
 <div id="prepare-standard-tables" class="section level1">
 <h1>Prepare standard tables</h1>
-<pre class="r"><code>options(stringsAsFactors=F) 
+<pre class="r"><code>options(stringsAsFactors=F)
 source(&#39;lib/functions.R&#39;)</code></pre>
-<pre><code>Loading required package: workflowr</code></pre>
-<pre><code>This is workflowr version 1.1.1
+<pre><code>This is workflowr version 1.4.0.9001
 Run ?workflowr for help getting started</code></pre>
-<pre><code>Loading required package: seas</code></pre>
 <pre><code>Loading required package: MASS</code></pre>
-<pre><code>Loading required package: magrittr</code></pre>
-<pre><code>Loading required package: stringr</code></pre>
-<pre><code>Loading required package: knitr</code></pre>
-<pre><code>Loading required package: lubridate</code></pre>
+<pre><code>Warning: package &#39;knitr&#39; was built under R version 3.6.2</code></pre>
 <pre><code>
 Attaching package: &#39;lubridate&#39;</code></pre>
 <pre><code>The following object is masked from &#39;package:base&#39;:
 
     date</code></pre>
-<pre><code>Loading required package: readstata13</code></pre>
-<pre><code>Loading required package: wrapr</code></pre>
-<pre><code>Loading required package: DataCache</code></pre>
 <pre><code>
 Attaching package: &#39;DataCache&#39;</code></pre>
 <pre><code>The following object is masked from &#39;package:lubridate&#39;:
 
     now</code></pre>
-<pre><code>Loading required package: fuzzyjoin</code></pre>
 <pre><code>Loading required package: BiocGenerics</code></pre>
 <pre><code>Loading required package: parallel</code></pre>
 <pre><code>
@@ -451,13 +616,12 @@ Attaching package: &#39;BiocGenerics&#39;</code></pre>
     IQR, mad, sd, var, xtabs</code></pre>
 <pre><code>The following objects are masked from &#39;package:base&#39;:
 
-    anyDuplicated, append, as.data.frame, cbind, colMeans,
-    colnames, colSums, do.call, duplicated, eval, evalq, Filter,
-    Find, get, grep, grepl, intersect, is.unsorted, lapply,
-    lengths, Map, mapply, match, mget, order, paste, pmax,
-    pmax.int, pmin, pmin.int, Position, rank, rbind, Reduce,
-    rowMeans, rownames, rowSums, sapply, setdiff, sort, table,
-    tapply, union, unique, unsplit, which, which.max, which.min</code></pre>
+    anyDuplicated, append, as.data.frame, basename, cbind, colnames,
+    dirname, do.call, duplicated, eval, evalq, Filter, Find, get, grep,
+    grepl, intersect, is.unsorted, lapply, Map, mapply, match, mget,
+    order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,
+    rbind, Reduce, rownames, sapply, setdiff, sort, table, tapply,
+    union, unique, unsplit, which, which.max, which.min</code></pre>
 <pre><code>Loading required package: S4Vectors</code></pre>
 <pre><code>Loading required package: stats4</code></pre>
 <pre><code>
@@ -473,14 +637,14 @@ Attaching package: &#39;IRanges&#39;</code></pre>
 <pre><code>The following object is masked from &#39;package:lubridate&#39;:
 
     %within%</code></pre>
-<pre><code>Loading required package: multidplyr</code></pre>
-<pre><code>Loading required package: tidyverse</code></pre>
-<pre><code>── Attaching packages ────────────────────────────────── tidyverse 1.2.1 ──</code></pre>
-<pre><code>✔ ggplot2 3.1.0     ✔ readr   1.3.1
-✔ tibble  2.0.1     ✔ purrr   0.2.5
-✔ tidyr   0.8.2     ✔ dplyr   0.7.8
-✔ ggplot2 3.1.0     ✔ forcats 0.3.0</code></pre>
-<pre><code>── Conflicts ───────────────────────────────────── tidyverse_conflicts() ──
+<pre><code>── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
+<pre><code>✔ ggplot2 3.2.1     ✔ purrr   0.3.3
+✔ tibble  2.1.3     ✔ dplyr   0.8.4
+✔ tidyr   1.0.2     ✔ forcats 0.4.0
+✔ readr   1.3.1     </code></pre>
+<pre><code>Warning: package &#39;tidyr&#39; was built under R version 3.6.2</code></pre>
+<pre><code>Warning: package &#39;dplyr&#39; was built under R version 3.6.2</code></pre>
+<pre><code>── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ IRanges::%within%()      masks lubridate::%within%()
 ✖ lubridate::as.difftime() masks base::as.difftime()
 ✖ dplyr::coalesce()        masks wrapr::coalesce()
@@ -506,15 +670,13 @@ Attaching package: &#39;IRanges&#39;</code></pre>
 ✖ dplyr::slice()           masks IRanges::slice()
 ✖ IRanges::union()         masks S4Vectors::union(), BiocGenerics::union(), lubridate::union(), base::union()
 ✖ tibble::view()           masks wrapr::view()</code></pre>
-<pre><code>Loading required package: tictoc</code></pre>
-<pre><code>Loading required package: hashmap</code></pre>
-<pre class="r"><code>indigenous_status = c(&quot;Neither Aboriginal nor Torres Strait Islander&quot;,
-                      &quot;Aboriginal&quot;,
+<pre class="r"><code>indigenous_status = c( &quot;Aboriginal&quot;,
                       &quot;Torres Strait Islander&quot;,
-                      &quot;Both Aboriginal  and Torres Strait Islander&quot;)
-data.frame(indigenous_status_id=1:4, 
-           indigenous_status_desc=indigenous_status ) %&gt;% 
-write.csv(&#39;data/package/indigenous_status.csv&#39;, row.names=FALSE)
+                      &quot;Both Aboriginal  and Torres Strait Islander&quot;,
+                      &quot;Neither Aboriginal nor Torres Strait Islander&quot;)
+data.frame(indigenous_status_id=1:4,
+           indigenous_status_desc=indigenous_status ) %&gt;%
+write_csv(&#39;data/assignment/indigenous_status.csv&#39;)
 
 
 ms=  c(
@@ -524,218 +686,367 @@ ms=  c(
        &quot;Separated&quot;,
        &quot;Married (registered and de facto)&quot;, &quot;Unknown&quot;)
 
-data.frame(marital_status_id=1:6, 
-           marital_status_desc=ms ) %&gt;% 
-  write.csv(&#39;data/package/marital_status.csv&#39;,row.names=FALSE)
+data.frame(marital_status_id=1:6,
+           marital_status_desc=ms ) %&gt;%
+  write_csv(&#39;data/assignment/marital_status.csv&#39;)
 
 data.frame(
-           hospital_insurance_id=1:2, 
-           hospital_insurance_desc=c(&#39;Hospital Insurance&#39;,&#39;No Hospital Insurance&#39; )) %&gt;% 
-  write.csv(&#39;data/package/hospital_insurance.csv&#39;,row.names=FALSE)</code></pre>
+           hospital_insurance_id=1:2,
+           hospital_insurance_desc=c(&#39;Hospital Insurance&#39;,&#39;No Hospital Insurance&#39; )) %&gt;%
+  write_csv(&#39;data/assignment/hospital_insurance.csv&#39;)</code></pre>
 </div>
-<div id="read-in-existing-data-add-to-df-randomly" class="section level1">
-<h1>read in existing data, add to df randomly</h1>
-<pre class="r"><code>read.csv(&#39;data/admission_code.csv&#39; ) %&gt;%
-  as_tibble() %&gt;% 
+<div id="original-procedures-and-diagnosis" class="section level1">
+<h1>original, procedures and diagnosis</h1>
+<pre class="r"><code>read_csv(&#39;data/admission_code.csv&#39; ) %&gt;%
   rename( admission_id=patient_id ) %&gt;%
-  { . } -&gt; df
-
-read.csv(&#39;data/diagnosis_desc.csv&#39; ) %&gt;%
-  as_tibble() %&gt;% 
+  { . } -&gt; df</code></pre>
+<pre><code>Parsed with column specification:
+cols(
+  patient_id = col_double(),
+  sep_mode_id = col_character(),
+  sex_id = col_double(),
+  adm_type_id = col_character(),
+  los = col_double(),
+  age_years = col_double(),
+  diag_code_1 = col_character(),
+  diag_code_2 = col_character(),
+  diag_code_3 = col_character(),
+  proc_code_1 = col_double(),
+  proc_code_2 = col_double(),
+  proc_code_3 = col_double()
+)</code></pre>
+<pre class="r"><code>read_csv(&#39;data/diagnosis_desc.csv&#39; ) %&gt;%
   select( diag_code, diag_desc ) %&gt;%
-  { . } -&gt; df_diag
-
-
-read.csv(&#39;data/procedure_desc.csv&#39; ) %&gt;%
-  as_tibble() %&gt;% 
+  { . } -&gt; df_diag</code></pre>
+<pre><code>Parsed with column specification:
+cols(
+  type = col_character(),
+  level = col_character(),
+  code_id = col_character(),
+  diag_code = col_character(),
+  dagger = col_character(),
+  asterisk = col_character(),
+  valid = col_character(),
+  aust_code = col_logical(),
+  diag_desc = col_character(),
+  diag_short_desc = col_character()
+)</code></pre>
+<pre class="r"><code>read_csv(&#39;data/procedure_desc.csv&#39; ) %&gt;%
   select( procedure_code, procedure_desc ) %&gt;%
-  { . } -&gt; df_proc
-
-
-df %&gt;%
-  select(starts_with(&#39;diag&#39; )) %&gt;% 
-  gather( id, diag_code ) %&gt;% 
+  { . } -&gt; df_proc</code></pre>
+<pre><code>Parsed with column specification:
+cols(
+  procedure_code = col_double(),
+  block = col_double(),
+  procedure_desc = col_character(),
+  procedure_short_desc = col_character()
+)</code></pre>
+<pre class="r"><code>df %&gt;%
+  select(starts_with(&#39;diag&#39; )) %&gt;%
+  gather( id, diag_code ) %&gt;%
   distinct( diag_code )  %&gt;%
   inner_join( df_diag ) %&gt;%
-  write.csv( &#39;data/package/diagnosis_desc.csv&#39;, row.names=F)</code></pre>
+  write_csv( &#39;data/assignment/diagnosis_desc.csv&#39;)</code></pre>
 <pre><code>Joining, by = &quot;diag_code&quot;</code></pre>
 <pre class="r"><code>df %&gt;%
-  select(starts_with(&#39;proc&#39; )) %&gt;% 
-  gather( id, procedure_code ) %&gt;% 
+  select(starts_with(&#39;proc&#39; )) %&gt;%
+  gather( id, procedure_code ) %&gt;%
   distinct( procedure_code )  %&gt;%
   inner_join( df_proc ) %&gt;%
-  write.csv( &#39;data/package/procedure_desc.csv&#39;, row.names=F)</code></pre>
+  write_csv( &#39;data/assignment/procedure_desc.csv&#39;)</code></pre>
 <pre><code>Joining, by = &quot;procedure_code&quot;</code></pre>
-<pre class="r"><code>read.csv(&#39;data/name_source.csv&#39; ) %&gt;%
-  as_tibble() %&gt;% 
-  { . } -&gt; df_names
-
-
-df_names %&gt;% 
+<pre class="r"><code>df %&gt;%
+  select( -starts_with(&#39;diag&#39;), -starts_with(&#39;proc&#39;)) %&gt;%
+  { . } -&gt; df</code></pre>
+</div>
+<div id="names" class="section level1">
+<h1>names</h1>
+<pre class="r"><code>read_csv(&#39;data/name_source.csv&#39; ) %&gt;%
+  { . } -&gt; df_names</code></pre>
+<pre><code>Parsed with column specification:
+cols(
+  NameSet = col_character(),
+  Title = col_character(),
+  GivenName = col_character(),
+  MiddleInitial = col_character(),
+  Surname = col_character()
+)</code></pre>
+<pre class="r"><code>df_names %&gt;%
   inner_join( df_names %&gt;%
                 distinct( NameSet )  %&gt;%
-                mutate( weight = c(100,10,10,10,10 ))) %&gt;% 
+                mutate( weight = c(100,10,10,10,10 ))) %&gt;%
   { . } -&gt; df_names</code></pre>
 <pre><code>Joining, by = &quot;NameSet&quot;</code></pre>
 <pre class="r"><code>df %&gt;%
   mutate( given_name = sample_n( df_names, nrow(df), replace=TRUE, weight=df_names$weight ) %&gt;%
             mutate( name = paste( GivenName, Surname ))  %$%
             name
-          ) %&gt;% 
+          ) %&gt;%
   { . } -&gt; df
 
 df %&gt;%
-  inner_join( df %&gt;% 
-             distinct( given_name ) %&gt;% 
+  inner_join( df %&gt;%
+             distinct( given_name ) %&gt;%
              mutate( patient_id = paste0(&quot;UR&quot;, row_number()+100000))
-           ) %&gt;% 
+           ) %&gt;%
   { . } -&gt; df</code></pre>
 <pre><code>Joining, by = &quot;given_name&quot;</code></pre>
-<pre class="r"><code>read.csv( &#39;data/archive/country_of_birth.csv&#39;, colClasses=c(&#39;character&#39;, &#39;character&#39;) ) %&gt;%
-  as_tibble() %&gt;%
+</div>
+<div id="insurance" class="section level1">
+<h1>insurance</h1>
+<pre class="r"><code>read_csv( &#39;data/assignment/hospital_insurance.csv&#39; ) %&gt;%
+  mutate( weight=1) %&gt;%
+  { . } -&gt; df_tofill</code></pre>
+<pre><code>Parsed with column specification:
+cols(
+  hospital_insurance_id = col_double(),
+  hospital_insurance_desc = col_character()
+)</code></pre>
+<pre class="r"><code>df %&gt;%
+  mutate( hospital_insurance_id = sample_n( df_tofill, nrow(df), replace=TRUE, weight=df_tofill$weight )  %$% hospital_insurance_id) %&gt;%
+  { . } -&gt; df</code></pre>
+</div>
+<div id="cob-and-indigeneous" class="section level1">
+<h1>COB and indigeneous</h1>
+<pre class="r"><code>read_csv( &#39;data/archive/country_of_birth.csv&#39; ) %&gt;%
   select( country_id, country_description ) %&gt;%
-  mutate( weight=ifelse( country_id==&#39;1101&#39; , 50, 1 )) %&gt;%
-  write.csv(&#39;data/package/country_of_birth.csv&#39;, row.names=F)
-
-read.csv( &#39;data/package/country_of_birth.csv&#39;, colClasses=c(&#39;character&#39;, &#39;character&#39;, &#39;numeric&#39;) ) %&gt;%
-  as_tibble() %&gt;% 
-  { . } -&gt; df_tofill
-
-df %&gt;%
-  mutate( country_id = sample_n( df_tofill, nrow(df), replace=TRUE, weight=df_tofill$weight )  %$% country_id) %&gt;% 
-  { . } -&gt; df
-
-
-
-read.csv( &#39;data/package/campus.csv&#39; ) %&gt;%
-  as_tibble() %&gt;% 
-  mutate( weight=1) %&gt;%
-  { . } -&gt; df_tofill
-
-df %&gt;%
-  mutate( campus_id = sample_n( df_tofill, nrow(df), replace=TRUE, weight=df_tofill$weight )  %$% campus_id) %&gt;% 
-  { . } -&gt; df
-
-
-
-
-read.csv( &#39;data/package/hospital_insurance.csv&#39; ) %&gt;%
-  as_tibble() %&gt;% 
-  mutate( weight=1) %&gt;%
-  { . } -&gt; df_tofill
-
-df %&gt;%
-  mutate( hospital_insurance_id = sample_n( df_tofill, nrow(df), replace=TRUE, weight=df_tofill$weight )  %$% hospital_insurance_id) %&gt;% 
-  { . } -&gt; df
-
-read.csv( &#39;data/package/indigenous_status.csv&#39; ) %&gt;%
-  as_tibble() %&gt;% 
-  mutate( weight=c(30,2,2,1)) %&gt;%
-  { . } -&gt; df_tofill
-
-df %&gt;%
-  mutate( indigenous_status_id = sample_n( df_tofill, nrow(df), replace=TRUE, weight=df_tofill$weight )  %$% indigenous_status_id) %&gt;% 
-  { . } -&gt; df
-
-read.csv( &#39;data/package/marital_status.csv&#39; ) %&gt;%
-  as_tibble() %&gt;% 
+  mutate( weight=ifelse( country_id==&#39;1101&#39; , 200, 1 )) %&gt;%
+  write_csv(&#39;data/assignment/country_of_birth.csv&#39;)</code></pre>
+<pre><code>Warning: Missing column names filled in: &#39;X7&#39; [7], &#39;X8&#39; [8], &#39;X9&#39; [9],
+&#39;X10&#39; [10], &#39;X11&#39; [11], &#39;X12&#39; [12], &#39;X13&#39; [13], &#39;X14&#39; [14], &#39;X15&#39; [15]</code></pre>
+<pre><code>Parsed with column specification:
+cols(
+  country_id = col_character(),
+  country_description = col_character(),
+  `1st Edn` = col_character(),
+  `Alpha-2` = col_character(),
+  `Alpha-3` = col_character(),
+  Numeric = col_character(),
+  X7 = col_logical(),
+  X8 = col_logical(),
+  X9 = col_logical(),
+  X10 = col_logical(),
+  X11 = col_logical(),
+  X12 = col_logical(),
+  X13 = col_logical(),
+  X14 = col_logical(),
+  X15 = col_logical()
+)</code></pre>
+<pre class="r"><code>read_csv( &#39;data/assignment/country_of_birth.csv&#39; ) %&gt;%
+  filter( country_id&gt;=1101) %&gt;%
+  { . } -&gt; df_tofill</code></pre>
+<pre><code>Parsed with column specification:
+cols(
+  country_id = col_character(),
+  country_description = col_character(),
+  weight = col_double()
+)</code></pre>
+<pre class="r"><code>df %&gt;%
+  mutate( country_id = sample_n( df_tofill, nrow(df), replace=TRUE, weight=df_tofill$weight )  %$% country_id) %&gt;%
+  { . } -&gt; df</code></pre>
+</div>
+<div id="indigeneous" class="section level1">
+<h1>indigeneous</h1>
+<pre class="r"><code>read_csv( &#39;data/assignment/indigenous_status.csv&#39; ) %&gt;%
+  mutate( weight=c(2,2,1,100)) %&gt;%
+  { . } -&gt; df_tofill</code></pre>
+<pre><code>Parsed with column specification:
+cols(
+  indigenous_status_id = col_double(),
+  indigenous_status_desc = col_character()
+)</code></pre>
+<pre class="r"><code>df %&gt;%
+  mutate( indigenous_status_id = sample_n( df_tofill, nrow(df), replace=TRUE, weight=df_tofill$weight )  %$% indigenous_status_id) %&gt;%
+  # fix up indigenous status for non-aussies of
+  mutate( country_id = ifelse( indigenous_status_id &lt; 4, 1101,country_id )) %&gt;%
+  { . } -&gt; df</code></pre>
+</div>
+<div id="marital" class="section level1">
+<h1>marital</h1>
+<pre class="r"><code>read_csv( &#39;data/assignment/marital_status.csv&#39; ) %&gt;%
   mutate( weight=c(1,1,1,1,4,.1)) %&gt;%
-  { . } -&gt; df_tofill
-
-df %&gt;%
-  mutate( marital_status_id = sample_n( df_tofill, nrow(df), replace=TRUE, weight=df_tofill$weight )  %$% marital_status_id) %&gt;% 
+  { . } -&gt; df_tofill</code></pre>
+<pre><code>Parsed with column specification:
+cols(
+  marital_status_id = col_double(),
+  marital_status_desc = col_character()
+)</code></pre>
+<pre class="r"><code>df %&gt;%
+  mutate( marital_status_id = sample_n( df_tofill, nrow(df), replace=TRUE, weight=df_tofill$weight )  %$% marital_status_id) %&gt;%
   select( marital_status_id, everything()) %&gt;%
-  { . } -&gt; df
-
-read.csv( &#39;data/package/postcode.csv&#39;, colClasses=&#39;character&#39; ) %&gt;%
-  as_tibble() %&gt;% 
+  { . } -&gt; df</code></pre>
+</div>
+<div id="postcode" class="section level1">
+<h1>postcode</h1>
+<pre class="r"><code>read_csv( &#39;data/assignment/postcode.csv&#39;) %&gt;%
   filter( State==&#39;VIC&#39; ) %&gt;%
   mutate( weight=ifelse( postcode &lt;= &#39;3207&#39;, 30,1 )) %&gt;%
-  { . } -&gt; df_tofill
-
-df %&gt;%
-  mutate( postcode = sample_n( df_tofill, nrow(df), replace=TRUE, weight=df_tofill$weight )  %$% postcode) %&gt;% 
+  { . } -&gt; df_tofill</code></pre>
+<pre><code>Parsed with column specification:
+cols(
+  postcode = col_character(),
+  locality = col_character(),
+  State = col_character(),
+  Comments = col_character(),
+  DeliveryOffice = col_character(),
+  PresortIndicator = col_double(),
+  ParcelZone = col_character(),
+  BSPnumber = col_double(),
+  BSPname = col_character(),
+  isArchived = col_logical()
+)</code></pre>
+<pre class="r"><code>df %&gt;%
+  mutate( postcode = sample_n( df_tofill, nrow(df), replace=TRUE, weight=df_tofill$weight )  %$% postcode) %&gt;%
   select( postcode, everything()) %&gt;%
-  { . } -&gt; df
+  { . } -&gt; df</code></pre>
+</div>
+<div id="campus" class="section level1">
+<h1>campus</h1>
+<pre class="r"><code>read_csv( &#39;data/assignment/campus_answers.csv&#39; ) %&gt;%
+  replace_na(list( type=&#39;&#39;) ) %&gt;%
+  mutate( weight= ifelse( type == &#39;&#39;,1, 100 )) %&gt;%
+  { . } -&gt; df_campus</code></pre>
+<pre><code>Parsed with column specification:
+cols(
+  campus_id = col_double(),
+  campus_name = col_character(),
+  public_hospital_indicator = col_double(),
+  type = col_character()
+)</code></pre>
+<pre class="r"><code>df %&gt;%
+  mutate( campus_id = sample_n( df_campus, nrow(df), replace=TRUE, weight=df_campus$weight )  %$% campus_id) %&gt;%
+  { . } -&gt; df</code></pre>
+</div>
+<div id="admitting-unit" class="section level1">
+<h1>admitting unit</h1>
+<pre class="r"><code>read_csv( &#39;data/assignment/admitting_unit_answers.csv&#39;) %&gt;%
+  replace_na(list( campus_category_not=&#39;&#39;, campus_category_should=&#39;&#39;) ) %&gt;%
+{ . } -&gt; df_admitting_unit</code></pre>
+<pre><code>Parsed with column specification:
+cols(
+  admitting_unit_id = col_character(),
+  admitting_unit_desc = col_character(),
+  campus_category_not = col_character(),
+  campus_category_should = col_character()
+)</code></pre>
+<pre class="r"><code>################################################################################
+################################################################################
+################################################################################
+find_appropriate_admitting_unit = function( type, df_admitting_unit) {
+  n = length(type)
+  type=type[1]
 
-read.csv( &#39;data/package/speciality.csv&#39;, colClasses=&#39;character&#39; ) %&gt;%
-  as_tibble() %&gt;% 
-  mutate( weight=1 ) %&gt;%
-  { . } -&gt; df_tofill
+  df_admitting_unit %&gt;%
+    filter( type == &#39;&#39; | campus_category_not != type )  %&gt;%
+    mutate( weight = ifelse( campus_category_should==type, 30,1)) %&gt;%
+    sample_n( n, replace=TRUE, weight=weight ) %&gt;%
+    pluck( &#39;admitting_unit_id&#39;)
 
+}
+################################################################################
+################################################################################
+################################################################################
+
+
+# find the appropriate admitting unit for this type of campus
 df %&gt;%
-  mutate( speciality_id = sample_n( df_tofill, nrow(df), replace=TRUE, weight=df_tofill$weight )  %$% speciality_id) %&gt;% 
-  select( speciality_id, everything()) %&gt;%
-  { . } -&gt; df
-
-
-df %&gt;%
-  mutate( date_of_birth = make_date( year=year(today()) - age_years - 1, 
-                                    month=1, 
-                                    day=1 ) + 
+  inner_join( df_campus %&gt;% select( campus_id, type ), by=&#39;campus_id&#39;) %&gt;%
+  group_by( type ) %&gt;%
+  mutate( admitting_unit_id = find_appropriate_admitting_unit( type, df_admitting_unit) ) %&gt;%
+  ungroup() %&gt;%
+  mutate( sex_id = ifelse( admitting_unit_id==&#39;BIRT&#39;, 2, sex_id )) %&gt;%
+  select(-type) %&gt;%
+  { . } -&gt; df</code></pre>
+</div>
+<div id="dob-dates" class="section level1">
+<h1>DOB, dates</h1>
+<pre class="r"><code>df %&gt;%
+  mutate( date_of_birth = make_date( year=year(today()) - age_years - 1,
+                                    month=1,
+                                    day=1 ) +
          sample( 0:364, n(), replace=T)) %&gt;%
   mutate( admission_date = make_date( year=year(today())-1, month=1, day=1 ) + sample( 0:364, n(), replace=T)) %&gt;%
   mutate( separation_date = admission_date + los - 1  ) %&gt;%
   rename( patient_days_total=los ) %&gt;%
   select( names( . ) %&gt;% sort() ) %&gt;%
   select( -age_years ) %&gt;%
-  { . } -&gt; df
-
-df%&gt;% write.csv( &#39;data/package/admission.csv&#39;, row.names=FALSE)</code></pre>
-<div id="session-information" class="section level2">
-<h2>Session information</h2>
+  { . } -&gt; df</code></pre>
+</div>
+<div id="los-and-accommodation_type" class="section level1">
+<h1>LOS and accommodation_type</h1>
+<pre class="r"><code>read_csv( &#39;data/assignment/accommodation_type.csv&#39; ) %&gt;%
+  { . } -&gt; df_tofill</code></pre>
+<pre><code>Parsed with column specification:
+cols(
+  accommodation_type_id = col_character(),
+  accommodation_type_desc = col_character(),
+  weight = col_double()
+)</code></pre>
+<pre class="r"><code>df %&gt;%
+  mutate( accommodation_type_id = sample_n( df_tofill, nrow(df), replace=TRUE, weight=df_tofill$weight )  %$% accommodation_type_id) %&gt;%
+  mutate( accommodation_type_id  = ifelse( patient_days_total == 1 &amp; accommodation_type_id!=3, 3, accommodation_type_id )) %&gt;%
+  mutate( accommodation_type_id  = ifelse( patient_days_total != 1 &amp; accommodation_type_id==3, 1, accommodation_type_id )) %&gt;%
+  { . } -&gt; df</code></pre>
+<p>write data</p>
+<pre class="r"><code>df %&gt;%
+  write_csv( &#39;data/assignment/admission.csv&#39;)</code></pre>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>R version 3.4.4 (2018-03-15)
+<pre><code>R version 3.6.1 (2019-07-05)
 Platform: x86_64-pc-linux-gnu (64-bit)
-Running under: Ubuntu 18.04.1 LTS
+Running under: Ubuntu 18.04.4 LTS
 
 Matrix products: default
-BLAS: /usr/lib/x86_64-linux-gnu/openblas/libblas.so.3
+BLAS:   /usr/lib/x86_64-linux-gnu/openblas/libblas.so.3
 LAPACK: /usr/lib/x86_64-linux-gnu/libopenblasp-r0.2.20.so
 
 locale:
- [1] LC_CTYPE=en_AU.UTF-8       LC_NUMERIC=C              
- [3] LC_TIME=en_AU.UTF-8        LC_COLLATE=en_AU.UTF-8    
- [5] LC_MONETARY=en_AU.UTF-8    LC_MESSAGES=en_AU.UTF-8   
- [7] LC_PAPER=en_AU.UTF-8       LC_NAME=C                 
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
-[11] LC_MEASUREMENT=en_AU.UTF-8 LC_IDENTIFICATION=C       
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 
 attached base packages:
 [1] stats4    parallel  stats     graphics  grDevices utils     datasets 
 [8] methods   base     
 
 other attached packages:
- [1] bindrcpp_0.2.2        hashmap_0.2.2         tictoc_1.0           
- [4] forcats_0.3.0         dplyr_0.7.8           purrr_0.2.5          
- [7] readr_1.3.1           tidyr_0.8.2           tibble_2.0.1         
-[10] ggplot2_3.1.0         tidyverse_1.2.1       multidplyr_0.0.0.9000
-[13] IRanges_2.12.0        S4Vectors_0.16.0      BiocGenerics_0.24.0  
-[16] fuzzyjoin_0.1.4       DataCache_0.9         wrapr_1.8.2          
-[19] readstata13_0.9.2     lubridate_1.7.4       knitr_1.21           
-[22] stringr_1.3.1         magrittr_1.5          seas_0.5-2           
-[25] MASS_7.3-50           workflowr_1.1.1       nvimcom_0.9-75       
+ [1] hashmap_0.2.2         tictoc_1.0            forcats_0.4.0        
+ [4] dplyr_0.8.4           purrr_0.3.3           readr_1.3.1          
+ [7] tidyr_1.0.2           tibble_2.1.3          ggplot2_3.2.1        
+[10] tidyverse_1.3.0       multidplyr_0.0.0.9000 IRanges_2.19.10      
+[13] S4Vectors_0.23.18     BiocGenerics_0.31.5   fuzzyjoin_0.1.5      
+[16] DataCache_0.9.1       wrapr_1.8.9           readstata13_0.9.2    
+[19] lubridate_1.7.4       knitr_1.28            stringr_1.4.0        
+[22] magrittr_1.5          seas_0.5-2            MASS_7.3-51.4        
+[25] workflowr_1.4.0.9001  nvimcom_0.9-82       
 
 loaded via a namespace (and not attached):
- [1] Rcpp_1.0.0        lattice_0.20-35   assertthat_0.2.0 
- [4] rprojroot_1.3-2   digest_0.6.18     R6_2.3.0         
- [7] cellranger_1.1.0  plyr_1.8.4        backports_1.1.3  
-[10] evaluate_0.12     httr_1.4.0        pillar_1.3.1     
-[13] rlang_0.3.1       lazyeval_0.2.1    readxl_1.2.0     
-[16] rstudioapi_0.9.0  whisker_0.3-2     R.utils_2.7.0    
-[19] R.oo_1.22.0       rmarkdown_1.11    munsell_0.5.0    
-[22] broom_0.5.1       compiler_3.4.4    modelr_0.1.2     
-[25] xfun_0.4          pkgconfig_2.0.2   htmltools_0.3.6  
-[28] tidyselect_0.2.5  codetools_0.2-15  withr_2.1.2      
-[31] crayon_1.3.4      R.methodsS3_1.7.1 grid_3.4.4       
-[34] nlme_3.1-137      jsonlite_1.6      gtable_0.2.0     
-[37] git2r_0.24.0      scales_1.0.0      cli_1.0.1        
-[40] stringi_1.2.4     xml2_1.2.0        generics_0.0.2   
-[43] tools_3.4.4       glue_1.3.0        hms_0.4.2        
-[46] yaml_2.2.0        colorspace_1.4-0  rvest_0.3.2      
-[49] bindr_0.1.1       haven_2.0.0      </code></pre>
+ [1] Rcpp_1.0.3       lattice_0.20-38  assertthat_0.2.1 rprojroot_1.3-2 
+ [5] digest_0.6.24    R6_2.4.1         cellranger_1.1.0 backports_1.1.5 
+ [9] reprex_0.3.0     evaluate_0.14    httr_1.4.1       pillar_1.4.3    
+[13] rlang_0.4.4      lazyeval_0.2.2   readxl_1.3.1     rstudioapi_0.11 
+[17] whisker_0.4      rmarkdown_2.1    munsell_0.5.0    broom_0.5.4     
+[21] compiler_3.6.1   modelr_0.1.5     xfun_0.11        pkgconfig_2.0.3 
+[25] htmltools_0.4.0  tidyselect_1.0.0 codetools_0.2-16 fansi_0.4.1     
+[29] crayon_1.3.4     dbplyr_1.4.2     withr_2.1.2      grid_3.6.1      
+[33] nlme_3.1-142     jsonlite_1.6.1   gtable_0.3.0     lifecycle_0.1.0 
+[37] DBI_1.1.0        git2r_0.26.1     scales_1.1.0     cli_2.0.1       
+[41] stringi_1.4.5    fs_1.3.1         xml2_1.2.2       ellipsis_0.3.0  
+[45] vctrs_0.2.2      generics_0.0.2   tools_3.6.1      glue_1.3.1      
+[49] hms_0.5.3        yaml_2.2.1       colorspace_1.4-1 rvest_0.3.5     
+[53] haven_2.2.0     </code></pre>
 </div>
 </div>
+
 
 <!-- Adjust MathJax settings so that all math formulae are shown using
 TeX fonts only; see
@@ -748,14 +1059,6 @@ footer is added to webpages before the MathJax javascript. -->
     "HTML-CSS": { availableFonts: ["TeX"] }
   });
 </script>
-
-<hr>
-<p>
-  This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a>
-  analysis was created with
-  <a href="https://github.com/jdblischak/workflowr">workflowr</a> 1.1.1
-</p>
-<hr>
 
 
 
@@ -773,6 +1076,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
